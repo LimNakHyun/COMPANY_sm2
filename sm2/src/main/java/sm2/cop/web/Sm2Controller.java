@@ -1,9 +1,7 @@
 package sm2.cop.web;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -22,6 +20,7 @@ public class Sm2Controller {
 	@Resource(name="sm2Service")
 	private Sm2Service sm2Service;
 	
+	
 	@RequestMapping(value="/sm2/openSm2List.do")
 	public ModelAndView openSm2List(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardList");
@@ -29,21 +28,6 @@ public class Sm2Controller {
 		List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap);
 		mv.addObject("list", list);
 		
-		return mv;
-	}
-	
-	@RequestMapping(value="/sm2/testMapArgumentResolver.do")
-	public ModelAndView testMapArguemntResolver(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("");
-		
-		if(commandMap.isEmpty() == false) {
-			Iterator<Entry<String, Object>> iterator = commandMap.getMap().entrySet().iterator();
-			Entry<String, Object> entry = null;
-			while(iterator.hasNext()) {
-				entry = iterator.next();
-				log.debug("key : " + entry.getKey() + ", value : " + entry.getValue());
-			}
-		}
 		return mv;
 	}
 	

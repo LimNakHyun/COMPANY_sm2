@@ -20,7 +20,7 @@
 		<button>매출총괄현황</button>
 	</form>
 	
-	<form action="sumForm">
+	<form action="">
 		<button>총괄</button>
 	</form>
 	
