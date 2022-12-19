@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="sm2">
+
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *
+			FROM
+				MANAGEMENT
+			WHERE
+				DELYN = FALSE
+			ORDER BY IDX
+		]]>
+	</select>
+	
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *
+			FROM
+				MANAGEMENT
+			WHERE
+				DELYN = FALSE AND
+				BUSINESSNAME = #{businessname}
+		]]>
+	</select>
+	
+	<insert id="insertBoard" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO MANAGEMENT
+			(
+				BUSINESSNAME,
+			    CLIENT,
+			    STARTTERM,
+			    ENDTERM,
+			    PLUSTOTALBUSINESSAMOUNT,
+			    MINUSTOTALBUSINESSAMOUNT,
+			    RATIO,
+			    SALESAMOUNT,
+			    COLLECTIONCOMPLETEDAMOUNT,
+			    TOTALCOLLECTIONREMAININGAMOUNT,
+			    CODE
+			)
+			VALUES
+			(
+				#{businessname},
+				#{client},
+			    #{startterm},
+			    #{endterm},
+			    CAST(#{plustotalbusinessamount} AS BIGINT),
+			    CAST(#{minustotalbusinessamount} AS BIGINT),
+			    CAST(#{ratio} AS DOUBLE PRECISION),
+			    CAST(#{salesamount} AS BIGINT),
+			    CAST(#{collectioncompletedamount} AS BIGINT),
+			    CAST(#{totalcollectionremainingamount} AS BIGINT),
+			    #{CODE}
+			)
+		]]>
+	</insert>
+
+</mapper>

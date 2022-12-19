@@ -1,0 +1,31 @@
+<%@ page pageEncoding="utf-8"%>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>매출관리</title>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<%-- <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"> --%>
+<link href="${pageContext.request.contextPath}/resources/css/style.css" rel="stylesheet" type="text/css">
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/common.js" charset="utf-8"></script>
+
+<body>
+	<form action="/sm2/openSm2List.do">
+		<button>매출총괄현황</button>
+	</form>
+	
+	<form action="sumForm">
+		<button>총괄</button>
+	</form>
+	
+	<form action="monthListForm">
+		<button>월별 사업</button>
+	</form>
+	
+</body>
