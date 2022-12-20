@@ -24,7 +24,7 @@
 		<button>총괄</button>
 	</form>
 	
-	<form action="monthListForm">
+	<form action="/sm2/openSm2MonthList.do">
 		<button>월별 사업</button>
 	</form>
 	

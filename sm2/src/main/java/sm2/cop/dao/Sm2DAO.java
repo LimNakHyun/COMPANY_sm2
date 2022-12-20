@@ -1,3 +1,18 @@
+/**
+ * @Class Name : Sm2DAO.java
+ * @Description : 사업 매출 정보 dao 클래스
+ * @Modification Information
+ * @
+ * @   수정일                   수정자                                       수정내용
+ * @ ---------   ---------   -------------------------------
+ * @ 2022.12.20     임낙현                                      최초생성
+ *
+ * @author 개발5팀 임낙현 사원
+ * @since 2022.12.20
+ * @version 1.0
+ * @see
+ */
+
 package sm2.cop.dao;
 
 import java.util.List;
@@ -11,18 +26,43 @@ import sm2.cmm.dao.AbstractDAO;
 @Repository("sm2DAO")
 public class Sm2DAO extends AbstractDAO {
 
+	/**
+	 * 사업 매출정보 조회
+	 * @param CommandMap
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectBoardList(CommandMap map) throws Exception {
 		return (List<Map<String, Object>>) selectList("sm2.selectBoardList", map);
 	}
 
+	/**
+	 * 사업 매출정보 상세보기 조회
+	 * @param CommandMap
+	 * @throws Exception
+	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("sm2.selectBoardDetail", map);
 	}
 
+	/**
+	 * 사업 매출정보 등록
+	 * @param CommandMap
+	 * @throws Exception
+	 */
 	public void insertBoard(Map<String, Object> map) {
 		insert("sm2.insertBoard", map);
+	}
+
+	/**
+	 * 사업 월별 수금액 목록 페이지 조회
+	 * @param CommandMap
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectBoardMonthList(CommandMap commandMap) {
+		return (List<Map<String, Object>>) selectList("sm2.selectBoardMonthList", commandMap);
 	}
 
 }

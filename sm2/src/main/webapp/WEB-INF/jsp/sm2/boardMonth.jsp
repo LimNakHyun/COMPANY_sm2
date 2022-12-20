@@ -57,7 +57,7 @@
 	</c:forEach>
 </table>
 
-<form action="addMonthBusinessForm" method="post">
+<form action="/sm2/openSm2MonthWrite.do">
 	<input type="hidden" name="month" value="${month}">
 	<button>사업 추가</button>
 </form>

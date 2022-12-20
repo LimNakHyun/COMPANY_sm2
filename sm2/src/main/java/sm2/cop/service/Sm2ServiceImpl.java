@@ -1,3 +1,18 @@
+/**
+ * @Class Name : Sm2ServiceImpl.java
+ * @Description : 사업 매출 정보 service implement 클래스
+ * @Modification Information
+ * @
+ * @   수정일                   수정자                                       수정내용
+ * @ ---------   ---------   -------------------------------
+ * @ 2022.12.20     임낙현                                      최초생성
+ *
+ * @author 개발5팀 임낙현 사원
+ * @since 2022.12.20
+ * @version 1.0
+ * @see
+ */
+
 package sm2.cop.service;
 
 import java.text.SimpleDateFormat;
@@ -20,17 +35,32 @@ public class Sm2ServiceImpl implements Sm2Service {
 	@Resource(name="sm2DAO")
 	private Sm2DAO sm2DAO;
 
+	/**
+	 * 사업 매출정보 조회
+	 * @param CommandMap
+	 * @throws Exception
+	 */
 	@Override
 	public List<Map<String, Object>> selectBoardList(CommandMap map) throws Exception {
 		return sm2DAO.selectBoardList(map);
 	}
 
+	/**
+	 * 사업 매출정보 상세보기 조회
+	 * @param CommandMap
+	 * @throws Exception
+	 */
 	@Override
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
 		Map<String, Object> resultMap = sm2DAO.selectBoardDetail(map);
 		return resultMap;
 	}
 
+	/**
+	 * 사업 매출정보 등록
+	 * @param CommandMap
+	 * @throws Exception
+	 */
 	@Override
 	public void insertBoard(Map<String, Object> map) throws Exception {
 		
@@ -56,6 +86,16 @@ public class Sm2ServiceImpl implements Sm2Service {
 		System.out.println("추가될 해시맵: " + map);
 		
 		sm2DAO.insertBoard(map);
+	}
+	
+	/**
+	 * 사업 월별 수금액 목록 페이지 조회
+	 * @param CommandMap
+	 * @throws Exception
+	 */
+	@Override
+	public List<Map<String, Object>> selectBoardMonthList(CommandMap commandMap) throws Exception {
+		return sm2DAO.selectBoardMonthList(commandMap);
 	}
 
 }

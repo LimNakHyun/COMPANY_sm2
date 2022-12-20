@@ -8,86 +8,18 @@
 <body>
 
 <table>
-	<tr>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="1">
-				<button>1월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="2">
-				<button>2월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="3">
-				<button>3월</button>
-			</form>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="4">
-				<button>4월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="5">
-				<button>5월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="6">
-				<button>6월</button>
-			</form>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="7">
-				<button>7월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="8">
-				<button>8월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="9">
-				<button>9월</button>
-			</form>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="10">
-				<button>10월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="11">
-				<button>11월</button>
-			</form>
-		</td>
-		<td>
-			<form action="monthForm" method="post">
-				<input type="hidden" name="month" value="12">
-				<button>12월</button>
-			</form>
-		</td>
-	</tr>
+	<c:forEach var="i" begin="0" end="3">
+		<tr>
+			<c:forEach var="j" begin="1" end="3">
+				<td>
+					<form action="/sm2/openSm2Month.do">
+						<input type="hidden" name="month" value="<c:out value="${i * 3 + j}" />">
+						<button><c:out value="${i * 3 + j}" />월</button>
+					</form>
+				</td>
+			</c:forEach>
+		</tr>
+	</c:forEach>
 </table>
 
 </body>
