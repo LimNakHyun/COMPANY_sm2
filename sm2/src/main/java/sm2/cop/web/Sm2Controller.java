@@ -38,7 +38,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 매출정보 조회
-	 * @param CommandMap
+	 * @param commandMap
 	 * @return "/sm2/boardList"
 	 * @throws Exception
 	 */
@@ -54,7 +54,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 매출정보 상세보기 조회
-	 * @param CommandMap
+	 * @param commandMap
 	 * @return "/sm2/boardDetail"
 	 * @throws Exception
 	 */
@@ -70,7 +70,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 매출정보 등록 페이지 이동
-	 * @param CommandMap
+	 * @param commandMap
 	 * @return "/sm2/boardWrite"
 	 * @throws Exception
 	 */
@@ -83,7 +83,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 매출정보 등록
-	 * @param CommandMap
+	 * @param commandMap
 	 * @return
 	 * @throws Exception
 	 */
@@ -98,7 +98,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 월별 목록 페이지 조회
-	 * @param CommandMap
+	 * @param commandMap
 	 * @return "/sm2/boardMonthList"
 	 * @throws Exception
 	 */
@@ -111,7 +111,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 월별 수금액 목록 조회 페이지 이동
-	 * @param CommandMap
+	 * @param commandMap
 	 * @param month
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
@@ -120,7 +120,7 @@ public class Sm2Controller {
 	public ModelAndView openSm2Month(CommandMap commandMap, @ModelAttribute("month") String month) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonth");
 		
-		List<Map<String, Object>> list = sm2Service.selectBoardMonthList(commandMap);
+		List<Map<String, Object>> list = sm2Service.selectBoardMonthList(commandMap.getMap());
 		mv.addObject("list", list);
 		mv.addObject("month", month);
 		
@@ -129,7 +129,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 월별 수금액 등록 페이지 이동
-	 * @param CommandMap
+	 * @param commandMap
 	 * @param month
 	 * @return "/sm2/boardMonthWrite"
 	 * @throws Exception
@@ -147,7 +147,7 @@ public class Sm2Controller {
 	
 	/**
 	 * 사업 월별 수금액 등록
-	 * @param CommandMap
+	 * @param commandMap
 	 * @param month
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
@@ -156,6 +156,10 @@ public class Sm2Controller {
 	public ModelAndView insertSm2Month(CommandMap commandMap, @ModelAttribute("month") String month) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonth");
 		
+		sm2Service.insertBoardMonth(commandMap.getMap());
+		
+		List<Map<String, Object>> list = sm2Service.selectBoardMonthList(commandMap.getMap());
+		mv.addObject("list", list);
 		mv.addObject("month", month);
 		
 		return mv;

@@ -24,30 +24,37 @@ public interface Sm2Service {
 
 	/**
 	 * 사업 매출정보 조회
-	 * @param CommandMap
+	 * @param commandMap
 	 * @throws Exception
 	 */
 	List<Map<String, Object>> selectBoardList(CommandMap commandMap) throws Exception;
 
 	/**
 	 * 사업 매출정보 상세보기 조회
-	 * @param CommandMap
+	 * @param map
 	 * @throws Exception
 	 */
 	Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 사업 매출정보 등록
-	 * @param CommandMap
+	 * @param map
 	 * @throws Exception
 	 */
 	void insertBoard(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 사업 월별 수금액 목록 페이지 조회
-	 * @param CommandMap
+	 * @param map
 	 * @throws Exception
 	 */
-	List<Map<String, Object>> selectBoardMonthList(CommandMap commandMap) throws Exception;
+	List<Map<String, Object>> selectBoardMonthList(Map<String, Object> map) throws Exception;
+
+	/**
+	 * 사업 월별 수금액 등록
+	 * @param map
+	 * @throws Exception
+	 */
+	void insertBoardMonth(Map<String, Object> map) throws Exception;
 
 }

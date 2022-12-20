@@ -37,17 +37,17 @@ public class Sm2ServiceImpl implements Sm2Service {
 
 	/**
 	 * 사업 매출정보 조회
-	 * @param CommandMap
+	 * @param commandMap
 	 * @throws Exception
 	 */
 	@Override
-	public List<Map<String, Object>> selectBoardList(CommandMap map) throws Exception {
-		return sm2DAO.selectBoardList(map);
+	public List<Map<String, Object>> selectBoardList(CommandMap Commandmap) throws Exception {
+		return sm2DAO.selectBoardList(Commandmap);
 	}
 
 	/**
 	 * 사업 매출정보 상세보기 조회
-	 * @param CommandMap
+	 * @param map
 	 * @throws Exception
 	 */
 	@Override
@@ -58,7 +58,7 @@ public class Sm2ServiceImpl implements Sm2Service {
 
 	/**
 	 * 사업 매출정보 등록
-	 * @param CommandMap
+	 * @param map
 	 * @throws Exception
 	 */
 	@Override
@@ -90,12 +90,22 @@ public class Sm2ServiceImpl implements Sm2Service {
 	
 	/**
 	 * 사업 월별 수금액 목록 페이지 조회
-	 * @param CommandMap
+	 * @param map
 	 * @throws Exception
 	 */
 	@Override
-	public List<Map<String, Object>> selectBoardMonthList(CommandMap commandMap) throws Exception {
-		return sm2DAO.selectBoardMonthList(commandMap);
+	public List<Map<String, Object>> selectBoardMonthList(Map<String, Object> map) throws Exception {
+		return sm2DAO.selectBoardMonthList(map);
+	}
+
+	/**
+	 * 사업 월별 수금액 등록
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public void insertBoardMonth(Map<String, Object> map) throws Exception {
+		int idx = Integer.parseInt((String)sm2DAO.pickIdx(map).get("idx"));
 	}
 
 }

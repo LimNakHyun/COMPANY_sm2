@@ -71,7 +71,7 @@
 			WHERE
 				DELYN = FALSE
 			AND
-				MONTH = CAST(#{month} AS INTEGER)
+				BUSINESSMONTH = CAST(#{month} AS INTEGER)
 			ORDER BY MONTHIDX
 		]]>
 	</select>
