@@ -57,4 +57,11 @@ public interface Sm2Service {
 	 */
 	void insertBoardMonth(Map<String, Object> map) throws Exception;
 
+	/**
+	 * 사업 월별 수금액 수금여부 전환
+	 * @param map
+	 * @throws Exception
+	 */
+	void updateBoardMonth(Map<String, Object> map) throws Exception;
+
 }

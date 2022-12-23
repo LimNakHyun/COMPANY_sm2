@@ -14,14 +14,15 @@
 		<th scope="row">CODE</th>
 		<th scope="row">사업명/사업개요</th>
 		<th scope="row">발주처</th>
-		<th scope="row">전체사업금액(+)<br>(계약금액(+))</th>
-		<th class="red" scope="row">전체사업금액(-)<br>(계약금액(-))</th>
-		<th scope="row">매출금액</th>
-		<th scope="row">비고</th>
+		<!-- <th scope="row">전체사업금액(+)<br>(계약금액(+))</th> -->
+		<!-- <th class="red" scope="row">전체사업금액(-)<br>(계약금액(-))</th> -->
+		<th class="red" scope="row">매출금액</th>
+		<th scope="row">사업수금액</th>
+		<th scope="row">수금완료하기</th>
 	</tr>
 	<c:forEach items="${list}" var="dto" varStatus="status">
 		<tr>
-			<td>${dto.CODE}</td>
+			<td>${dto.code}</td>
 			<td>
 				<form action="detailBusiness" method="post">
 					<input type="hidden" name="month" value="${month}">
@@ -30,16 +31,17 @@
 				</form>
 			</td>
 			<td>${dto.client}</td>
-			<td><fmt:formatNumber value="${dto.plustotalbusinessamount}" pattern="#,###"/></td>
-			<td class="red"><fmt:formatNumber value="${dto.minustotalbusinessamount}" pattern="#,###"/></td>
-			<td><fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/></td>
+			<%-- <td><fmt:formatNumber value="${dto.plustotalbusinessamount}" pattern="#,###"/></td> --%>
+			<%-- <td class="red"><fmt:formatNumber value="${dto.minustotalbusinessamount}" pattern="#,###"/></td> --%>
+			<td class="red"><fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
+			<td><fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
 			<td>
-				<form action="editCondition" method="post">
-					<input type="hidden" name="month" value="${month}">
-					<input type="hidden" name="businesscondition" value="${dto.businesscondition}">
-					<input type="hidden" name="businessname" value="${dto.businessname}">
+				<form action="/sm2/updateSm2Month.do">
+					<%-- <input type="hidden" name="month" value="${month}"> --%>
+					<input type="hidden" name="idx" value="${dto.idx}">
+					<input type="hidden" name="collectioncash" value="${dto.collectioncash}">
 					<c:choose>
-						<c:when test="${dto.businesscondition eq false}">
+						<c:when test="${dto.monthbusinesscondition eq false}">
 							<button>미완</button>
 						</c:when>
 						<c:otherwise>
@@ -47,11 +49,12 @@
 						</c:otherwise>
 					</c:choose>
 				</form>
-				<form action="nextMonth" method="post">
+				
+				<%-- <form action="nextMonth" method="post">
 					<input type="hidden" name="month" value="${month}">
 					<input type="hidden" name="businessname" value="${dto.businessname}">
 					<button>이월</button>
-				</form>
+				</form> --%>
 			</td>
 		</tr>
 	</c:forEach>

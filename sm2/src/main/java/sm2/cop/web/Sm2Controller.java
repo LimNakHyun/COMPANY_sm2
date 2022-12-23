@@ -164,5 +164,24 @@ public class Sm2Controller {
 		
 		return mv;
 	}
+	
+	/**
+	 * 사업 월별 수금액 수금여부 전환
+	 * @param commandMap
+	 * @param month
+	 * @return "/sm2/boardMonth"
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/sm2/updateSm2Month.do")
+	public ModelAndView updateSm2Month(CommandMap commandMap, @ModelAttribute("month") String month) throws Exception {
+		ModelAndView mv = new ModelAndView("/sm2/boardMonth");
+		
+		sm2Service.updateBoardMonth(commandMap.getMap());
+		
+		List<Map<String, Object>> list = sm2Service.selectBoardMonthList(commandMap.getMap());
+		mv.addObject("list", list);
+		
+		return mv;
+	}
 
 }

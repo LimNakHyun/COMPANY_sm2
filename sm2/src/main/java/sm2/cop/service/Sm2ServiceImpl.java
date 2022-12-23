@@ -33,6 +33,7 @@ public class Sm2ServiceImpl implements Sm2Service {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="sm2DAO")
+	
 	private Sm2DAO sm2DAO;
 
 	/**
@@ -83,8 +84,6 @@ public class Sm2ServiceImpl implements Sm2Service {
 		map.put("collectioncompletedamount", 0);
 		map.put("totalcollectionremainingamount", salesAmount);
 		
-		System.out.println("추가될 해시맵: " + map);
-		
 		sm2DAO.insertBoard(map);
 	}
 	
@@ -106,11 +105,20 @@ public class Sm2ServiceImpl implements Sm2Service {
 	@Override
 	public void insertBoardMonth(Map<String, Object> map) throws Exception {
 		int idx = (int)sm2DAO.pickIdx(map).get("idx");
-//		System.out.println("입력된 사업명 [" + map.get("businessname") + "] 의 인덱스: " + idx);
 		
 		map.put("idx", idx);
 		
 		sm2DAO.insertBoardMonth(map);
+		
+	}
+
+	/**
+	 * 사업 월별 수금액 수금여부 전환
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public void updateBoardMonth(Map<String, Object> map) throws Exception {
 		
 	}
 

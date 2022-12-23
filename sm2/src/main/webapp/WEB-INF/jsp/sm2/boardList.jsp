@@ -46,7 +46,7 @@
 						완료
 					</c:when>
 					<c:otherwise>
-						미완료
+						미완
 					</c:otherwise>
 				</c:choose>
 			</td>
