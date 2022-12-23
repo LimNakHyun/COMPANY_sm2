@@ -75,5 +75,30 @@
 			ORDER BY MONTHIDX
 		]]>
 	</select>
+	
+	<select id="pickIdx" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT IDX
+			FROM MANAGEMENT
+			WHERE BUSINESSNAME = #{businessname};
+		]]>
+	</select>
+	
+	<select id="insertBoardMonth" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO MONTHMANAGEMENT
+			(
+				IDX,
+			    BUSINESSMONTH,
+			    COLLECTIONCASH
+			)
+			VALUES
+			(
+				#{idx},
+				CAST(#{month} AS INTEGER),
+			    CAST(#{salesamount} AS INTEGER)
+			)
+		]]>
+	</select>
 
 </mapper>

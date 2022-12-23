@@ -12,7 +12,7 @@
 <table class="type02">
 	<tr>
 		<th scope="row">CODE</th>
-		<td>${detail.CODE}</td>
+		<td>${detail.code}</td>
 	</tr>
 	<tr>
 		<th scope="row">사업명/사업개요</th>
@@ -40,7 +40,7 @@
 	</tr>
 	<tr>
 		<th class="red" scope="row">매출금액(-)<br>(계약금액 * 지분율)</th>
-		<td class="red"><fmt:formatNumber value="${detail.expectedsalesamount}" pattern="#,###"/></td>
+		<td class="red"><fmt:formatNumber value="${detail.salesamount}" pattern="#,###"/></td>
 	</tr>
 	<tr>
 		<th class="red" scope="row">수금완료금액(-)</th>

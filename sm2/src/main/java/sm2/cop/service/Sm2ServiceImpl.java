@@ -105,7 +105,13 @@ public class Sm2ServiceImpl implements Sm2Service {
 	 */
 	@Override
 	public void insertBoardMonth(Map<String, Object> map) throws Exception {
-		int idx = Integer.parseInt((String)sm2DAO.pickIdx(map).get("idx"));
+		int idx = (int)sm2DAO.pickIdx(map).get("idx");
+//		System.out.println("입력된 사업명 [" + map.get("businessname") + "] 의 인덱스: " + idx);
+		
+		map.put("idx", idx);
+		
+		sm2DAO.insertBoardMonth(map);
+		
 	}
 
 }

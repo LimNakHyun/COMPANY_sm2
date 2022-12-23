@@ -75,4 +75,13 @@ public class Sm2DAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("sm2.pickIdx", map);
 	}
 
+	/**
+	 * 금월 사업 수금액 등록
+	 * @param map
+	 * @throws Exception
+	 */
+	public void insertBoardMonth(Map<String, Object> map) throws Exception {
+		insert("sm2.insertBoardMonth", map);
+	}
+
 }
