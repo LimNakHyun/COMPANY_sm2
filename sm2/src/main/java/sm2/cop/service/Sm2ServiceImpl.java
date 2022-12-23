@@ -119,6 +119,37 @@ public class Sm2ServiceImpl implements Sm2Service {
 	 */
 	@Override
 	public void updateBoardMonth(Map<String, Object> map) throws Exception {
+		long collectionCash = Long.parseLong((String)map.get("collectioncash"));
+		
+		Map<String, Object> collectionInformation = sm2DAO.collectionInformation(map);
+		
+		long totalCollectionRemainingAmount = (long)collectionInformation.get("totalcollectionremainingamount");
+		long collectionCompletedAmount = (long)collectionInformation.get("collectioncompletedamount");
+		
+		boolean monthBusinessCondition = Boolean.parseBoolean((String)map.get("monthbusinesscondition"));
+		
+		if(!monthBusinessCondition) {
+			totalCollectionRemainingAmount = totalCollectionRemainingAmount - collectionCash;
+			collectionCompletedAmount = collectionCompletedAmount + collectionCash;
+			monthBusinessCondition = true;
+		} else {
+			totalCollectionRemainingAmount = totalCollectionRemainingAmount + collectionCash;
+			collectionCompletedAmount = collectionCompletedAmount - collectionCash;
+			monthBusinessCondition = false;
+		}
+		
+		map.put("totalcollectionremainingamount", totalCollectionRemainingAmount);
+		map.put("collectioncompletedamount", collectionCompletedAmount);
+		map.put("monthbusinesscondition", monthBusinessCondition);
+		
+		if(totalCollectionRemainingAmount == 0) {
+			map.put("businesscondition", true);
+		} else {
+			map.put("businesscondition", false);
+		}
+		
+		sm2DAO.updateBoardMonthCondition(map);
+		sm2DAO.updateBoardMonth(map);
 		
 	}
 

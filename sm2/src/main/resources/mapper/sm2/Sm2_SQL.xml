@@ -103,5 +103,33 @@
 			)
 		]]>
 	</select>
+	
+	<select id="collectionInformation" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT COLLECTIONCOMPLETEDAMOUNT, TOTALCOLLECTIONREMAININGAMOUNT
+			FROM MANAGEMENT
+			WHERE IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</select>
+	
+	<update id="updateBoardMonth" parameterType="hashmap">
+		<![CDATA[
+			UPDATE MANAGEMENT
+			SET
+			COLLECTIONCOMPLETEDAMOUNT = #{collectioncompletedamount},
+			TOTALCOLLECTIONREMAININGAMOUNT = #{totalcollectionremainingamount},
+			BUSINESSCONDITION = #{businesscondition}
+			WHERE IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</update>
+	
+	<update id="updateBoardMonthCondition" parameterType="hashmap">
+		<![CDATA[
+			UPDATE MONTHMANAGEMENT
+			SET
+			MONTHBUSINESSCONDITION = #{monthbusinesscondition}
+			WHERE MONTHIDX = CAST(#{monthidx} AS INTEGER)
+		]]>
+	</update>
 
 </mapper>

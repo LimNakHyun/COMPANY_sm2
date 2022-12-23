@@ -84,4 +84,33 @@ public class Sm2DAO extends AbstractDAO {
 		insert("sm2.insertBoardMonth", map);
 	}
 
+	/**
+	 * 사업수금액 정보 조회
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> collectionInformation(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("sm2.collectionInformation", map);
+	}
+
+	/**
+	 * 사업수금액 정산
+	 * @param map
+	 * @throws Exception
+	 */
+	public void updateBoardMonth(Map<String, Object> map) throws Exception {
+		update("sm2.updateBoardMonth", map);
+	}
+
+	/**
+	 * 사업수금액 완료 상태 변경
+	 * @param map
+	 * @throws Exception
+	 */
+	public void updateBoardMonthCondition(Map<String, Object> map) throws Exception {
+		update("sm2.updateBoardMonthCondition", map);
+	}
+
 }

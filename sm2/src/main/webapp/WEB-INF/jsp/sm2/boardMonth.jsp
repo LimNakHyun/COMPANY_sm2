@@ -37,9 +37,11 @@
 			<td><fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
 			<td>
 				<form action="/sm2/updateSm2Month.do">
-					<%-- <input type="hidden" name="month" value="${month}"> --%>
+					<input type="hidden" name="month" value="${month}">
 					<input type="hidden" name="idx" value="${dto.idx}">
+					<input type="hidden" name="monthidx" value="${dto.monthidx}">
 					<input type="hidden" name="collectioncash" value="${dto.collectioncash}">
+					<input type="hidden" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">
 					<c:choose>
 						<c:when test="${dto.monthbusinesscondition eq false}">
 							<button>미완</button>
