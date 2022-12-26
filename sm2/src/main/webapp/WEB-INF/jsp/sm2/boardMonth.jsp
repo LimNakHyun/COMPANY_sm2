@@ -7,7 +7,7 @@
 <title>월별 사업 추가</title>
 </head>
 <body>
-<h1>${month}월</h1>
+<h3>${year}년 ${month}월</h3>
 
 <table class="type02">
 	<tr>
@@ -36,7 +36,7 @@
 			<td class="red"><fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
 			<td><fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
 			<td>
-				<form action="/sm2/updateSm2Month.do">
+				<form action="/sm2/updateSm2Month.do" method="post">
 					<input type="hidden" name="month" value="${month}">
 					<input type="hidden" name="idx" value="${dto.idx}">
 					<input type="hidden" name="monthidx" value="${dto.monthidx}">
@@ -62,7 +62,7 @@
 	</c:forEach>
 </table>
 
-<form action="/sm2/openSm2MonthWrite.do">
+<form action="/sm2/openSm2MonthWrite.do" method="post">
 	<input type="hidden" name="month" value="${month}">
 	<button>사업 추가</button>
 </form>

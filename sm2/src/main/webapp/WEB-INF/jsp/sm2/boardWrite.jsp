@@ -7,9 +7,10 @@
 <title>사업추가</title>
 </head>
 <body>
-<h2>
+<br>
+<h3>
 	사업추가
-</h2>
+</h3>
 
 <form action="/sm2/insertSm2.do" method="post">
 	<table class="type02">
@@ -62,6 +63,8 @@
 		
 	
 	</table>
+	
+	<br>
 	
 	<button type="submit">사업 추가</button>
 </form>

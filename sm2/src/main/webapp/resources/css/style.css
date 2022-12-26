@@ -1,32 +1,112 @@
 @charset "UTF-8";
 
 table.type02 {
-  border-collapse: separate;
+  /* border-collapse: separate;
   border-spacing: 0;
   text-align: left;
   line-height: 1.5;
-  border-top: 1px solid #ccc;
-  border-left: 1px solid #ccc;
-  margin : 20px 10px;
+  border-top: 2px solid black;
+  border-left: 2px solid black;
+  margin : 20px 10px; */
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
 }
 table.type02 th {
-  width: 150px;
+  /* width: 150px;
   padding: 10px;
   font-weight: bold;
-  vertical-align: top;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
-  border-top: 1px solid #fff;
-  border-left: 1px solid #fff;
+  vertical-align: middle;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
   background: #eee;
+  background: #D2D2FF;
+  background: #FFBB8C; */
+  
+  
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+  border-bottom: 1px solid white;
 }
 table.type02 td {
-  width: 350px;
+  /* width: 350px;
   padding: 10px;
   vertical-align: top;
-  border-right: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black; */
+  width: 350px;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-right: 1px solid rgba(0,0,0,.1);
+  background: #fff;
 }
+table.type02 .middle {
+	text-align: center;
+	vertical-align: middle;
+}
+table.type02 .right {
+	text-align: right;
+	vertical-align: middle;
+}
+table.type02 .rightred {
+	text-align: right;
+	vertical-align: middle;
+	color: #FF6E6E;
+/* 	font-weight: bold; */
+	font-size: 11pt;
+}
+table.type02 tr {
+  font-size: 10pt;
+  font-family: sans-serif;
+}
+table.type02 .note {
+  font-style: italic;
+}
+table.type02 .note .success {
+  font-size: 12pt;
+  color: blue;
+}
+table.type02 .note .fail {
+  font-size: 12pt;
+  color: red;
+}
+table.type02 button.noborder {
+  border: none;
+  background-color: white;
+}
+table.type02 button.noborder:hover {
+  border: none;
+  background-color: white;
+  color: #228B22;
+  font-size: 12pt;
+}
+table.type02 .note, table.type02 .code, table.type02 .ratio {
+  width: 4%;
+}
+table.type02 .amount {
+  width: 8%;
+  font-weight: 600;
+}
+table.type02 .allAmount {
+  width: 10%;
+}
+table.type02 .date {
+  width: 8%;
+}
+table.type02 .name {
+  width: 22%;
+}
+table.type02 .client {
+  width: 14%;
+}
+
+
 
 .red {
 	color: red;
@@ -38,4 +118,164 @@ textarea {
 
 form {
 	display: inline;
+}
+
+
+
+
+
+
+table.type01 {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+table.type01 td.middle, table.type01 th.middle {
+	text-align: center;
+}
+table.type01 td.right, table.type01 th.right {
+	text-align: right;
+}
+
+table.type01 th {
+  text-align: left;
+  border-right: 1px solid white;
+}
+  
+table.type01 thead {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+}
+  
+table.type01 td, th {
+  padding: 1em .5em;
+  vertical-align: middle;
+}
+  
+table.type01 td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-right: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+
+table.type01 button {
+  color: #73685d;
+  border: none;
+  background-color: white;
+}
+table.type01 button:hover {
+  border: none;
+  background-color: white;
+  color: #228B22;
+  font-size: 10pt;
+}
+table.type01 button.underline {
+  text-decoration: underline;
+}
+
+table.type01 .code, table.type01 .ratio {
+  width: 4%;
+}
+table.type01 .note {
+  width: 3%;
+}
+table.type01 .amount {
+  width: 8%;
+  font-weight: 600;
+}
+table.type01 .allAmount {
+  width: 10%;
+}
+table.type01 .date {
+  width: 8%;
+}
+table.type01 .name {
+  width: 22%;
+}
+table.type01 .client {
+  width: 14%;
+}
+  
+ @media all and (max-width: 768px) {
+    
+  table.type01, table.type01 thead, table.type01 tbody, table.type01 th, table.type01 td, table.type01 tr {
+    display: block;
+  }
+  
+  table.type01 th {
+    text-align: right;
+  }
+  
+  table.type01 {
+    position: relative; 
+    padding-bottom: 0;
+    border: none;
+    box-shadow: 0 0 10px rgba(0,0,0,.2);
+  }
+  
+  table.type01 thead {
+    float: left;
+    white-space: nowrap;
+  }
+  
+  table.type01 tbody {
+    overflow-x: auto;
+    overflow-y: hidden;
+    position: relative;
+    white-space: nowrap;
+  }
+  
+  table.type01 tr {
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  table.type01 th {
+    border-bottom: 1px solid #a39485;
+  }
+  
+  table.type01 td {
+    border-bottom: 1px solid #e5e5e5;
+  }
+  
+  
+  }
+  
+.wapper {
+  width: 90%;
+  margin: 10px auto;
+}
+
+.contents1 {
+  float: left;
+  width: 5.1%;
+  box-sizing: border-box;
+}
+
+.contents2 {
+  float: left;
+  width: 3%;
+  box-sizing: border-box;
+}
+
+.contents3 {
+  float: left;
+  width: 13%;
+  box-sizing: border-box;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.contents4 {
+  float: left;
+  width: 78.9%;
+  box-sizing: border-box;
 }

@@ -8,7 +8,7 @@
 <title>월별 사업 추가</title>
 </head>
 <body>
-<form action="/sm2/insertSm2Month.do">
+<form action="/sm2/insertSm2Month.do" method="post">
 	<input type="hidden" name="month" value="${month}">
 	<table class="type02">
 		<tr>
