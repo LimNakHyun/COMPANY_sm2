@@ -12,6 +12,8 @@
 				MANAGEMENT
 			WHERE
 				DELYN = FALSE
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
 			ORDER BY IDX
 		]]>
 	</select>
@@ -43,7 +45,8 @@
 			    SALESAMOUNT,
 			    COLLECTIONCOMPLETEDAMOUNT,
 			    TOTALCOLLECTIONREMAININGAMOUNT,
-			    CODE
+			    CODE,
+			    BUSINESSYEAR
 			)
 			VALUES
 			(
@@ -57,7 +60,8 @@
 			    CAST(#{salesamount} AS BIGINT),
 			    CAST(#{collectioncompletedamount} AS BIGINT),
 			    CAST(#{totalcollectionremainingamount} AS BIGINT),
-			    #{CODE}
+			    #{CODE},
+			    CAST(#{year} AS INTEGER)
 			)
 		]]>
 	</insert>
@@ -75,6 +79,8 @@
 				M1.DELYN = FALSE
 			AND
 				BUSINESSMONTH = CAST(#{month} AS INTEGER)
+			AND
+				BUSINESSYEARMONTH = CAST(#{year} AS INTEGER)
 			ORDER BY MONTHIDX
 		]]>
 	</select>

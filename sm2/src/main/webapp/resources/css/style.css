@@ -266,8 +266,18 @@ table.type01 .client {
 
 .contents3 {
   float: left;
-  width: 13%;
+  width: 12%;
   box-sizing: border-box;
+}
+.contents3 button.noborder {
+  border: none;
+  background-color: white;
+}
+.contents3 button.noborder:hover {
+  border: none;
+  background-color: white;
+  color: #C12DFF;
+  font-size: 10pt;
 }
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
@@ -276,6 +286,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 .contents4 {
   float: left;
-  width: 78.9%;
+  width: 79.9%;
   box-sizing: border-box;
 }

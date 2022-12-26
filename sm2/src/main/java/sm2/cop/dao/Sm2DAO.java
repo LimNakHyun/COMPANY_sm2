@@ -20,7 +20,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import sm2.cmm.cmm.CommandMap;
 import sm2.cmm.dao.AbstractDAO;
 
 @Repository("sm2DAO")
@@ -28,12 +27,12 @@ public class Sm2DAO extends AbstractDAO {
 
 	/**
 	 * 사업 매출정보 조회
-	 * @param commandmap
+	 * @param map
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectBoardList(CommandMap commandmap) throws Exception {
-		return (List<Map<String, Object>>) selectList("sm2.selectBoardList", commandmap);
+	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList("sm2.selectBoardList", map);
 	}
 
 	/**

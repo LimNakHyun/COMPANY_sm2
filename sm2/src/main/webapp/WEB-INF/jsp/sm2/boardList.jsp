@@ -7,53 +7,9 @@
 <body>
 <br>
 <h3>
-	이지스 2021년 사업실적(매출세금계산서 기준)
+	이지스 ${date.year}년 사업실적(매출세금계산서 기준)
 </h3>
 
-<%-- <table class="type02">
-	<tr class="middle">
-		<th class="code" scope="row">CODE</th>
-		<th class="name" scope="row">사업명/사업개요</th>
-		<th class="client" scope="row">발주처</th>
-		<th class="date" scope="row">계약기간</th>
-		<th class="allAmount" scope="row">전체사업금액(+)</th>
-		<th class="red allAmount" scope="row">전체사업금액(-)<br>(계약금액)</th>
-		<th class="ratio" scope="row">지분율</th>
-		<th class="red amount" scope="row">매출금액(-)<br>(계약금액 * 지분율)</th>
-		<th class="red amount" scope="row">수금완료금액(-)</th>
-		<th class="red amount" scope="row">수금잔여금액(-)</th>
-		<th class="note" scope="row">비고</th>
-	</tr>
-	<c:forEach items="${list}" var="dto" varStatus="status">
-		<tr>
-			<td class="middle code">${dto.code}</td>
-			<td class="middle name">
-				<form action="/sm2/openSm2Detail.do" method="post">
-					<button class="noborder">${dto.businessname}</button>
-					<input type="hidden" name="businessname" value="${dto.businessname}">
-				</form>
-			</td>
-			<td class="middle client">${dto.client}</td>
-			<td class="middle date"><fmt:formatDate pattern="yy/MM/dd" value="${dto.startterm}"/> ~ <fmt:formatDate pattern="yy/MM/dd" value="${dto.endterm}"/></td>
-			<td class="rightred allAmount"><fmt:formatNumber value="${dto.plustotalbusinessamount}" pattern="#,###"/> 원</td>
-			<td class="rightred allAmount"><fmt:formatNumber value="${dto.minustotalbusinessamount}" pattern="#,###"/> 원</td>
-			<td class="middle ratio"><fmt:formatNumber type="number" pattern="0.###" value="${dto.ratio}" />%</td>
-			<td class="rightred amount"><fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
-			<td class="rightred amount"><fmt:formatNumber value="${dto.collectioncompletedamount}" pattern="#,###"/> 원</td>
-			<td class="rightred amount"><fmt:formatNumber value="${dto.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
-			<td class="middle note">
-				<c:choose>
-					<c:when test="${dto.businesscondition eq true}">
-						<label class="success">완료</label>
-					</c:when>
-					<c:otherwise>
-						<label class="fail">미완</label>
-					</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-	</c:forEach>
-</table> --%>
 <table class="type01">
 	<thead>
 	<tr>
@@ -78,6 +34,7 @@
 				<form action="/sm2/openSm2Detail.do" method="post">
 					<button class="underline">${dto.businessname}</button>
 					<input type="hidden" name="businessname" value="${dto.businessname}">
+					<input type="hidden" name="year" value="${date.year}">
 				</form>
 			</td>
 			<td class="middle">${dto.client}</td>
@@ -105,7 +62,7 @@
 <br>
 
 <form action="/sm2/openSm2Write.do" method="post">
-	
+	<input type="hidden" name="year" value="${date.year}">
 	<button>사업 추가</button>
 </form>
 

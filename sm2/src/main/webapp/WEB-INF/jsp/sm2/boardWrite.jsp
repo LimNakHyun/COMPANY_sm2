@@ -65,7 +65,7 @@
 	</table>
 	
 	<br>
-	
+	<input type="hidden" name="year" value="${date.year}">
 	<button type="submit">사업 추가</button>
 </form>
 

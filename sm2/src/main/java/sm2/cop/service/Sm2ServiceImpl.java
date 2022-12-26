@@ -25,7 +25,6 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-import sm2.cmm.cmm.CommandMap;
 import sm2.cop.dao.Sm2DAO;
 
 @Service("sm2Service")
@@ -38,12 +37,12 @@ public class Sm2ServiceImpl implements Sm2Service {
 
 	/**
 	 * 사업 매출정보 조회
-	 * @param commandMap
+	 * @param map
 	 * @throws Exception
 	 */
 	@Override
-	public List<Map<String, Object>> selectBoardList(CommandMap Commandmap) throws Exception {
-		return sm2DAO.selectBoardList(Commandmap);
+	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
+		return sm2DAO.selectBoardList(map);
 	}
 
 	/**

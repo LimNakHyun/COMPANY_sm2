@@ -2,7 +2,7 @@
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<title>매출관리</title>
+<title>매출관리 시스템</title>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -19,6 +19,7 @@
 	<div class="wrapper">
 		<div class="contents1">
 			<form action="/sm2/openSm2List.do" method="post">
+				<input type="hidden" name="year" value="${date.year}">
 				<button>매출총괄현황</button>
 			</form>
 		</div>
@@ -29,10 +30,19 @@
 		</div>
 		<div class="contents4"><label>&nbsp;</label></div>
 		<div class="contents3">
-			<form action="/sm2/openSm2MonthList.do" method="post">
-				<label><input type="number" name="year" min="1900" max="2100">년</label>&nbsp;
-				<label><input type="number" name="month" min="1" max="12">월</label>&nbsp;
-				<button>날짜 선택</button>
+			<form action="/sm2/openSm2Index.do">
+				<button class="noborder">${date.year}년</button>&nbsp;
+			</form>
+			<form action="/sm2/openSm2Month.do" method="post">
+				<input type="hidden" name="year" value="${date.year}">
+				<select name="month">
+					<option value="none" hidden>== 월 선택 ==</option>
+					<c:forEach var="j" begin="1" end="12">
+						<option value="${j}">${j}월</option>
+					</c:forEach>
+				</select>
+				
+				<button>이동</button>
 			</form>
 		</div>
 	</div>

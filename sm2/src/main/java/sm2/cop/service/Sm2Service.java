@@ -18,16 +18,14 @@ package sm2.cop.service;
 import java.util.List;
 import java.util.Map;
 
-import sm2.cmm.cmm.CommandMap;
-
 public interface Sm2Service {
 
 	/**
 	 * 사업 매출정보 조회
-	 * @param commandMap
+	 * @param map
 	 * @throws Exception
 	 */
-	List<Map<String, Object>> selectBoardList(CommandMap commandMap) throws Exception;
+	List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 사업 매출정보 상세보기 조회
