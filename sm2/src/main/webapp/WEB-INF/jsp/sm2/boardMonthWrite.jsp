@@ -9,7 +9,8 @@
 </head>
 <body>
 <form action="/sm2/insertSm2Month.do" method="post">
-	<input type="hidden" name="month" value="${month}">
+	<input type="hidden" name="month" value="${date.month}">
+	<input type="hidden" name="year" value="${date.year}">
 	<table class="type02">
 		<tr>
 			<th><label>사업 선택</label></th>

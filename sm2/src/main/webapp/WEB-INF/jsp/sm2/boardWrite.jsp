@@ -4,12 +4,11 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <meta charset="UTF-8">
-<title>사업추가</title>
 </head>
 <body>
 <br>
 <h3>
-	사업추가
+	사업 추가
 </h3>
 
 <form action="/sm2/insertSm2.do" method="post">
@@ -66,7 +65,7 @@
 	
 	<br>
 	<input type="hidden" name="year" value="${date.year}">
-	<button type="submit">사업 추가</button>
+	<button type="submit">추가</button>
 </form>
 
 </body>

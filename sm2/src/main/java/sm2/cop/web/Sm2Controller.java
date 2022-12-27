@@ -25,6 +25,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import sm2.cmm.cmm.CommandMap;
@@ -34,7 +35,7 @@ import sm2.cop.service.Sm2Service;
 public class Sm2Controller {
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="sm2Service")
+	@Resource(name = "sm2Service")
 	private Sm2Service sm2Service;
 	
 	/**
@@ -43,7 +44,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardYearSelect"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/openSm2Index.do")
+	@RequestMapping(value = "/sm2/openSm2Index.do")
 	public ModelAndView openSm2Index(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardYearSelect");
 		
@@ -57,7 +58,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardList"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/openSm2List.do")
+	@RequestMapping(value = "/sm2/openSm2List.do")
 	public ModelAndView openSm2List(CommandMap commandMap,
 			@ModelAttribute("year") String year) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardList");
@@ -79,7 +80,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardDetail"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/openSm2Detail.do")
+	@RequestMapping(value = "/sm2/openSm2Detail.do")
 	public ModelAndView openSm2Detail(CommandMap commandMap,
 			@ModelAttribute("year") String year) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardDetail");
@@ -101,7 +102,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardWrite"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/openSm2Write.do")
+	@RequestMapping(value = "/sm2/openSm2Write.do")
 	public ModelAndView openSm2Write(CommandMap commandMap,
 			@ModelAttribute("year") String year) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardWrite");
@@ -120,7 +121,7 @@ public class Sm2Controller {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/insertSm2.do")
+	@RequestMapping(value = "/sm2/insertSm2.do")
 	public ModelAndView insertSm2(CommandMap commandMap,
 			@ModelAttribute("year") String year) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2List.do");
@@ -138,11 +139,11 @@ public class Sm2Controller {
 	 * 사업 월별 수금액 목록 조회 페이지 이동
 	 * @param commandMap
 	 * @param month
-	 * @param year
+	 * @param update
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/openSm2Month.do")
+	@RequestMapping(value = "/sm2/openSm2Month.do")
 	public ModelAndView openSm2Month(CommandMap commandMap,
 			@ModelAttribute("month") String month,
 			@ModelAttribute("year") String year) throws Exception {
@@ -167,7 +168,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardMonthWrite"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/openSm2MonthWrite.do")
+	@RequestMapping(value = "/sm2/openSm2MonthWrite.do")
 	public ModelAndView openSm2MonthWrite(CommandMap commandMap,
 			@ModelAttribute("month") String month,
 			@ModelAttribute("year") String year) throws Exception {
@@ -192,11 +193,11 @@ public class Sm2Controller {
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/insertSm2Month.do")
+	@RequestMapping(value = "/sm2/insertSm2Month.do")
 	public ModelAndView insertSm2Month(CommandMap commandMap,
 			@ModelAttribute("month") String month,
 			@ModelAttribute("year") String year) throws Exception {
-		ModelAndView mv = new ModelAndView("/sm2/boardMonth");
+		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
 		
 		sm2Service.insertBoardMonth(commandMap.getMap());
 		
@@ -219,11 +220,11 @@ public class Sm2Controller {
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/sm2/updateSm2Month.do")
+	@RequestMapping(value = "/sm2/updateSm2Month.do")
 	public ModelAndView updateSm2Month(CommandMap commandMap,
 			@ModelAttribute("month") String month,
 			@ModelAttribute("year") String year) throws Exception {
-		ModelAndView mv = new ModelAndView("/sm2/boardMonth");
+		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
 		
 		sm2Service.updateBoardMonth(commandMap.getMap());
 		

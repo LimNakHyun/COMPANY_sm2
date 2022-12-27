@@ -48,10 +48,10 @@
 			<td class="middle">
 				<c:choose>
 					<c:when test="${dto.businesscondition eq true}">
-						<label>완료</label>
+						<label class="blue">완료</label>
 					</c:when>
 					<c:otherwise>
-						<label>미완</label>
+						<label class="notered">미완</label>
 					</c:otherwise>
 				</c:choose>
 			</td>

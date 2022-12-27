@@ -5,11 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
-<title>사업 항목</title>
 </head>
 <body>
 <br>
-<h3>사업 수정 및 삭제</h3>
+<h3>사업 상세보기</h3>
 <table class="type02">
 	<tr>
 		<th scope="row">CODE</th>

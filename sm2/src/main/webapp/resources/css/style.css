@@ -1,13 +1,37 @@
 @charset "UTF-8";
 
+/* ================================= common ================================= */
+.red {
+	color: red;
+}
+
+textarea {
+	resize: none;
+}
+
+form {
+	display: inline;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+table tr {
+	height: 44px;
+}
+
+
+
+/* ================================= common ================================= */
+
+
+
+/* ================================= boardWrite, boardDetail ================================= */
+
 table.type02 {
-  /* border-collapse: separate;
-  border-spacing: 0;
-  text-align: left;
-  line-height: 1.5;
-  border-top: 2px solid black;
-  border-left: 2px solid black;
-  margin : 20px 10px; */
   border: 1px #a39485 solid;
   font-size: .9em;
   box-shadow: 0 2px 5px rgba(0,0,0,.25);
@@ -16,30 +40,12 @@ table.type02 {
   overflow: hidden;
 }
 table.type02 th {
-  /* width: 150px;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: middle;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
-  border-top: 2px solid #fff;
-  border-left: 2px solid #fff;
-  background: #eee;
-  background: #D2D2FF;
-  background: #FFBB8C; */
-  
-  
   font-weight: bold;
   color: #fff;
   background: #73685d;
   border-bottom: 1px solid white;
 }
 table.type02 td {
-  /* width: 350px;
-  padding: 10px;
-  vertical-align: top;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black; */
   width: 350px;
   padding: 10px;
   border-bottom: 1px solid rgba(0,0,0,.1);
@@ -54,27 +60,9 @@ table.type02 .right {
 	text-align: right;
 	vertical-align: middle;
 }
-table.type02 .rightred {
-	text-align: right;
-	vertical-align: middle;
-	color: #FF6E6E;
-/* 	font-weight: bold; */
-	font-size: 11pt;
-}
 table.type02 tr {
   font-size: 10pt;
   font-family: sans-serif;
-}
-table.type02 .note {
-  font-style: italic;
-}
-table.type02 .note .success {
-  font-size: 12pt;
-  color: blue;
-}
-table.type02 .note .fail {
-  font-size: 12pt;
-  color: red;
 }
 table.type02 button.noborder {
   border: none;
@@ -84,7 +72,7 @@ table.type02 button.noborder:hover {
   border: none;
   background-color: white;
   color: #228B22;
-  font-size: 12pt;
+  font-size: 10pt;
 }
 table.type02 .note, table.type02 .code, table.type02 .ratio {
   width: 4%;
@@ -105,25 +93,97 @@ table.type02 .name {
 table.type02 .client {
   width: 14%;
 }
+/* ================================= boardWrite, boardDetail ================================= */
 
+/* ================================= boardWrite, boardDetail ================================= */
 
-
-.red {
-	color: red;
+table.type03 {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+table.type03 th {
+  font-weight: bold;
+  color: #fff;
+  background: #73685d;
+  border-right: 1px solid white;
+}
+table.type03 td {
+  width: 350px;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-right: 1px solid rgba(0,0,0,.1);
+  background: #fff;
+}
+table.type03 .middle {
+	text-align: center;
+	vertical-align: middle;
+}
+table.type03 .right {
+	text-align: right;
+	vertical-align: middle;
+}
+table.type03 tr {
+  font-size: 10pt;
+  font-family: sans-serif;
 }
 
-textarea {
-	resize: none;
+table.type03 button.noborder {
+  border: none;
+  background-color: white;
+}
+table.type03 button.noborder:hover {
+  border: none;
+  background-color: white;
+  color: #228B22;
+  font-size: 10pt;
+}
+table.type03 button.noteblue {
+  border: 1px solid #1E96FF;
+  background-color: white;
+  color: #1E96FF;
+  border-radius: 5px;
+}
+table.type03 button.noteblue:hover {
+  background-color: #1E96FF;
+  color: white;
+  font-size: 10pt;
+}
+table.type03 button.notered {
+  border: 1px solid #FF5675;
+  background-color: white;
+  color: #FF5675;
+  border-radius: 5px;
+}
+table.type03 button.notered:hover {
+  background-color: #FF5675;
+  color: white;
+  font-size: 10pt;
 }
 
-form {
-	display: inline;
+table.type03 .code {
+  width: 3%;
 }
+table.type03 .note {
+  width: 6%;
+}
+table.type03 .amount {
+  width: 7%;
+  font-weight: 600;
+}
+table.type03 .name {
+  width: 58%;
+}
+table.type03 .client {
+  width: 12%;
+}
+/* ================================= boardWrite, boardDetail ================================= */
 
 
-
-
-
+/* ================================= boardList ================================= */
 
 table.type01 {
   border: 1px #a39485 solid;
@@ -145,6 +205,7 @@ table.type01 td.right, table.type01 th.right {
 table.type01 th {
   text-align: left;
   border-right: 1px solid white;
+  font-size: 9pt;
 }
   
 table.type01 thead {
@@ -186,17 +247,17 @@ table.type01 .note {
   width: 3%;
 }
 table.type01 .amount {
-  width: 8%;
+  width: 7%;
   font-weight: 600;
 }
 table.type01 .allAmount {
-  width: 10%;
+  width: 7%;
 }
 table.type01 .date {
   width: 8%;
 }
 table.type01 .name {
-  width: 22%;
+  width: 31%;
 }
 table.type01 .client {
   width: 14%;
@@ -246,6 +307,23 @@ table.type01 .client {
   
   
   }
+
+
+table.type01 .notered {
+	color: red;
+	font-weight: 700;
+}
+table.type01 .blue {
+	color: blue;
+	font-weight: 900;
+}
+  
+/* ================================= boardList ================================= */
+
+
+
+
+/* ================================= include-header ================================= */
   
 .wapper {
   width: 90%;
@@ -266,8 +344,11 @@ table.type01 .client {
 
 .contents3 {
   float: left;
-  width: 12%;
+  width: 9.6%;
   box-sizing: border-box;
+}
+.contents3 select {
+  width: 68px;
 }
 .contents3 button.noborder {
   border: none;
@@ -279,13 +360,11 @@ table.type01 .client {
   color: #C12DFF;
   font-size: 10pt;
 }
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
+
 .contents4 {
   float: left;
-  width: 79.9%;
+  width: 82%;
   box-sizing: border-box;
 }
+
+/* ================================= include-header ================================= */

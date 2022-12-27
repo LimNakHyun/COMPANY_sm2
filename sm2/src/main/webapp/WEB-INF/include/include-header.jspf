@@ -36,7 +36,15 @@
 			<form action="/sm2/openSm2Month.do" method="post">
 				<input type="hidden" name="year" value="${date.year}">
 				<select name="month">
-					<option value="none" hidden>== 월 선택 ==</option>
+					<c:choose>
+						<c:when test="${date.month eq null}">
+							<option value="1" hidden>월 선택</option>
+						</c:when>
+						<c:otherwise>
+							<option value="${date.month}" hidden>${date.month}월</option>
+						</c:otherwise>
+					</c:choose>
+					
 					<c:forEach var="j" begin="1" end="12">
 						<option value="${j}">${j}월</option>
 					</c:forEach>
