@@ -66,6 +66,9 @@ public class Sm2Controller {
 		List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap.getMap());
 		mv.addObject("list", list);
 		
+		Map<String, Object> amount = sm2Service.selectBoardAmount(commandMap.getMap());
+		mv.addObject("amount", amount);
+		
 		Map<String, String> date = new HashMap<>();
 		date.put("year", year);
 		mv.addObject("date", date);

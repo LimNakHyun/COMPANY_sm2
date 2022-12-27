@@ -12,19 +12,34 @@
 
 <table class="type01">
 	<thead>
-	<tr>
-		<th class="middle code">CODE</th>
-		<th class="middle name">사업명/사업개요</th>
-		<th class="middle client">발주처</th>
-		<th class="middle date">계약기간</th>
-		<th class="middle allAmount">전체사업금액(+)</th>
-		<th class="middle allAmount">전체사업금액(-)<br>(계약금액)</th>
-		<th class="middle code">지분율</th>
-		<th class="middle amount">매출금액(-)<br>(계약금액 * 지분율)</th>
-		<th class="middle amount">수금완료금액(-)</th>
-		<th class="middle amount">수금잔여금액(-)</th>
-		<th class="middle note">비고</th>
-	</tr>
+		<tr class="amount">
+			<td class="code"></td>
+			<td class="name"></td>
+			<td class="client"></td>
+			<td class="date"></td>
+			<th class="right allAmount sum">${amount.plustotalbusinessamountsum} 원</th>
+			<th class="right allAmount sum">${amount.minustotalbusinessamountsum} 원</th>
+			<td class="code"></td>
+			<th class="right amount sum">${amount.salesamountsum} 원</th>
+			<th class="right amount sum">${amount.collectioncompletedamountsum} 원</th>
+			<th class="right amount sum">${amount.totalcollectionremainingamountsum} 원</th>
+			<td class="note"></td>
+		</tr>
+	</thead>
+	<thead>
+		<tr>
+			<th class="middle code">CODE</th>
+			<th class="middle name">사업명/사업개요</th>
+			<th class="middle client">발주처</th>
+			<th class="middle date">계약기간</th>
+			<th class="middle allAmount">전체사업금액(+)</th>
+			<th class="middle allAmount">전체사업금액(-)<br>(계약금액)</th>
+			<th class="middle code">지분율</th>
+			<th class="middle amount">매출금액(-)<br>(계약금액 * 지분율)</th>
+			<th class="middle amount">수금완료금액(-)</th>
+			<th class="middle amount">수금잔여금액(-)</th>
+			<th class="middle note">비고</th>
+		</tr>
 	</thead>
 	<tbody>
 	<c:forEach items="${list}" var="dto" varStatus="status">
