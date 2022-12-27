@@ -40,7 +40,7 @@ public class Sm2Controller {
 	/**
 	 * 사업 연도 선택 페이지 이동
 	 * @param commandMap
-	 * @return "/index"
+	 * @return "/sm2/boardYearSelect"
 	 * @throws Exception
 	 */
 	@RequestMapping(value="/sm2/openSm2Index.do")
