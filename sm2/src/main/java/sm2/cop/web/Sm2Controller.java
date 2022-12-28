@@ -25,7 +25,6 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import sm2.cmm.cmm.CommandMap;
@@ -154,6 +153,9 @@ public class Sm2Controller {
 		
 		List<Map<String, Object>> list = sm2Service.selectBoardMonthList(commandMap.getMap());
 		mv.addObject("list", list);
+		
+		Map<String, Object> collectionCashSum = sm2Service.selectBoardMonthAmount(commandMap.getMap());
+		mv.addObject("collectioncashsum", collectionCashSum);
 		
 		Map<String, String> date = new HashMap<>();
 		date.put("month", month);

@@ -55,6 +55,11 @@
 			</td>
 		</tr>
 	</c:forEach>
+	<tr>
+		<td class="middle sum" colspan='5'>${date.month}월 계약매출 합계</td>
+		<td class="right sum"><fmt:formatNumber value="${collectioncashsum.collectioncashsum}" pattern="#,###"/> 원</td>
+		<td class="sum"></td>
+	</tr>
 </table>
 <br>
 

@@ -181,6 +181,12 @@ table.type03 .name {
 table.type03 .client {
   width: 12%;
 }
+table.type03 .sum{
+  font-size: 10pt;
+  color: red;
+  font-weight: bold;
+  background-color: #FFDC37;
+}
 /* ================================= boardWrite, boardDetail ================================= */
 
 
@@ -266,8 +272,9 @@ table.type01 .client {
 }
 
 table.type01 .sum{
-  font-size: 12pt;
+  font-size: 10pt;
   color: red;
+  font-weight: 700;
   background-color: #FFDC37;
 }
   

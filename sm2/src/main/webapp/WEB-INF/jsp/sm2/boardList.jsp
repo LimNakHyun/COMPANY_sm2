@@ -13,17 +13,14 @@
 <table class="type01">
 	<thead>
 		<tr class="amount">
-			<td class="code"></td>
-			<td class="name"></td>
-			<td class="client"></td>
-			<td class="date"></td>
-			<th class="right allAmount sum">${amount.plustotalbusinessamountsum} 원</th>
-			<th class="right allAmount sum">${amount.minustotalbusinessamountsum} 원</th>
-			<td class="code"></td>
-			<th class="right amount sum">${amount.salesamountsum} 원</th>
-			<th class="right amount sum">${amount.collectioncompletedamountsum} 원</th>
-			<th class="right amount sum">${amount.totalcollectionremainingamountsum} 원</th>
-			<td class="note"></td>
+			<th class="middle sum" colspan='4'>사업금액 합계</th>
+			<th class="right allAmount sum"><fmt:formatNumber value="${amount.plustotalbusinessamountsum}" pattern="#,###"/> 원</th>
+			<th class="right allAmount sum"><fmt:formatNumber value="${amount.minustotalbusinessamountsum}" pattern="#,###"/> 원</th>
+			<td class="code middle sum">-</td>
+			<th class="right amount sum"><fmt:formatNumber value="${amount.salesamountsum}" pattern="#,###"/> 원</th>
+			<th class="right amount sum"><fmt:formatNumber value="${amount.collectioncompletedamountsum}" pattern="#,###"/> 원</th>
+			<th class="right amount sum"><fmt:formatNumber value="${amount.totalcollectionremainingamountsum}" pattern="#,###"/> 원</th>
+			<td class="note middle sum">-</td>
 		</tr>
 	</thead>
 	<thead>

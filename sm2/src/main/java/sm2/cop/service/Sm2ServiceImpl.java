@@ -153,13 +153,24 @@ public class Sm2ServiceImpl implements Sm2Service {
 	}
 
 	/**
-	 * 사업금액 합계 조회
+	 * 사업금액 전체 합계 조회
 	 * @param map
 	 * @throws Exception
 	 */
 	@Override
 	public Map<String, Object> selectBoardAmount(Map<String, Object> map) throws Exception {
 		return sm2DAO.selectBoardAmount(map);
+	}
+
+
+	/**
+	 * 월별 사업금액 합계 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) throws Exception {
+		return sm2DAO.selectBoardMonthAmount(map);
 	}
 
 }
