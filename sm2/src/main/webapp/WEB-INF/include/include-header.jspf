@@ -24,7 +24,8 @@
 			</form>
 		</div>
 		<div class="contents2">
-			<form action="">
+			<form action="/sm2/openSm2SalesOverall.do">
+				<input type="hidden" name="year" value="${date.year}">
 				<button>총괄</button>
 			</form>
 		</div>

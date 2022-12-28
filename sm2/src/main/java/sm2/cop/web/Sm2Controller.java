@@ -243,5 +243,27 @@ public class Sm2Controller {
 		
 		return mv;
 	}
+	
+	/**
+	 * 연간 분기별 사업 매출 현황 조회 페이지 이동
+	 * @param commandMap
+	 * @param year
+	 * @return "/sm2/boardSalesOverall"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/sm2/openSm2SalesOverall.do")
+	public ModelAndView openSm2SalesOverall(CommandMap commandMap,
+			@ModelAttribute("year") String year) throws Exception {
+		ModelAndView mv = new ModelAndView("/sm2/boardSalesOverall");
+		
+		List<Map<String, Object>> list = sm2Service.selectBoardOverall(commandMap.getMap());
+		mv.addObject("list", list);
+		
+		Map<String, String> date = new HashMap<>();
+		date.put("year", year);
+		mv.addObject("date", date);
+		
+		return mv;
+	}
 
 }

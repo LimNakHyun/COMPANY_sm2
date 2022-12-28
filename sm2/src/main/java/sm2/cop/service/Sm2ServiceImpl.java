@@ -16,7 +16,9 @@
 package sm2.cop.service;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -171,6 +173,31 @@ public class Sm2ServiceImpl implements Sm2Service {
 	@Override
 	public Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) throws Exception {
 		return sm2DAO.selectBoardMonthAmount(map);
+	}
+
+	
+	/**
+	 * 사업 매출 현황 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public List<Map<String, Object>> selectBoardOverall(Map<String, Object> map) throws Exception {
+		
+		String year = (String) map.get("year");
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		for(int i = 0; i < 12; i++) {
+			Map<String, Object> tempMap = new HashMap<>();
+			tempMap.put("year", year);
+			tempMap.put("month", i + 1);
+			Map<String, Object> temp = sm2DAO.selectBoardMonthAmount(tempMap);
+			System.out.println((i + 1) + "월 매?출액: " + temp);
+			tempMap.put("amount", temp.get("collectioncashsum"));
+			list.add(tempMap);
+		}
+		
+		return list;
 	}
 
 }

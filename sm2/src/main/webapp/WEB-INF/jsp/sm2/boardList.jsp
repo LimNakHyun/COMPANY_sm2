@@ -2,7 +2,6 @@
 <html lang="ko">
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
-	<title>매출총괄현황</title>
 </head>
 <body>
 <br>

@@ -166,7 +166,7 @@ table.type03 button.notered:hover {
 }
 
 table.type03 .code {
-  width: 3%;
+  width: 4%;
 }
 table.type03 .note {
   width: 6%;
@@ -176,7 +176,7 @@ table.type03 .amount {
   font-weight: 600;
 }
 table.type03 .name {
-  width: 58%;
+  width: 57%;
 }
 table.type03 .client {
   width: 12%;
@@ -383,3 +383,74 @@ table.type01 .blue {
 }
 
 /* ================================= include-header ================================= */
+
+
+
+/* ================================= boardYearSelect ================================= */
+
+.yearContainer {
+	width: 100%;
+	text-align: center;
+}
+
+.yearContainer .egis_logo {
+	display: inline-block;
+	width: 570px;
+}
+
+/* ================================= boardYearSelect ================================= */
+
+.overall {
+	width: 100%;
+	text-align: center;
+}
+
+.overall table {
+	display: inline-block;
+	width: 500px;
+}
+
+table.type04 {
+  border: 1px #a39485 solid;
+  font-size: .9em;
+  box-shadow: 0 2px 5px rgba(0,0,0,.25);
+  border-collapse: collapse;
+  border-radius: 5px;
+  overflow: hidden;
+}
+table.type04 th {
+  font-weight: bold;
+  width: 100px;
+  height: 15px;
+  color: #fff;
+  background: #73685d;
+  /* border-right: 1px solid white; */
+}
+table.type04 td {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  border-right: 1px solid rgba(0,0,0,.1);
+  padding-right: 5px;
+  text-align: right;
+  vertical-align: middle;
+  background: #fff;
+}
+table.type04 .money {
+  width: 345px;
+}
+table.type04 .won {
+  text-align: left;
+  padding-left: 5px;
+  width: 45px;
+}
+
+/* ================================= boardSalesOverall ================================= */
+
+
+
+
+
+
+
+
+
+
