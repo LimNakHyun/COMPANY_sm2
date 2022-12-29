@@ -187,14 +187,28 @@ public class Sm2ServiceImpl implements Sm2Service {
 		String year = (String) map.get("year");
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
+		int quarterAmount = 0;
+		
 		for(int i = 0; i < 12; i++) {
 			Map<String, Object> tempMap = new HashMap<>();
 			tempMap.put("year", year);
 			tempMap.put("month", i + 1);
+			
 			Map<String, Object> temp = sm2DAO.selectBoardMonthAmount(tempMap);
-			System.out.println((i + 1) + "월 매?출액: " + temp);
+			tempMap.put("monthstr", (i + 1) + "월");
+			quarterAmount += (int) temp.get("collectioncashsum");
+			
 			tempMap.put("amount", temp.get("collectioncashsum"));
+			
 			list.add(tempMap);
+			
+			if((i + 1) % 3 == 0) {
+				Map<String, Object> tempQuarterMap = new HashMap<>();
+				tempQuarterMap.put("quarteramount", quarterAmount);
+				tempQuarterMap.put("quarter", ((i + 1) / 3) + "/4 분기");
+				list.add(tempQuarterMap);
+			}
+			
 		}
 		
 		return list;
