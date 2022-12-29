@@ -100,7 +100,12 @@
 		<![CDATA[
 			SELECT IDX
 			FROM MANAGEMENT
-			WHERE BUSINESSNAME = #{businessname}
+			WHERE
+				BUSINESSNAME = #{businessname}
+			AND
+				DELYN = FALSE
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
 		]]>
 	</select>
 	
