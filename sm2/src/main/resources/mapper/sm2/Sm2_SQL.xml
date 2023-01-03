@@ -9,7 +9,7 @@
 		<![CDATA[
 			SELECT *
 			FROM
-				MANAGEMENT
+				SM.MANAGEMENT
 			WHERE
 				DELYN = FALSE
 			AND
@@ -23,7 +23,7 @@
 		<![CDATA[
 			SELECT *
 			FROM
-				MANAGEMENT
+				SM.MANAGEMENT
 			WHERE
 				DELYN = FALSE AND
 				BUSINESSNAME = #{businessname}
@@ -35,7 +35,7 @@
 	<!-- 사업 매출정보 등록 -->
 	<insert id="insertBoard" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO MANAGEMENT
+			INSERT INTO SM.MANAGEMENT
 			(
 				BUSINESSNAME,
 			    CLIENT,
@@ -84,9 +84,9 @@
 				M2.SALESAMOUNT,
 				M2.CODE
 			FROM
-				MONTHMANAGEMENT M1
+				SM.MONTHMANAGEMENT M1
 			LEFT OUTER JOIN
-				MANAGEMENT M2
+				SM.MANAGEMENT M2
 			ON (M1.IDX = M2.IDX)
 			WHERE
 				M1.DELYN = FALSE
@@ -101,7 +101,7 @@
 	<select id="pickIdx" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT IDX
-			FROM MANAGEMENT
+			FROM SM.MANAGEMENT
 			WHERE
 				BUSINESSNAME = #{businessname}
 			AND
@@ -113,7 +113,7 @@
 	
 	<select id="insertBoardMonth" parameterType="hashmap">
 		<![CDATA[
-			INSERT INTO MONTHMANAGEMENT
+			INSERT INTO SM.MONTHMANAGEMENT
 			(
 				IDX,
 			    BUSINESSMONTH,
@@ -133,14 +133,14 @@
 	<select id="collectionInformation" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT COLLECTIONCOMPLETEDAMOUNT, TOTALCOLLECTIONREMAININGAMOUNT
-			FROM MANAGEMENT
+			FROM SM.MANAGEMENT
 			WHERE IDX = CAST(#{idx} AS INTEGER)
 		]]>
 	</select>
 	
 	<update id="updateBoardMonth" parameterType="hashmap">
 		<![CDATA[
-			UPDATE MANAGEMENT
+			UPDATE SM.MANAGEMENT
 			SET
 			COLLECTIONCOMPLETEDAMOUNT = #{collectioncompletedamount},
 			TOTALCOLLECTIONREMAININGAMOUNT = #{totalcollectionremainingamount},
@@ -151,7 +151,7 @@
 	
 	<update id="updateBoardMonthCondition" parameterType="hashmap">
 		<![CDATA[
-			UPDATE MONTHMANAGEMENT
+			UPDATE SM.MONTHMANAGEMENT
 			SET
 			MONTHBUSINESSCONDITION = #{monthbusinesscondition}
 			WHERE MONTHIDX = CAST(#{monthidx} AS INTEGER)
@@ -166,7 +166,7 @@
 				COALESCE(SUM(SALESAMOUNT), 0) AS SALESAMOUNTSUM,
 				COALESCE(SUM(COLLECTIONCOMPLETEDAMOUNT), 0) AS COLLECTIONCOMPLETEDAMOUNTSUM,
 				COALESCE(SUM(TOTALCOLLECTIONREMAININGAMOUNT), 0) AS TOTALCOLLECTIONREMAININGAMOUNTSUM
-			FROM MANAGEMENT
+			FROM SM.MANAGEMENT
 			WHERE 
 				DELYN = FALSE
 			AND BUSINESSYEAR = CAST(#{year} AS INTEGER)
@@ -177,7 +177,7 @@
 		<![CDATA[
 			SELECT
 				COALESCE(SUM(COLLECTIONCASH), 0) AS COLLECTIONCASHSUM
-			FROM MONTHMANAGEMENT
+			FROM SM.MONTHMANAGEMENT
 			WHERE
 				BUSINESSYEARMONTH = CAST(#{year} AS INTEGER)
 			AND

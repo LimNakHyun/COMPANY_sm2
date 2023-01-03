@@ -276,6 +276,7 @@ table.type01 .sum{
   color: red;
   font-weight: 700;
   background-color: #FFDC37;
+  border: 1px solid white;
 }
   
  @media all and (max-width: 768px) {
@@ -358,9 +359,9 @@ table.type01 .blue {
 }
 
 .contents3 {
-  float: left;
+  /* float: left;
   width: 9.6%;
-  box-sizing: border-box;
+  box-sizing: border-box; */
 }
 .contents3 select {
   width: 68px;
@@ -400,6 +401,15 @@ table.type01 .blue {
 
 /* ================================= boardYearSelect ================================= */
 
+
+
+
+
+
+
+
+
+/* ================================= boardSalesOverall ================================= */
 .overall {
 	width: 100%;
 	text-align: center;
@@ -420,7 +430,7 @@ table.type04 {
 }
 table.type04 th {
   font-weight: bold;
-  width: 100px;
+  width: 450px;
   height: 15px;
   color: #fff;
   background: #73685d;
@@ -432,9 +442,18 @@ table.type04 td {
   padding-right: 5px;
   text-align: right;
   vertical-align: middle;
-  background: #fff;
+  
 }
 table.type04 .money {
+  width: 345px;
+  background: #fff;
+}
+table.type04 .quarter {
+  width: 345px;
+  background: #FFDC37;
+  color: black;
+}
+table.type04 .all {
   width: 345px;
 }
 table.type04 .won {

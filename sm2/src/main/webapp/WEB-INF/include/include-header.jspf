@@ -29,30 +29,18 @@
 				<button>총괄</button>
 			</form>
 		</div>
-		<div class="contents4"><label>&nbsp;</label></div>
+		<!-- <div class="contents4"><label>&nbsp;</label></div> -->
 		<div class="contents3">
 			<form action="/sm2/openSm2Index.do">
 				<button class="noborder">${date.year}년</button>&nbsp;
 			</form>
-			<form action="/sm2/openSm2Month.do" method="post">
-				<input type="hidden" name="year" value="${date.year}">
-				<select name="month">
-					<c:choose>
-						<c:when test="${date.month eq null}">
-							<option value="1" hidden>월 선택</option>
-						</c:when>
-						<c:otherwise>
-							<option value="${date.month}" hidden>${date.month}월</option>
-						</c:otherwise>
-					</c:choose>
-					
-					<c:forEach var="j" begin="1" end="12">
-						<option value="${j}">${j}월</option>
-					</c:forEach>
-				</select>
-				
-				<button>이동</button>
-			</form>
+			<c:forEach var="j" begin="1" end="12">
+				<form action="/sm2/openSm2Month.do" method="post">
+					<input type="hidden" name="year" value="${date.year}">
+					<input type="hidden" name="month" value="${j}">
+					<button>${j}월</button>
+				</form>
+			</c:forEach>
 		</div>
 	</div>
 </body>

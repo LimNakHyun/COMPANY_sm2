@@ -43,7 +43,7 @@
 			<td class="middle">${dto.code}</td>
 			<td class="middle">
 				<form action="/sm2/openSm2Detail.do" method="post">
-					<button class="underline">${dto.businessname}</button>
+					<button>${dto.businessname}</button>
 					<input type="hidden" name="businessname" value="${dto.businessname}">
 					<input type="hidden" name="year" value="${date.year}">
 				</form>
