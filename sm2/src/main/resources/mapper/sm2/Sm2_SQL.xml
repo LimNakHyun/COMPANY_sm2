@@ -27,6 +27,8 @@
 			WHERE
 				DELYN = FALSE AND
 				BUSINESSNAME = #{businessname}
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
 		]]>
 	</select>
 	
