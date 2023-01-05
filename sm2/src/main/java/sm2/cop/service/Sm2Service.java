@@ -83,4 +83,11 @@ public interface Sm2Service {
 	 */
 	List<Map<String, Object>> selectBoardOverall(Map<String, Object> map) throws Exception;
 
+	/**
+	 * 사업 월별 수금액 정보 상세보기 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	Map<String, Object> selectBoardMonthDetail(Map<String, Object> map);
+
 }

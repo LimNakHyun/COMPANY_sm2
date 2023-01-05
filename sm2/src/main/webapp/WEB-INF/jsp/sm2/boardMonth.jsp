@@ -24,10 +24,12 @@
 		<tr>
 			<td class="middle">${dto.code}</td>
 			<td class="middle">
-				<form action="detailBusiness" method="post">
+				<form action="/sm2/openSm2MonthDetail.do" method="post">
 					<input type="hidden" name="month" value="${date.month}">
 					<input type="hidden" name="year" value="${date.year}">
 					<input type="hidden" name="businessname" value="${dto.businessname}">
+					<input type="hidden" name="monthidx" value="${dto.monthidx}">
+					<input type="hidden" name="idx" value="${dto.idx}">
 					<button class="noborder">${dto.businessname}</button>
 				</form>
 			</td>

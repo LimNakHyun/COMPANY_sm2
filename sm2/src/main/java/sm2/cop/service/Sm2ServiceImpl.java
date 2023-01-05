@@ -220,4 +220,15 @@ public class Sm2ServiceImpl implements Sm2Service {
 		return list;
 	}
 
+	/**
+	 * 사업 월별 수금액 정보 상세보기 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) {
+		Map<String, Object> resultMap = sm2DAO.selectBoardMonthDetail(map);
+		return resultMap;
+	}
+
 }

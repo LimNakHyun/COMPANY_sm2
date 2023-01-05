@@ -265,5 +265,30 @@ public class Sm2Controller {
 		
 		return mv;
 	}
+	
+	/**
+	 * 사업 월별 수금액 정보 상세보기 조회
+	 * @param commandMap
+	 * @param month
+	 * @param year
+	 * @return "/sm2/boardMonthDetail"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/sm2/openSm2MonthDetail.do")
+	public ModelAndView openSm2MonthDetail(CommandMap commandMap,
+			@ModelAttribute("month") String month,
+			@ModelAttribute("year") String year) throws Exception {
+		ModelAndView mv = new ModelAndView("/sm2/boardMonthDetail");
+		
+		Map<String, Object> detail = sm2Service.selectBoardMonthDetail(commandMap.getMap());
+		mv.addObject("detail", detail);
+		
+		Map<String, String> date = new HashMap<>();
+		date.put("month", month);
+		date.put("year", year);
+		mv.addObject("date", date);
+		
+		return mv;
+	}
 
 }

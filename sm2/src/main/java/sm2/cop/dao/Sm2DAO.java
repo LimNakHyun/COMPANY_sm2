@@ -132,4 +132,14 @@ public class Sm2DAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("sm2.selectBoardMonthAmount", map);
 	}
 
+	/**
+	 * 사업 월별 수금액 정보 상세보기 조회
+	 * @param map
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("sm2.selectBoardMonthDetail", map);
+	}
+
 }
