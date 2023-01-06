@@ -226,9 +226,47 @@ public class Sm2ServiceImpl implements Sm2Service {
 	 * @throws Exception
 	 */
 	@Override
-	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) {
+	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) throws Exception {
 		Map<String, Object> resultMap = sm2DAO.selectBoardMonthDetail(map);
 		return resultMap;
+	}
+
+	/**
+	 * 사업 월별 수금액 정보 삭제
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public void deleteMonthBoard(Map<String, Object> map) throws Exception {
+		boolean monthBusinessCondition = (boolean)sm2DAO.pickMonthBusinessCondition(map).get("monthbusinesscondition");
+		
+		if(monthBusinessCondition) {
+			long collectionCash = Long.parseLong((String)map.get("collectioncash"));
+			Map<String, Object> collectionInformation = sm2DAO.collectionInformation(map);
+			
+			long totalCollectionRemainingAmount = (long)collectionInformation.get("totalcollectionremainingamount");
+			long collectionCompletedAmount = (long)collectionInformation.get("collectioncompletedamount");
+			
+			totalCollectionRemainingAmount = totalCollectionRemainingAmount + collectionCash;
+			collectionCompletedAmount = collectionCompletedAmount - collectionCash;
+			monthBusinessCondition = false;
+			
+			map.put("totalcollectionremainingamount", totalCollectionRemainingAmount);
+			map.put("collectioncompletedamount", collectionCompletedAmount);
+			map.put("monthbusinesscondition", monthBusinessCondition);
+			
+			boolean businessCondition = (boolean)sm2DAO.pickBusinessCondition(map).get("businesscondition");
+			
+			if(businessCondition) {
+				businessCondition = false;
+				map.put("businesscondition", businessCondition);
+			}
+			
+			sm2DAO.updateBoardMonthCondition(map);
+			sm2DAO.updateBoardMonth(map);
+			sm2DAO.updateBoardBusinessCondition(map);
+		}
+		sm2DAO.deleteMonthBoard(map);
 	}
 
 }

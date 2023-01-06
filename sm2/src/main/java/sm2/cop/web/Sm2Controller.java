@@ -290,5 +290,32 @@ public class Sm2Controller {
 		
 		return mv;
 	}
+	
+	/**
+	 * 사업 월별 수금액 정보 삭제
+	 * @param commandMap
+	 * @param month
+	 * @param year
+	 * @return "/sm2/boardMonth"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/sm2/deleteMonthBoard.do")
+	public ModelAndView deleteMonthBoard(CommandMap commandMap,
+			@ModelAttribute("month") String month,
+			@ModelAttribute("year") String year) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
+		
+		sm2Service.deleteMonthBoard(commandMap.getMap());
+		
+		Map<String, Object> date = new HashMap<>();
+		date.put("month", month);
+		date.put("year", year);
+		mv.addObject("date", date);
+
+		List<Map<String, Object>> list = sm2Service.selectBoardMonthList(commandMap.getMap());
+		mv.addObject("list", list);
+		
+		return mv;
+	}
 
 }

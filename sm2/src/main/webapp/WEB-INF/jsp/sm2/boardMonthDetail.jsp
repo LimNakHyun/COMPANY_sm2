@@ -44,5 +44,14 @@
 </script>
 <button onclick="goForward()">목록으로</button>
 
+<form action="/sm2/deleteMonthBoard.do" method="post">
+	<input type="hidden" name="month" value="${date.month}">
+	<input type="hidden" name="year" value="${date.year}">
+	<input type="hidden" name="collectioncash" value="${detail.collectioncash}">
+	<input type="hidden" name="idx" value="${detail.idx}">
+	<input type="hidden" name="monthidx" value="${detail.monthidx}">
+	<button>삭제하기</button>
+</form>
+
 </body>
 </html>

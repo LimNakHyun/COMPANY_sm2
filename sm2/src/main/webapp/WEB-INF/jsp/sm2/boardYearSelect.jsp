@@ -27,7 +27,9 @@
 		<br>
 		
 		<div class="egis">
-			<a href="http://www.egiskorea.com/" target="_blank"><img class="egis_logo" src='https://ifh.cc/g/Z1a64t.png'></a>
+			<!-- <a href="http://www.egiskorea.com/" target="_blank"> -->
+				<img class="egis_logo" src='https://ifh.cc/g/Z1a64t.png'>
+			<!-- </a> -->
 		</div>
 	</div>
 </body>

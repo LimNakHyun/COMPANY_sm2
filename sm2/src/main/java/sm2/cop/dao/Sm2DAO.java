@@ -118,7 +118,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectBoardAmount(Map<String, Object> map) {
+	public Map<String, Object> selectBoardAmount(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("sm2.selectBoardAmount", map);
 	}
 
@@ -128,18 +128,56 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) {
+	public Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("sm2.selectBoardMonthAmount", map);
 	}
 
 	/**
 	 * 사업 월별 수금액 정보 상세보기 조회
 	 * @param map
-	 * @return
+	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
-	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) {
+	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("sm2.selectBoardMonthDetail", map);
+	}
+
+	/**
+	 * 사업 월별 수금액 정보 삭제
+	 * @param map
+	 * @throws Exception
+	 */
+	public void deleteMonthBoard(Map<String, Object> map) throws Exception {
+		update("sm2.deleteMonthBoard", map);
+	}
+
+	/**
+	 * 사업 월별 수금완료 여부 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> pickMonthBusinessCondition(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("sm2.pickMonthBusinessCondition", map);
+	}
+
+	/**
+	 * 사업 수금완료 여부 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> pickBusinessCondition(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("sm2.pickBusinessCondition", map);
+	}
+
+	/**
+	 * 사업 수금악 상태 변경
+	 * @param map
+	 * @throws Exception
+	 */
+	public void updateBoardBusinessCondition(Map<String, Object> map) throws Exception {
+		update("sm2.updateBoardBusinessCondition", map);
 	}
 
 }

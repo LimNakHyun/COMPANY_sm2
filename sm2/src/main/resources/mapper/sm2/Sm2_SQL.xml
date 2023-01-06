@@ -227,5 +227,49 @@
 				MONTHIDX = CAST(#{monthidx} AS INTEGER)
 		]]>
 	</select>
+	
+	<update id="deleteMonthBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MONTHMANAGEMENT
+			SET
+				DELYN = TRUE
+			WHERE
+				MONTHIDX = CAST(#{monthidx} AS INTEGER)
+		]]>
+	</update>
+	
+	<select id="pickMonthBusinessCondition" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				MONTHBUSINESSCONDITION
+			FROM
+				SM.MONTHMANAGEMENT
+			WHERE
+				MONTHIDX = CAST(#{monthidx} AS INTEGER)
+		]]>
+	</select>
+	
+	<select id="pickBusinessCondition" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				BUSINESSCONDITION
+			FROM
+				SM.MANAGEMENT
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</select>
+	
+	<update id="updateBoardBusinessCondition" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MANAGEMENT
+			SET
+				BUSINESSCONDITION = FALSE
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</update>
 
 </mapper>

@@ -88,6 +88,13 @@ public interface Sm2Service {
 	 * @param map
 	 * @throws Exception
 	 */
-	Map<String, Object> selectBoardMonthDetail(Map<String, Object> map);
+	Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) throws Exception;
+
+	/**
+	 * 사업 월별 수금액 정보 삭제
+	 * @param map
+	 * @throws Exception
+	 */
+	void deleteMonthBoard(Map<String, Object> map) throws Exception;
 
 }
