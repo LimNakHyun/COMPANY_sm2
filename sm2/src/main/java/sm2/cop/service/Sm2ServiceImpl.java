@@ -87,6 +87,17 @@ public class Sm2ServiceImpl implements Sm2Service {
 		
 		sm2DAO.insertBoard(map);
 	}
+
+	/**
+	 * 사업 매출정보 삭제
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public void deleteBoard(Map<String, Object> map) throws Exception {
+		sm2DAO.deleteRelatedMonthBoard(map);
+		sm2DAO.deleteBoard(map);
+	}
 	
 	/**
 	 * 사업 월별 수금액 목록 페이지 조회

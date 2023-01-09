@@ -17,8 +17,8 @@
 		<tr>
 			<th><label>코드선택</label></th>
 			<td scope="row">
-				<select name="CODE">
-					<option value="none" hidden>== 선택 ==</option>
+				<select name="CODE" required>
+					<option value="" hidden>== 선택 ==</option>
 					<option value="유지보수">유지보수</option>
 					<option value="구축">구축</option>
 					<option value="구독">구독</option>
@@ -43,20 +43,20 @@
 		<tr>
 			<th><label>계약 기간</label></th>
 			<td scope="row">
-				<input type="date" name="strstartterm"> ~ 
-				<input type="date" name="strendterm">
+				<input type="date" name="strstartterm" required="required"> ~ 
+				<input type="date" name="strendterm" required="required">
 			</td>
 		</tr>
 		<tr>
 			<th><label>전체사업금액</label></th>
 			<td scope="row">
-				<input type="number" name="plustotalbusinessamount">
+				<input type="number" name="plustotalbusinessamount" required="required">
 			</td>
 		</tr>
 		<tr>
 			<th><label>지분율</label></th>
 			<td scope="row">
-				<input type="number" name="ratio" min="0" max="100" step="0.01"> %
+				<input type="number" name="ratio" min="0" max="100" step="0.01" required="required"> %
 			</td>
 		</tr>
 		

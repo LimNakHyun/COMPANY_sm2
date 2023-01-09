@@ -15,8 +15,8 @@
 		<tr>
 			<th><label>사업 선택</label></th>
 			<td scope="row">
-				<select name="businessname">
-					<option value="none" hidden>사업 선택</option>
+				<select name="businessname" required>
+					<option value="" hidden>사업 선택</option>
 					<c:forEach items="${selectboxList}" var="boxlist" varStatus="status">
 						<option value="${boxlist.businessname}">${boxlist.businessname}</option>
 					</c:forEach>
@@ -26,7 +26,7 @@
 		<tr>
 			<th><label>매출금액(-)</label></th>
 			<td scope="row">
-				<input type="number" name="salesamount">
+				<input type="number" name="salesamount" required="required">
 			</td>
 		</tr>
 	</table>

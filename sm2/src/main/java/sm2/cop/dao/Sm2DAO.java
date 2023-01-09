@@ -55,6 +55,24 @@ public class Sm2DAO extends AbstractDAO {
 	}
 
 	/**
+	 * 사업 매출정보 삭제
+	 * @param map
+	 * @throws Exception
+	 */
+	public void deleteBoard(Map<String, Object> map) throws Exception {
+		update("sm2.deleteBoard", map);
+	}
+
+	/**
+	 * 사업 월별 매출정보 삭제
+	 * @param map
+	 * @throws Exception
+	 */
+	public void deleteRelatedMonthBoard(Map<String, Object> map) throws Exception {
+		update("sm2.deleteRelatedMonthBoard", map);
+	}
+
+	/**
 	 * 사업 월별 수금액 목록 페이지 조회
 	 * @param map
 	 * @throws Exception

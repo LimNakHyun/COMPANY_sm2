@@ -40,6 +40,13 @@ public interface Sm2Service {
 	 * @throws Exception
 	 */
 	void insertBoard(Map<String, Object> map) throws Exception;
+	
+	/**
+	 * 사업 매출정보 삭제
+	 * @param map
+	 * @throws Exception
+	 */
+	void deleteBoard(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 사업 월별 수금액 목록 페이지 조회
