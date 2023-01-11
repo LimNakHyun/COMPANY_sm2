@@ -12,8 +12,8 @@
 		
 		<div>
 			<form action="/sm2/openSm2List.do" method="post">
-				<select name="year">
-					<option value="none" hidden>== 연도 ==</option>
+				<select name="year" required>
+					<option value="" hidden>== 연도 ==</option>
 					<option value="2021">2021년</option>
 					<option value="2022">2022년</option>
 					<option value="2023">2023년</option>
