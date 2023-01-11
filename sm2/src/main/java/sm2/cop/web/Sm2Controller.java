@@ -138,6 +138,27 @@ public class Sm2Controller {
 	}
 	
 	/**
+	 * 사업 매출정보 삭제
+	 * @param commandMap
+	 * @param year
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/sm2/deleteBoard.do")
+	public ModelAndView deleteBoard(CommandMap commandMap,
+			@ModelAttribute("year") String year) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2List.do");
+		
+		sm2Service.deleteBoard(commandMap.getMap());
+		
+		Map<String, String> date = new HashMap<>();
+		date.put("year", year);
+		mv.addObject("date", date);
+		
+		return mv;
+	}
+	
+	/**
 	 * 사업 월별 수금액 목록 조회 페이지 이동
 	 * @param commandMap
 	 * @param month
