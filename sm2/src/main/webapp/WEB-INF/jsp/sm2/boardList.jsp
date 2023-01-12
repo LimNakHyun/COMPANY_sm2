@@ -1,83 +1,122 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<html lang="ko">
-<head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
-</head>
-<body>
-<br>
-<h3>
-	이지스 ${date.year}년 사업실적(매출세금계산서 기준)
-</h3>
+<%@ include file="/WEB-INF/include/header.jsp" %>
 
-<table class="type01">
-	<thead>
-		<tr class="amount">
-			<th class="middle sum" colspan='4'>사업금액 합계</th>
-			<th class="right allAmount sum"><fmt:formatNumber value="${amount.plustotalbusinessamountsum}" pattern="#,###"/> 원</th>
-			<th class="right allAmount sum"><fmt:formatNumber value="${amount.minustotalbusinessamountsum}" pattern="#,###"/> 원</th>
-			<td class="code middle sum">-</td>
-			<th class="right amount sum"><fmt:formatNumber value="${amount.salesamountsum}" pattern="#,###"/> 원</th>
-			<th class="right amount sum"><fmt:formatNumber value="${amount.collectioncompletedamountsum}" pattern="#,###"/> 원</th>
-			<th class="right amount sum"><fmt:formatNumber value="${amount.totalcollectionremainingamountsum}" pattern="#,###"/> 원</th>
-			<td class="note middle sum">-</td>
-		</tr>
-	</thead>
-	<thead>
-		<tr>
-			<th class="middle code">CODE</th>
-			<th class="middle name">사업명/사업개요</th>
-			<th class="middle client">발주처</th>
-			<th class="middle date">계약기간</th>
-			<th class="middle allAmount">전체사업금액(+)</th>
-			<th class="middle allAmount">전체사업금액(-)<br>(계약금액)</th>
-			<th class="middle code">지분율</th>
-			<th class="middle amount">매출금액(-)<br>(계약금액 * 지분율)</th>
-			<th class="middle amount">수금완료금액(-)</th>
-			<th class="middle amount">수금잔여금액(-)</th>
-			<th class="middle note">비고</th>
-		</tr>
-	</thead>
-	<tbody>
-	<c:forEach items="${list}" var="dto" varStatus="status">
-		<tr>
-			<td class="middle">${dto.code}</td>
-			<td class="middle">
-				<form action="/sm2/openSm2Detail.do" method="post">
-					<button>${dto.businessname}</button>
-					<input type="hidden" name="businessname" value="${dto.businessname}">
+	<div id="contents">
+		<h2 class="cont_tit">이지스 ${date.year}년 사업실적(매출세금계산서 기준)</h2>
+		
+		<div class="cont_top">
+			<div class="dashboard_box">
+				<div class="dashboard_item">
+					<strong class="ds_tit">전체사업금액(+)</strong>
+					<span class="ds_num"><fmt:formatNumber value="${amount.plustotalbusinessamountsum}" pattern="#,###"/> 원</span>
+				</div>
+				<div class="dashboard_item">
+					<strong class="ds_tit">전체사업금액(-)<br>(계약금액)</strong>
+					<span class="ds_num"><fmt:formatNumber value="${amount.minustotalbusinessamountsum}" pattern="#,###"/> 원</span>
+				</div>
+				<div class="dashboard_item">
+					<strong class="ds_tit">매출금액(-)<br>(계약금액 * 지분율)</strong>
+					<span class="ds_num"><fmt:formatNumber value="${amount.salesamountsum}" pattern="#,###"/> 원</span>
+				</div>
+				<div class="dashboard_item">
+					<strong class="ds_tit">수금완료금액(-)</strong>
+					<span class="ds_num"><fmt:formatNumber value="${amount.collectioncompletedamountsum}" pattern="#,###"/> 원</span>
+				</div>
+				<div class="dashboard_item">
+					<strong class="ds_tit">수금잔여금액(-)</strong>
+					<span class="ds_num"><fmt:formatNumber value="${amount.totalcollectionremainingamountsum}" pattern="#,###"/> 원</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="cont_body">
+
+			<table class="tbl_basic tbl_list">
+				<caption>이지스 ${date.year}년 사업실적(매출세금계산서 기준)</caption>
+				<colgroup>
+					<col style="width:5%;">
+					<col style="width:24%;">
+					<col style="width:9%;">
+					<col style="width:9%;">
+					<col style="width:9%;">
+					<col style="width:9%;">
+					<col style="width:4%;">
+					<col style="width:9%;">
+					<col style="width:9%;">
+					<col style="width:9%;">
+					<col style="width:4%;">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>CODE</th>
+						<th>사업명/사업개요</th>
+						<th>발주처</th>
+						<th>계약기간</th>
+						<th>전체사업금액(+)</th>
+						<th>전체사업금액(-)<br>(계약금액)</th>
+						<th>지분율</th>
+						<th>매출금액(-)<br>(계약금액 * 지분율)</th>
+						<th>수금완료금액(-)</th>
+						<th>수금잔여금액(-)</th>
+						<th>비고</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:if test="${empty list}">
+						<td colspan="11">등록된 사업이 없습니다.</td>
+					</c:if>
+				<c:forEach items="${list}" var="dto" varStatus="status">
+					<tr>
+						<td>${dto.code}</td>
+						<td>
+							<form action="/sm2/openSm2Detail.do" method="post">
+								<button>${dto.businessname}</button>
+								<input type="hidden" name="businessname" value="${dto.businessname}">
+								<input type="hidden" name="year" value="${date.year}">
+							</form>
+						</td>
+						<td>${dto.client}</td>
+						<td><fmt:formatDate pattern="yy/MM/dd" value="${dto.startterm}"/> ~ <fmt:formatDate pattern="yy/MM/dd" value="${dto.endterm}"/></td>
+						<td><fmt:formatNumber value="${dto.plustotalbusinessamount}" pattern="#,###"/> 원</td>
+						<td class="red_txt"><fmt:formatNumber value="${dto.minustotalbusinessamount}" pattern="#,###"/> 원</td>
+						<td><fmt:formatNumber type="number" pattern="0.###" value="${dto.ratio}" />%</td>
+						<td class="red_txt"><fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
+						<td class="red_txt"><fmt:formatNumber value="${dto.collectioncompletedamount}" pattern="#,###"/> 원</td>
+						<td class="red_txt"><fmt:formatNumber value="${dto.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
+						<td class="red_txt">
+							<c:choose>
+								<c:when test="${dto.businesscondition eq true}">
+									<label class="blue">완료</label>
+								</c:when>
+								<c:otherwise>
+									<label class="notered">미완</label>
+								</c:otherwise>
+							</c:choose>
+						</td>
+					</tr>
+				</c:forEach>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th colspan='4'>사업금액 합계</th>
+						<td><fmt:formatNumber value="${amount.plustotalbusinessamountsum}" pattern="#,###"/> 원</td>
+						<td><fmt:formatNumber value="${amount.minustotalbusinessamountsum}" pattern="#,###"/> 원</td>
+						<td>-</td>
+						<td><fmt:formatNumber value="${amount.salesamountsum}" pattern="#,###"/> 원</td>
+						<td><fmt:formatNumber value="${amount.collectioncompletedamountsum}" pattern="#,###"/> 원</td>
+						<td><fmt:formatNumber value="${amount.totalcollectionremainingamountsum}" pattern="#,###"/> 원</td>
+						<td>-</td>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="btn-group">
+				<form action="/sm2/openSm2Write.do" method="post">
 					<input type="hidden" name="year" value="${date.year}">
+					<button type="submit" class="btn btn-basic">사업 추가</button>
 				</form>
-			</td>
-			<td class="middle">${dto.client}</td>
-			<td class="middle"><fmt:formatDate pattern="yy/MM/dd" value="${dto.startterm}"/> ~ <fmt:formatDate pattern="yy/MM/dd" value="${dto.endterm}"/></td>
-			<td class="right"><fmt:formatNumber value="${dto.plustotalbusinessamount}" pattern="#,###"/> 원</td>
-			<td class="right red"><fmt:formatNumber value="${dto.minustotalbusinessamount}" pattern="#,###"/> 원</td>
-			<td class="middle"><fmt:formatNumber type="number" pattern="0.###" value="${dto.ratio}" />%</td>
-			<td class="right red"><fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
-			<td class="right red"><fmt:formatNumber value="${dto.collectioncompletedamount}" pattern="#,###"/> 원</td>
-			<td class="right red"><fmt:formatNumber value="${dto.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
-			<td class="middle">
-				<c:choose>
-					<c:when test="${dto.businesscondition eq true}">
-						<label class="blue">완료</label>
-					</c:when>
-					<c:otherwise>
-						<label class="notered">미완</label>
-					</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-	</c:forEach>
-	</tbody>
-</table>
-<br>
+			</div>
+		</div>
+	</div>
 
-<form action="/sm2/openSm2Write.do" method="post">
-	<input type="hidden" name="year" value="${date.year}">
-	<button>사업 추가</button>
-</form>
 
-<%@ include file="/WEB-INF/include/include-body.jspf" %>
-
-</body>
-</html>
+<%@ include file="/WEB-INF/include/footer.jsp" %>

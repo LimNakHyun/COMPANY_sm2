@@ -1,0 +1,88 @@
+@charset "utf-8";
+
+@import "reset.css";
+
+html, body {height:100%;}
+
+#wrapper {min-width:1460px;height:100%;}
+
+.main_wrap {}
+
+.main_year_select .logo {display:block;width:150px;}
+.main_year_select .logo a {display:block;width:150px;}
+.main_year_select .logo img {max-width:100%;}
+
+.main_year_select {display:flex;height:100%;flex-direction:column;justify-content:center;align-items:center;}
+
+.main_year_select .logo {width:300px;margin-bottom:20px;}
+
+.main_year_wrap {display:flex;width:400px;padding:30px 0;background-color:#209fc7;border-radius:10px;flex-direction:column;justify-content:center;align-items:center;box-shadow:0 0 5px rgba(0,0,0,0.5);}
+
+.main_year_wrap h2 {margin-bottom:20px;color:#fff;font-size:24px;}
+
+.main_year_select_box select {display:block;width:250px;height:40px;margin-bottom:20px;padding:0 10px;border:none;border-radius:10px;font-size:16px;}
+
+.main_btn_box {text-align:center;}
+.main_btn_box .year_select_btn {padding:0 30px;height:40px;background-color:#2371b0;border-radius:5px;color:#fff;}
+
+#header {display:flex;height:50px;background-color:#fff;border-bottom:1px solid #ddd;}
+#header .logo {background-color:#fff;}
+#header .logo a {display:flex;width:150px;height:50px;align-items:center;justify-content:center;}
+#header .logo img {max-width:100px;}
+#header .box {display:flex;flex-grow:1;justify-content:flex-end;align-items:center;}
+
+#container {min-height:calc(100% - 51px);background-color:#f9f9f9;}
+
+.menu_box {margin-right:15px;}
+.menu_box > ul {display:flex;}
+.menu_box > ul li {}
+.menu_box > ul li button:hover {background-color:#2371b0;}
+.menu_box > ul li.selected button {background-color:#404042;}
+
+#contents {display:flex;padding:20px;flex-direction:column;}
+#contents .cont_tit {margin-bottom:30px;font-size:26px;}
+#contents .cont_body .cont_tit {margin-bottom:15px;}
+
+#contents .cont_top {margin-bottom:20px;}
+
+.dashboard_box {display:flex;gap:20px;}
+.dashboard_box .dashboard_item {display:flex;padding:15px;background:#fff;border-radius:10px;box-shadow:0 0 4px rgba(0,0,0,0.2);justify-content:center;align-items:center;flex-flow:column;flex-grow:1;flex-basis:0px;}
+.dashboard_box .dashboard_item .ds_tit {margin-bottom:10px;text-align:center;line-height:1.2;font-size:14px;}
+.dashboard_box .dashboard_item .ds_num {color:#ff0000;font-size:16px;}
+
+.tbl_basic {width:100%;}
+.tbl_basic caption {position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);margin:-1px;overflow:hidden;}
+.tbl_basic td, .tbl_basic th {padding:10px;text-align:center;line-height:1.2;word-wrap:break-word;word-break:keep-all;}
+.tbl_basic thead + tbody {border-top:0;}
+.tbl_basic tbody {border-top:2px solid #209fc7;}
+.tbl_basic tfoot th, .tbl_basic tfoot td {background-color:#2371b0;color:#fff;}
+.tbl_basic tr:not(:last-child) {border-bottom:1px solid #ddd;}
+.tbl_basic .red_txt {color:#ff0000;}
+
+.tbl_list thead {position:sticky;top:0;}
+.tbl_list thead th {background-color:#209fc7;color:#fff;}
+.tbl_list tbody tr:nth-child(even) td {background:#f5f6fb;}
+.tbl_list tbody tr:hover td {background:#eee;}
+.tbl_list tbody td {padding:10px;background-color:#fff;}
+
+.tbl_view tbody th {background-color:#209fc7;color:#fff;}
+.tbl_view tbody th.s_th {background-color:#f8f6fe;color:#000;}
+.tbl_view tbody td {padding:10px 20px;background-color:#fff;text-align:left;}
+.tbl_view .quarter {background-color:#dfefff;color:#000;}
+
+.tbl_inp input {height:25px;padding:0 5px;border:1px solid #aaa;border-radius:5px;box-sizing:border-box;}
+.tbl_inp select {height:25px;border:1px solid #aaa;border-radius:5px;}
+
+.select-basic {height:30px;margin:0 5px;border:1px solid #aaa;border-radius:5px;}
+
+.btn {display:inline-block;margin:0 5px;padding:8px 20px;border-radius:5px;}
+
+.btn-basic {background-color:#209fc7;color:#fff;}
+.btn-basic:hover {background-color:#2371b0;}
+
+.btn-black {background-color:#404042;color:#fff;}
+
+.btn-group {display:flex;margin-top:20px;justify-content:center;}
+.btn-group.btn-right {justify-content:flex-end;}
+.btn-group.btn-left {justify-content:flex-start;}
+.btn-group .btn {margin:0 5px;}

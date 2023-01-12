@@ -35,3 +35,7 @@ function ComSubmit(opt_formId) {
 		frm.submit();
 	}
 }
+
+function yearChange(){
+	document.yearFrm.submit();
+}
