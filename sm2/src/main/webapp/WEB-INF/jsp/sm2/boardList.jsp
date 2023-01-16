@@ -86,10 +86,10 @@
 						<td class="red_txt">
 							<c:choose>
 								<c:when test="${dto.businesscondition eq true}">
-									<label class="blue">완료</label>
+									<label class="blue_txt">완료</label>
 								</c:when>
 								<c:otherwise>
-									<label class="notered">미완</label>
+									<label class="red_txts">미완</label>
 								</c:otherwise>
 							</c:choose>
 						</td>

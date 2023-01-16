@@ -32,7 +32,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>) selectList("sm2.selectBoardList", map);
+		return (List<Map<String, Object>>) selectList("sm2Board.selectBoardList", map);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.selectBoardDetail", map);
+		return (Map<String, Object>) selectOne("sm2Board.selectBoardDetail", map);
 	}
 
 	/**
@@ -51,7 +51,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void insertBoard(Map<String, Object> map) throws Exception {
-		insert("sm2.insertBoard", map);
+		insert("sm2Board.insertBoard", map);
 	}
 
 	/**
@@ -60,7 +60,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void deleteBoard(Map<String, Object> map) throws Exception {
-		update("sm2.deleteBoard", map);
+		update("sm2Board.deleteBoard", map);
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void deleteRelatedMonthBoard(Map<String, Object> map) throws Exception {
-		update("sm2.deleteRelatedMonthBoard", map);
+		update("sm2BoardMonth.deleteRelatedMonthBoard", map);
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Map<String, Object>> selectBoardMonthList(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>) selectList("sm2.selectBoardMonthList", map);
+		return (List<Map<String, Object>>) selectList("sm2BoardMonth.selectBoardMonthList", map);
 	}
 
 	/**
@@ -89,7 +89,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> pickIdx(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.pickIdx", map);
+		return (Map<String, Object>) selectOne("sm2Board.pickIdx", map);
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void insertBoardMonth(Map<String, Object> map) throws Exception {
-		insert("sm2.insertBoardMonth", map);
+		insert("sm2BoardMonth.insertBoardMonth", map);
 	}
 
 	/**
@@ -109,7 +109,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> collectionInformation(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.collectionInformation", map);
+		return (Map<String, Object>) selectOne("sm2Board.collectionInformation", map);
 	}
 
 	/**
@@ -118,7 +118,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void updateBoardMonth(Map<String, Object> map) throws Exception {
-		update("sm2.updateBoardMonth", map);
+		update("sm2BoardMonth.updateBoardMonth", map);
 	}
 
 	/**
@@ -127,7 +127,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void updateBoardMonthCondition(Map<String, Object> map) throws Exception {
-		update("sm2.updateBoardMonthCondition", map);
+		update("sm2BoardMonth.updateBoardMonthCondition", map);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardAmount(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.selectBoardAmount", map);
+		return (Map<String, Object>) selectOne("sm2Board.selectBoardAmount", map);
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.selectBoardMonthAmount", map);
+		return (Map<String, Object>) selectOne("sm2BoardMonth.selectBoardMonthAmount", map);
 	}
 
 	/**
@@ -157,7 +157,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.selectBoardMonthDetail", map);
+		return (Map<String, Object>) selectOne("sm2BoardMonth.selectBoardMonthDetail", map);
 	}
 
 	/**
@@ -166,7 +166,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void deleteMonthBoard(Map<String, Object> map) throws Exception {
-		update("sm2.deleteMonthBoard", map);
+		update("sm2BoardMonth.deleteBoardMonth", map);
 	}
 
 	/**
@@ -176,7 +176,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> pickMonthBusinessCondition(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.pickMonthBusinessCondition", map);
+		return (Map<String, Object>) selectOne("sm2BoardMonth.pickMonthBusinessCondition", map);
 	}
 
 	/**
@@ -186,7 +186,7 @@ public class Sm2DAO extends AbstractDAO {
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> pickBusinessCondition(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectOne("sm2.pickBusinessCondition", map);
+		return (Map<String, Object>) selectOne("sm2Board.pickBusinessCondition", map);
 	}
 
 	/**
@@ -195,7 +195,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @throws Exception
 	 */
 	public void updateBoardBusinessCondition(Map<String, Object> map) throws Exception {
-		update("sm2.updateBoardBusinessCondition", map);
+		update("sm2Board.updateBoardBusinessCondition", map);
 	}
 
 }

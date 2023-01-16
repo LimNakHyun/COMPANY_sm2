@@ -72,10 +72,10 @@
 							<input type="hidden" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">
 							<c:choose>
 								<c:when test="${dto.monthbusinesscondition eq false}">
-									<button class="notered">미완</button>
+									<button class="red_txt">미완</button>
 								</c:when>
 								<c:otherwise>
-									<button class="noteblue">완료</button>
+									<button class="blue_txt">완료</button>
 								</c:otherwise>
 							</c:choose>
 						</form>

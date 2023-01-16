@@ -58,6 +58,7 @@ html, body {height:100%;}
 .tbl_basic tfoot th, .tbl_basic tfoot td {background-color:#2371b0;color:#fff;}
 .tbl_basic tr:not(:last-child) {border-bottom:1px solid #ddd;}
 .tbl_basic .red_txt {color:#ff0000;}
+.tbl_basic .blue_txt {color:#0000ff;}
 
 .tbl_list thead {position:sticky;top:0;}
 .tbl_list thead th {background-color:#209fc7;color:#fff;}

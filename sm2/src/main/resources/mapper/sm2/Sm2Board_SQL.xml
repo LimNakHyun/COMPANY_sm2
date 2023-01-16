@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="sm2Board">
+
+	<!-- 사업 매출정보 조회 -->
+	<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *
+			FROM
+				SM.MANAGEMENT
+			WHERE
+				DELYN = FALSE
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
+			ORDER BY IDX
+		]]>
+	</select>
+	
+	<!-- 사업 매출정보 상세보기 조회 -->
+	<select id="selectBoardDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT *
+			FROM
+				SM.MANAGEMENT
+			WHERE
+				DELYN = FALSE AND
+				BUSINESSNAME = #{businessname}
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
+		]]>
+	</select>
+	
+	<!-- 사업 매출정보 등록 -->
+	<insert id="insertBoard" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO SM.MANAGEMENT
+			(
+				BUSINESSNAME,
+			    CLIENT,
+			    STARTTERM,
+			    ENDTERM,
+			    PLUSTOTALBUSINESSAMOUNT,
+			    MINUSTOTALBUSINESSAMOUNT,
+			    RATIO,
+			    SALESAMOUNT,
+			    COLLECTIONCOMPLETEDAMOUNT,
+			    TOTALCOLLECTIONREMAININGAMOUNT,
+			    CODE,
+			    BUSINESSYEAR
+			)
+			VALUES
+			(
+				#{businessname},
+				#{client},
+			    #{startterm},
+			    #{endterm},
+			    CAST(#{plustotalbusinessamount} AS BIGINT),
+			    CAST(#{minustotalbusinessamount} AS BIGINT),
+			    CAST(#{ratio} AS DOUBLE PRECISION),
+			    CAST(#{salesamount} AS BIGINT),
+			    CAST(#{collectioncompletedamount} AS BIGINT),
+			    CAST(#{totalcollectionremainingamount} AS BIGINT),
+			    #{CODE},
+			    CAST(#{year} AS INTEGER)
+			)
+		]]>
+	</insert>
+	
+	<!-- 사업 삭제 -->
+	<update id="deleteBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MANAGEMENT
+			SET
+				DELYN = TRUE
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</update>
+	
+	<!-- 해당하는 사업명 인덱스 조회 -->
+	<select id="pickIdx" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT IDX
+			FROM SM.MANAGEMENT
+			WHERE
+				BUSINESSNAME = #{businessname}
+			AND
+				DELYN = FALSE
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
+		]]>
+	</select>
+	
+	<!-- 사업수금액 정보 조회 -->
+	<select id="collectionInformation" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				COLLECTIONCOMPLETEDAMOUNT,
+				TOTALCOLLECTIONREMAININGAMOUNT
+			FROM
+				SM.MANAGEMENT
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+			AND
+				DELYN = FALSE
+		]]>
+	</select>
+	
+	<!-- 사업금액 전체 합계 조회 -->
+	<select id="selectBoardAmount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				COALESCE(SUM(PLUSTOTALBUSINESSAMOUNT), 0) AS PLUSTOTALBUSINESSAMOUNTSUM,
+				COALESCE(SUM(MINUSTOTALBUSINESSAMOUNT), 0) AS MINUSTOTALBUSINESSAMOUNTSUM,
+				COALESCE(SUM(SALESAMOUNT), 0) AS SALESAMOUNTSUM,
+				COALESCE(SUM(COLLECTIONCOMPLETEDAMOUNT), 0) AS COLLECTIONCOMPLETEDAMOUNTSUM,
+				COALESCE(SUM(TOTALCOLLECTIONREMAININGAMOUNT), 0) AS TOTALCOLLECTIONREMAININGAMOUNTSUM
+			FROM
+				SM.MANAGEMENT
+			WHERE 
+				DELYN = FALSE
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
+		]]>
+	</select>
+	
+	<!-- 사업 수금완료 여부 조회 -->
+	<select id="pickBusinessCondition" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				BUSINESSCONDITION
+			FROM
+				SM.MANAGEMENT
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+			AND
+				DELYN = FALSE
+		]]>
+	</select>
+	
+	<!-- 사업 수금악 상태 변경 -->
+	<update id="updateBoardBusinessCondition" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MANAGEMENT
+			SET
+				BUSINESSCONDITION = FALSE
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+			AND
+				DELYN = FALSE
+		]]>
+	</update>
+
+</mapper>
