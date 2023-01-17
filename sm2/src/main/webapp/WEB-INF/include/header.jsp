@@ -14,6 +14,10 @@
 	<script src="${pageContext.request.contextPath}/resources/js/common.js" charset="utf-8"></script>
 </head>
 <body>
+
+	<c:set var="today" value="<%=new java.util.Date()%>" />
+	<c:set var="year"><fmt:formatDate value="${today}" pattern="yyyy" /></c:set>
+
 	<div id="wrapper">
 		<div id="header">
 			<h1 class="logo"><a href="/sm2/openSm2Index.do"><img class="egis_logo" src='${pageContext.request.contextPath}/resources/images/logo.svg'
@@ -24,12 +28,9 @@
 						<li class="year_select">
 							<form action="/sm2/openSm2List.do" name="yearFrm">
 								<select name="year" class="select-basic" onchange="yearChange();">
-									<option value="2021" ${date.year eq 2021 ? "selected" : ''}>2021년</option>
-									<option value="2022" ${date.year eq 2022 ? "selected" : ''}>2022년</option>
-									<option value="2023" ${date.year eq 2023 ? "selected" : ''}>2023년</option>
-									<option value="2024" ${date.year eq 2024 ? "selected" : ''}>2024년</option>
-									<option value="2025" ${date.year eq 2025 ? "selected" : ''}>2025년</option>
-									<option value="2026" ${date.year eq 2026 ? "selected" : ''}>2026년</option>
+									<c:forEach var="i" begin="2021" end="${year}" step="1">
+										<option value="${i}" ${date.year eq i ? "selected" : ''}>${i}년</option>
+									</c:forEach>
 								</select>
 							</form>
 						</li>

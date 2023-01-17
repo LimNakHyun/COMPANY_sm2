@@ -141,13 +141,23 @@ public class Sm2DAO extends AbstractDAO {
 	}
 
 	/**
-	 * 월별 사업금액 합계 조회
+	 * 월별 계약매출 합계 조회
 	 * @param map
 	 * @throws Exception
 	 */
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("sm2BoardMonth.selectBoardMonthAmount", map);
+	}
+
+	/**
+	 * 월별 계약매출 예상 합계 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectBoardMonthExpectedAmount(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("sm2BoardMonth.selectBoardMonthExpectedAmount", map);
 	}
 
 	/**

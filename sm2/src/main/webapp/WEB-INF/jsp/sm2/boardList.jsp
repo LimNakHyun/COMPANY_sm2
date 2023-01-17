@@ -70,7 +70,7 @@
 						<td>${dto.code}</td>
 						<td>
 							<form action="/sm2/openSm2Detail.do" method="post">
-								<button>${dto.businessname}</button>
+								<button title="${dto.businessname} 상세보기">${dto.businessname}</button>
 								<input type="hidden" name="businessname" value="${dto.businessname}">
 								<input type="hidden" name="year" value="${date.year}">
 							</form>

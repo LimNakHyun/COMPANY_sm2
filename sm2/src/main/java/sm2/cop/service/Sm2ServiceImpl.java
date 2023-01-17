@@ -183,7 +183,10 @@ public class Sm2ServiceImpl implements Sm2Service {
 	 */
 	@Override
 	public Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) throws Exception {
-		return sm2DAO.selectBoardMonthAmount(map);
+		Map<String, Object> monthAmount = sm2DAO.selectBoardMonthAmount(map);
+		Map<String, Object> temp = sm2DAO.selectBoardMonthExpectedAmount(map);
+		monthAmount.put("expectedcollectioncashsum", temp.get("expectedcollectioncashsum"));
+		return monthAmount;
 	}
 
 	

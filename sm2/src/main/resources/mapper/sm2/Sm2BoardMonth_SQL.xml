@@ -84,7 +84,7 @@
 		]]>
 	</update>
 	
-	<!-- 월별 사업금액 합계 조회 -->
+	<!-- 월별 계약매출 합계 조회 -->
 	<select id="selectBoardMonthAmount" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT
@@ -97,6 +97,22 @@
 				BUSINESSMONTH = CAST(#{month} AS INTEGER)
 			AND
 				MONTHBUSINESSCONDITION = TRUE
+			AND
+				DELYN = FALSE
+		]]>
+	</select>
+	
+	<!-- 월별 계약매출 예상 합계 조회 -->
+	<select id="selectBoardMonthExpectedAmount" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				COALESCE(SUM(COLLECTIONCASH), 0) AS EXPECTEDCOLLECTIONCASHSUM
+			FROM
+				SM.MONTHMANAGEMENT
+			WHERE
+				BUSINESSYEARMONTH = CAST(#{year} AS INTEGER)
+			AND
+				BUSINESSMONTH = CAST(#{month} AS INTEGER)
 			AND
 				DELYN = FALSE
 		]]>

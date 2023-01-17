@@ -52,7 +52,7 @@
 							<input type="hidden" name="businessname" value="${dto.businessname}">
 							<input type="hidden" name="monthidx" value="${dto.monthidx}">
 							<input type="hidden" name="idx" value="${dto.idx}">
-							<button class="noborder">${dto.businessname}</button>
+							<button class="noborder" title="${date.month}월 ${dto.businessname} 상세보기">${dto.businessname}</button>
 						</form>
 					</td>
 					<td class="middle">${dto.client}</td>
@@ -72,10 +72,10 @@
 							<input type="hidden" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">
 							<c:choose>
 								<c:when test="${dto.monthbusinesscondition eq false}">
-									<button class="red_txt">미완</button>
+									<button class="red_txt" title="사업 완료하기">미완</button>
 								</c:when>
 								<c:otherwise>
-									<button class="blue_txt">완료</button>
+									<button class="blue_txt" title="사업 되돌리기">완료</button>
 								</c:otherwise>
 							</c:choose>
 						</form>
@@ -85,9 +85,9 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th class="middle sum" colspan='5'>${date.month}월 계약매출 합계</th>
+					<th class="middle sum" colspan='5'>${date.month}월 계약매출 예상 합계</th>
 					<td class="right sum">
-						<fmt:formatNumber value="${collectioncashsum.collectioncashsum}" pattern="#,###"/> 원</td>
+						<fmt:formatNumber value="${collectioncashsum.expectedcollectioncashsum}" pattern="#,###"/> 원</td>
 					<td class="sum"></td>
 				</tr>
 			</tfoot>

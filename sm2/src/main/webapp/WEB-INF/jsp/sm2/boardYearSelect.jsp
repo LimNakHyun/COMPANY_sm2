@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -9,6 +12,10 @@
 </head>
 
 <body>
+
+	<c:set var="today" value="<%=new java.util.Date()%>" />
+	<c:set var="year"><fmt:formatDate value="${today}" pattern="yyyy" /></c:set>
+
 	<div id="wrapper" class="main_wrap">
 		<div class="main_year_select">
 			<h1 class="logo"><img class="egis_logo" src='${pageContext.request.contextPath}/resources/images/logo.svg'
@@ -19,12 +26,9 @@
 					<div class="main_year_select_box">
 						<select name="year">
 							<option value="none" hidden>연도</option>
-							<option value="2021">2021년</option>
-							<option value="2022">2022년</option>
-							<option value="2023">2023년</option>
-							<option value="2024">2024년</option>
-							<option value="2025">2025년</option>
-							<option value="2026">2026년</option>
+							<c:forEach var="i" begin="2021" end="${year}" step="1">
+								<option value="${i}">${i}년</option>
+							</c:forEach>
 						</select>
 					</div>
 					<div class="main_btn_box">
