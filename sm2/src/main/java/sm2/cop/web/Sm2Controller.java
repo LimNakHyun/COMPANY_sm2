@@ -68,15 +68,21 @@ public class Sm2Controller {
 		ModelAndView mv = new ModelAndView("/sm2/boardList");
 		
 		System.out.println("세션 출력: " + session.getAttribute("year"));
+		System.out.println("commandMap의 year값 출력: " + commandMap.getMap().get("year"));
 		
 		if((session.getAttribute("year") == "" || session.getAttribute("year") == null)
-				&& ((commandMap.get("year") != "") || (commandMap.get("year") != null))) {
+				&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
 			session.setAttribute("year", commandMap.getMap().get("year"));
-//			System.out.println("1번 조건 통과");
+			System.out.println("1번 조건 통과");
 		} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
-				&& ((commandMap.get("year") == "") || (commandMap.get("year") == null))) {
+				&& ((commandMap.getMap().get("year") == "") || (commandMap.getMap().get("year") == null))) {
 			commandMap.getMap().put("year", session.getAttribute("year"));
-//			System.out.println("2번 조건 통과");
+			System.out.println("2번 조건 통과");
+		} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
+				&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
+			session.removeAttribute("year");
+			session.setAttribute("year", commandMap.getMap().get("year"));
+			System.out.println("3번 조건 통과");
 		}
 		
 		List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap.getMap());
