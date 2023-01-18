@@ -3,12 +3,12 @@
 
 <div id="contents">
 
-	<h2 class="cont_tit">${date.year}년 ${date.month}월</h2>
+	<h2 class="cont_tit">${year}년 ${month}월</h2>
 	
 	<div class="cont_top">
 		<div class="dashboard_box">
 			<div class="dashboard_item">
-				<strong class="ds_tit">${date.month}월 계약매출 합계</strong>
+				<strong class="ds_tit">${month}월 계약매출 합계</strong>
 				<span class="ds_num"><fmt:formatNumber value="${collectioncashsum.collectioncashsum}" pattern="#,###"/> 원</span>
 			</div>
 		</div>
@@ -17,7 +17,7 @@
 	<div class="cont_body">
 	
 		<table class="tbl_basic tbl_list">
-			<caption>${date.year}년 ${date.month}월</caption>
+			<caption>${year}년 ${month}월</caption>
 			<colgroup>
 				<col style="width:4%;">
 				<col style="width:51%;">
@@ -47,8 +47,8 @@
 					<td class="middle">${dto.code}</td>
 					<td class="middle">
 						<form action="/sm2/openSm2MonthDetail.do" method="post">
-							<input type="hidden" name="month" value="${date.month}">
-							<input type="hidden" name="year" value="${date.year}">
+							<input type="hidden" name="month" value="${month}">
+							<input type="hidden" name="year" value="${year}">
 							<input type="hidden" name="businessname" value="${dto.businessname}">
 							<input type="hidden" name="monthidx" value="${dto.monthidx}">
 							<input type="hidden" name="idx" value="${dto.idx}">
@@ -64,8 +64,8 @@
 						<fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
 					<td class="middle">
 						<form action="/sm2/updateSm2Month.do" method="post">
-							<input type="hidden" name="month" value="${date.month}">
-							<input type="hidden" name="year" value="${date.year}">
+							<input type="hidden" name="month" value="${month}">
+							<input type="hidden" name="year" value="${year}">
 							<input type="hidden" name="idx" value="${dto.idx}">
 							<input type="hidden" name="monthidx" value="${dto.monthidx}">
 							<input type="hidden" name="collectioncash" value="${dto.collectioncash}">
@@ -94,9 +94,9 @@
 		</table>
 		<div class="btn-group">
 			<form action="/sm2/openSm2MonthWrite.do" method="post">
-				<input type="hidden" name="month" value="${date.month}">
-				<input type="hidden" name="year" value="${date.year}">
-				<button type="submit" class="btn btn-basic">사업 추가</button>
+				<input type="hidden" name="month" value="${month}">
+				<input type="hidden" name="year" value="${year}">
+				<button type="submit" class="btn btn-basic">월별 사업 추가</button>
 			</form>
 		</div>
 	</div>

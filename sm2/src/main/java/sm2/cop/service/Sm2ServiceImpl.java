@@ -130,7 +130,7 @@ public class Sm2ServiceImpl implements Sm2Service {
 	 * @throws Exception
 	 */
 	@Override
-	public void updateBoardMonth(Map<String, Object> map) throws Exception {
+	public void updateBoardMonthCondition(Map<String, Object> map) throws Exception {
 		long collectionCash = Long.parseLong((String)map.get("collectioncash"));
 		
 		Map<String, Object> collectionInformation = sm2DAO.collectionInformation(map);
@@ -161,7 +161,7 @@ public class Sm2ServiceImpl implements Sm2Service {
 		}
 		
 		sm2DAO.updateBoardMonthCondition(map);
-		sm2DAO.updateBoardMonth(map);
+		sm2DAO.updateBoardMonthBusinessCollection(map);
 		
 	}
 
@@ -251,7 +251,7 @@ public class Sm2ServiceImpl implements Sm2Service {
 	 * @throws Exception
 	 */
 	@Override
-	public void deleteMonthBoard(Map<String, Object> map) throws Exception {
+	public void deleteBoardMonth(Map<String, Object> map) throws Exception {
 		boolean monthBusinessCondition = (boolean)sm2DAO.pickMonthBusinessCondition(map).get("monthbusinesscondition");
 		
 		if(monthBusinessCondition) {
@@ -277,10 +277,10 @@ public class Sm2ServiceImpl implements Sm2Service {
 			}
 			
 			sm2DAO.updateBoardMonthCondition(map);
-			sm2DAO.updateBoardMonth(map);
+			sm2DAO.updateBoardMonthBusinessCollection(map);
 			sm2DAO.updateBoardBusinessCondition(map);
 		}
-		sm2DAO.deleteMonthBoard(map);
+		sm2DAO.deleteBoardMonth(map);
 	}
 
 }

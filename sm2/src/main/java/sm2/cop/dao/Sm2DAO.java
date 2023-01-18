@@ -117,8 +117,8 @@ public class Sm2DAO extends AbstractDAO {
 	 * @param map
 	 * @throws Exception
 	 */
-	public void updateBoardMonth(Map<String, Object> map) throws Exception {
-		update("sm2BoardMonth.updateBoardMonth", map);
+	public void updateBoardMonthBusinessCollection(Map<String, Object> map) throws Exception {
+		update("sm2BoardMonth.updateBoardMonthBusinessCollection", map);
 	}
 
 	/**
@@ -175,7 +175,7 @@ public class Sm2DAO extends AbstractDAO {
 	 * @param map
 	 * @throws Exception
 	 */
-	public void deleteMonthBoard(Map<String, Object> map) throws Exception {
+	public void deleteBoardMonth(Map<String, Object> map) throws Exception {
 		update("sm2BoardMonth.deleteBoardMonth", map);
 	}
 

@@ -2,8 +2,9 @@
 <%@ include file="/WEB-INF/include/header.jsp" %>
 
 	<div id="contents">
-		<h2 class="cont_tit">이지스 ${date.year}년 사업실적(매출세금계산서 기준)</h2>
-		
+		<h2 class="cont_tit">이지스 ${year}년 사업실적(매출세금계산서 기준)</h2>
+	
+	<form id="frm">
 		<div class="cont_top">
 			<div class="dashboard_box">
 				<div class="dashboard_item">
@@ -32,7 +33,7 @@
 		<div class="cont_body">
 
 			<table class="tbl_basic tbl_list">
-				<caption>이지스 ${date.year}년 사업실적(매출세금계산서 기준)</caption>
+				<caption>이지스 ${year}년 사업실적(매출세금계산서 기준)</caption>
 				<colgroup>
 					<col style="width:5%;">
 					<col style="width:24%;">
@@ -69,11 +70,8 @@
 					<tr>
 						<td>${dto.code}</td>
 						<td>
-							<form action="/sm2/openSm2Detail.do" method="post">
-								<button title="${dto.businessname} 상세보기">${dto.businessname}</button>
-								<input type="hidden" name="businessname" value="${dto.businessname}">
-								<input type="hidden" name="year" value="${date.year}">
-							</form>
+							<a href="#this"  title="${dto.businessname} 상세보기" name="title">${dto.businessname}</a>
+							<input type="hidden" id="idx" name="idx" value="${dto.idx}">
 						</td>
 						<td>${dto.client}</td>
 						<td><fmt:formatDate pattern="yy/MM/dd" value="${dto.startterm}"/> ~ <fmt:formatDate pattern="yy/MM/dd" value="${dto.endterm}"/></td>
@@ -110,13 +108,38 @@
 				</tfoot>
 			</table>
 			<div class="btn-group">
-				<form action="/sm2/openSm2Write.do" method="post">
-					<input type="hidden" name="year" value="${date.year}">
-					<button type="submit" class="btn btn-basic">사업 추가</button>
-				</form>
+				<button type="submit" class="btn btn-basic" id="insert">사업 추가</button>
 			</div>
 		</div>
+	</form>
 	</div>
+<%@ include file="/WEB-INF/include/body.jsp" %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#insert").on("click", function(e){
+			e.preventDefault();
+			fn_openBoardInsert();
+		});
+		
+		$("a[name='title']").on("click", function(e){
+			e.preventDefault();
+			fn_openBoardDetail($(this));
+		});
+	});
+	
+	function fn_openBoardInsert(){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/sm2/openSm2Insert.do' />");
+		comSubmit.submit();
+	}
+	
+	function fn_openBoardDetail(obj){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/sm2/openSm2Detail.do' />");
+		comSubmit.addParam("idx", obj.parent().find("#idx").val());
+		comSubmit.submit();
+	}
+</script>
 
 
 <%@ include file="/WEB-INF/include/footer.jsp" %>

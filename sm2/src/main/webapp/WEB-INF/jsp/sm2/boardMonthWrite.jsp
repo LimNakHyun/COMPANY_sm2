@@ -7,7 +7,7 @@
 	
 		<h2 class="cont_tit">사업 추가</h2>
 		
-		<form action="/sm2/insertSm2Month.do" method="post">
+		<form action="/sm2/insertSm2BoardMonth.do" method="post">
 			<input type="hidden" name="month" value="${date.month}">
 			<input type="hidden" name="year" value="${date.year}">
 			<table class="tbl_basic tbl_view tbl_inp">
@@ -31,7 +31,7 @@
 					<tr>
 						<th scope="row"><label>매출금액(-)</label></th>
 						<td>
-							<input type="number" name="salesamount" required="required">
+							<input type="number" name="salesamount" required="required" min="0">
 						</td>
 					</tr>
 				</tbody>

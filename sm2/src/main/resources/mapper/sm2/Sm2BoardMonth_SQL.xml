@@ -55,7 +55,7 @@
 	</select>
 	
 	<!-- 사업수금액 정산 -->
-	<update id="updateBoardMonth" parameterType="hashmap">
+	<update id="updateBoardMonthBusinessCollection" parameterType="hashmap">
 		<![CDATA[
 			UPDATE
 				SM.MANAGEMENT

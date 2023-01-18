@@ -67,7 +67,7 @@ public interface Sm2Service {
 	 * @param map
 	 * @throws Exception
 	 */
-	void updateBoardMonth(Map<String, Object> map) throws Exception;
+	void updateBoardMonthCondition(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 사업금액 전체 합계 조회
@@ -102,6 +102,6 @@ public interface Sm2Service {
 	 * @param map
 	 * @throws Exception
 	 */
-	void deleteMonthBoard(Map<String, Object> map) throws Exception;
+	void deleteBoardMonth(Map<String, Object> map) throws Exception;
 
 }

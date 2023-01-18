@@ -3,7 +3,7 @@
 
 <div id="contents">
 
-	<h2 class="cont_tit">${date.year}년 (주)이지스 사업 매출 현황 보고</h2>
+	<h2 class="cont_tit">${year}년 (주)이지스 사업 매출 현황 보고</h2>
 
 	<div class="cont_top">
 		<div class="dashboard_box">

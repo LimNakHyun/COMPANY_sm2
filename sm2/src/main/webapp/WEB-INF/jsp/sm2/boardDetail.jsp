@@ -5,6 +5,7 @@
 
 	<div class="cont_body">
 
+	<form id="frm">
 		<h2 class="cont_tit">${detail.businessname} 상세보기</h2>
 		<table class="tbl_basic tbl_view">
 			<caption>${detail.businessname} 상세보기</caption>
@@ -19,8 +20,8 @@
 				<td>${detail.code}</td>
 				<th scope="row">계약기간</th>
 				<td>
-					<fmt:formatDate pattern="yy-MM-dd" value="${detail.startterm}"/> ~
-					<fmt:formatDate pattern="yy/MM/dd" value="${detail.endterm}"/>
+					<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${detail.startterm}"/> ~
+					<fmt:formatDate pattern="yyyy년 MM월 dd일" value="${detail.endterm}"/>
 				</td>
 			</tr>
 			<tr>
@@ -54,20 +55,60 @@
 					<fmt:formatNumber value="${detail.collectioncompletedamount}" pattern="#,###"/> 원</td>
 			</tr>
 		</table>
-		<div class="btn-group">
-			<button type="button" class="btn btn-basic" onclick="goForward()">목록으로</button>
-			<form action="/sm2/deleteBoard.do" method="post">
-				<input type="hidden" name="year" value="${date.year}">
-				<input type="hidden" name="idx" value="${detail.idx}">
-				<button type="submit" class="btn btn-black">삭제</button>
-			</form>
-		</div>
 		
-		<script type="text/javascript">
-			function goForward() {
-				history.go(-1);
-			}
-		</script>
+		<input type="hidden" name="idx" value="${detail.idx}">
+		
+		<div class="btn-group">
+			<a href="#this" class="btn btn-basic" id="list">목록으로</a>
+			<a href="#this" class="btn btn-black" id="delete">삭제</a>
+			<a href="#this" class="btn btn-lightblue" id="update">수정</a>
+			
+		</div>
+	</form>
+		
+	<form id="commonForm" name="commonForm"></form>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#list").on("click", function(e){
+				e.preventDefault();
+				fn_openBoardList();
+			});
+			
+			$("#delete").on("click", function(e){
+				e.preventDefault();
+				if(confirm('삭제하시겠습니까?')){
+					fn_deleteBoard();
+				} else{
+					return false;
+				}
+			});
+			
+			$("#update").on("click", function(e){
+				e.preventDefault();
+				fn_updateBoard();
+			});
+			
+		});
+		
+		function fn_openBoardList(){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/sm2/openSm2Home.do' />");
+			comSubmit.submit();
+		}
+		
+		function fn_deleteBoard(){
+			var comSubmit = new ComSubmit("frm");
+			comSubmit.setUrl("<c:url value='/sm2/deleteSm2Board.do' />");
+			comSubmit.submit();
+		}
+		
+		function fn_updateBoard(){
+			var comSubmit = new ComSubmit("frm");
+			comSubmit.setUrl("<c:url value='/sm2/openSm2UpdateBoard.do' />");
+			comSubmit.submit();
+		}
+	</script>
 
 	</div>
 </div>

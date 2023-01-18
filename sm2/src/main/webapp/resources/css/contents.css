@@ -1,6 +1,7 @@
 @charset "utf-8";
 
 @import "reset.css";
+/* @import "datepicker.css"; */
 
 html, body {height:100%;}
 
@@ -72,6 +73,7 @@ html, body {height:100%;}
 .tbl_view .quarter {background-color:#dfefff;color:#000;}
 
 .tbl_inp input {height:25px;padding:0 5px;border:1px solid #aaa;border-radius:5px;box-sizing:border-box;}
+.tbl_inp input::-webkit-outer-spin-button, .tbl_inp input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
 .tbl_inp select {height:25px;border:1px solid #aaa;border-radius:5px;}
 
 .select-basic {height:30px;margin:0 5px;border:1px solid #aaa;border-radius:5px;}
@@ -82,6 +84,10 @@ html, body {height:100%;}
 .btn-basic:hover {background-color:#2371b0;}
 
 .btn-black {background-color:#404042;color:#fff;}
+.btn-black:hover {background-color:#000000;}
+
+.btn-lightblue {background-color:#006cd9;color:#fff;}
+.btn-lightblue:hover {background-color:#0059b3;}
 
 .btn-group {display:flex;margin-top:20px;justify-content:center;}
 .btn-group.btn-right {justify-content:flex-end;}
