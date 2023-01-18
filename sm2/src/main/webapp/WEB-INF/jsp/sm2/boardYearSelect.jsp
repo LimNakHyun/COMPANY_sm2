@@ -14,7 +14,7 @@
 <body>
 
 	<c:set var="today" value="<%=new java.util.Date()%>" />
-	<c:set var="year"><fmt:formatDate value="${today}" pattern="yyyy" /></c:set>
+	<c:set var="nowYear"><fmt:formatDate value="${today}" pattern="yyyy" /></c:set>
 
 	<div id="wrapper" class="main_wrap">
 		<div class="main_year_select">
@@ -22,11 +22,11 @@
 					alt="이지스"></h1>
 			<div class="main_year_wrap">
 				<h2>이지스 매출 관리 시스템</h2>
-				<form name="frm" action="/sm2/openSm2List.do" method="post">
+				<form name="frm" action="/sm2/openSm2Main.do" method="post">
 					<div class="main_year_select_box">
 						<select name="year">
 							<option value="none" hidden>연도</option>
-							<c:forEach var="i" begin="2021" end="${year}" step="1">
+							<c:forEach var="i" begin="2021" end="${nowYear}" step="1">
 								<option value="${i}">${i}년</option>
 							</c:forEach>
 						</select>

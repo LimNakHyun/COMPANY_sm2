@@ -25,6 +25,8 @@
 						<option value="SI">SI</option>
 						<option value="컨설팅">컨설팅</option>
 						<option value="DB구축">DB구축</option>
+						<option value="임대료">임대료</option>
+						<option value="기타">기타</option>
 					</select>
 				</td>
 			</tr>
@@ -72,13 +74,13 @@
 			<tr>
 				<th><label>전체사업금액</label></th>
 				<td scope="row">
-					<input type="number" id="plustotalbusinessamount" name="plustotalbusinessamount" pattern="#,###" required="required">
+					<input type="number" id="plustotalbusinessamount" name="plustotalbusinessamount" pattern="#,###">
 				</td>
 			</tr>
 			<tr>
 				<th><label>지분율</label></th>
 				<td scope="row">
-					<input type="number" id="ratio" name="ratio" min="0" max="100" step="0.01" required="required"> %
+					<input type="number" id="ratio" name="ratio" min="0" max="100" step="0.01"> %
 				</td>
 			</tr>
 		</tbody>
@@ -89,7 +91,6 @@
 		<a href="#this" class="btn btn-basic" id="list">목록으로</a>
 		<a href="#this" class="btn btn-black" id="insert">추가</a>
 		<button type='reset' class="btn btn-lightblue">리셋</button>
-		<input type="hidden" name="year" value="${date.year}">
 	</div>
 	
 </form>
@@ -122,8 +123,8 @@
 		});
 		
 		function fn_openBoardList(){
-			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/sm2/openSm2Home.do' />");
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/sm2/openSm2Main.do' />");
 			comSubmit.submit();
 		}
 		
@@ -148,6 +149,18 @@
 				comSubmit.submit();
 			}
 		}
+		
+		/* const input = document.querySelector('#plustotalbusinessamount');
+		input.addEventListener('keyup', function(e) {
+		  let value = e.target.value;
+		  value = Number(value.replaceAll(',', ''));
+		  if(isNaN(value)) {
+		    input.value = 0;
+		  }else {
+		    const formatValue = value.toLocaleString('ko-KR');
+		    input.value = formatValue;
+		  }
+		}) */
 	</script>
 
 </body>

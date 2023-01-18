@@ -28,8 +28,6 @@
 				DELYN = FALSE
 			AND
 				IDX = CAST(#{idx} AS INTEGER)
-			AND
-				BUSINESSYEAR = CAST(#{year} AS INTEGER)
 		]]>
 	</select>
 	
@@ -76,6 +74,27 @@
 				SM.MANAGEMENT
 			SET
 				DELYN = TRUE
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</update>
+	
+	<!-- 사업 수정 -->
+	<update id="updateBoard" parameterType="hashmap">
+		<![CDATA[
+			UPDATE SM.MANAGEMENT
+			SET
+				BUSINESSNAME = #{businessname},
+				CLIENT = #{client},
+				STARTTERM = #{startterm},
+				ENDTERM = #{startterm},
+				PLUSTOTALBUSINESSAMOUNT = CAST(#{plustotalbusinessamount} AS BIGINT),
+				MINUSTOTALBUSINESSAMOUNT = CAST(#{minustotalbusinessamount} AS BIGINT),
+				RATIO = CAST(#{ratio} AS DOUBLE PRECISION),
+				SALESAMOUNT = CAST(#{salesamount} AS BIGINT),
+				COLLECTIONCOMPLETEDAMOUNT = CAST(#{collectioncompletedamount} AS BIGINT),
+				TOTALCOLLECTIONREMAININGAMOUNT = CAST(#{totalcollectionremainingamount} AS BIGINT),
+				CODE = #{CODE}
 			WHERE
 				IDX = CAST(#{idx} AS INTEGER)
 		]]>

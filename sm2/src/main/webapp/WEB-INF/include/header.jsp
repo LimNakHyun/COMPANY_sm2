@@ -32,7 +32,7 @@
 				<div class="menu_box">
 					<ul>
 						<li class="year_select">
-							<form action="/sm2/openSm2Home.do" name="yearFrm">
+							<form action="/sm2/openSm2Main.do" name="yearFrm">
 								<select name="year" class="select-basic" onchange="yearChange();">
 									<option value="" hidden>연도 선택</option>
 									<c:forEach var="i" begin="2021" end="${nowYear}" step="1">
@@ -42,8 +42,7 @@
 							</form>
 						</li>
 						<li ${fn:contains(pageContext.request.requestURI, 'boardList') || fn:contains(pageContext.request.requestURI, 'boardDetail') || fn:contains(pageContext.request.requestURI, 'boardInsert')|| fn:contains(pageContext.request.requestURI, 'boardUpdate') ? 'class="selected"' : ''}>
-							<form action="/sm2/openSm2Home.do" method="post">
-								<input type="hidden" name="year" value="${year}">
+							<form action="/sm2/openSm2Main.do" method="post">
 								<button type="submit" class="btn btn-basic">매출 총괄현황</button>
 							</form>
 						</li>

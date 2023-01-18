@@ -68,8 +68,26 @@ public class Sm2DAO extends AbstractDAO {
 	 * @param map
 	 * @throws Exception
 	 */
-	public void deleteRelatedMonthBoard(Map<String, Object> map) throws Exception {
-		update("sm2BoardMonth.deleteRelatedMonthBoard", map);
+	public void deleteRelatedBoardMonth(Map<String, Object> map) throws Exception {
+		update("sm2BoardMonth.deleteRelatedBoardMonth", map);
+	}
+
+	/**
+	 * 사업 매출정보 수정
+	 * @param map
+	 * @throws Exception
+	 */
+	public void updateBoard(Map<String, Object> map) throws Exception {
+		update("sm2Board.updateBoard", map);
+	}
+
+	/**
+	 * 월별 사업 매출정보 상태변경
+	 * @param map
+	 * @throws Exception
+	 */
+	public void updateRelatedBoardMonth(Map<String, Object> map) throws Exception {
+		update("sm2BoardMonth.updateRelatedBoardMonth", map);
 	}
 
 	/**

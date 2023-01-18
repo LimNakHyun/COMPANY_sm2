@@ -6,7 +6,7 @@
 	<div class="cont_body">
 	<h2 class="cont_tit">${update.businessname} 수정하기</h2>
 
-	<form action="/sm2/updateSm2Board.do" method="post">
+	<form id="frm">
 		<table class="tbl_basic tbl_view tbl_inp">
 			<caption>${update.businessname} 수정하기</caption>
 			<colgroup>
@@ -18,7 +18,7 @@
 			<tr>
 				<th scope="row">CODE</th>
 				<td>
-					<select name="CODE" required>
+					<select name="CODE">
 						<option value="${update.code}" hidden>${update.code}</option>
 						<option value="유지보수">유지보수</option>
 						<option value="구축">구축</option>
@@ -26,22 +26,24 @@
 						<option value="SI">SI</option>
 						<option value="컨설팅">컨설팅</option>
 						<option value="DB구축">DB구축</option>
+						<option value="임대료">임대료</option>
+						<option value="기타">기타</option>
 					</select>
 				</td>
 				<th scope="row">계약기간</th>
 				<td>
-					<input type="date" name="strstartterm" required="required" value="${update.startterm}">&nbsp;~&nbsp;
-					<input type="date" name="strendterm" required="required" value="${update.endterm}">
+					<input type="date" id="strstartterm" name="strstartterm" value="${update.startterm}">&nbsp;~&nbsp;
+					<input type="date" id="strendterm" name="strendterm" value="${update.endterm}">
 				</td>
 			</tr>
 			<tr>
 				<th scope="row">사업명/사업개요</th>
 				<td>
-					<input type="text" name="businessname" required="required" value="${update.businessname}">
+					<input type="text" id="businessname" name="businessname" value="${update.businessname}">
 				</td>
 				<th scope="row">발주처</th>
 				<td>
-					<input type="text" name="client" required="required" value="${update.client}">
+					<input type="text" id="client" name="client" value="${update.client}">
 				</td>
 			</tr>
 			<tr>
@@ -53,8 +55,8 @@
 						name="plustotalbusinessamount"
 						value="${update.plustotalbusinessamount}"
 						min="0"
-						required="required"
 						onkeyup="minustotalbusinessamountAutoCal();ratioAutoCal();"
+						id="plustotalbusinessamount"
 					>&nbsp;원
 				</td>
 				<th scope="row">전체사업금액(-)<br>(계약금액)</th>
@@ -73,8 +75,8 @@
 						min="0"
 						max="100"
 						step="0.01"
-						required="required"
 						onkeyup="ratioAutoCal();"
+						id="ratio"
 					>&nbsp;%
 				</td>
 				<th scope="row">매출금액(-)<br>(계약금액 * 지분율)</th>
@@ -93,19 +95,43 @@
 		</table>
 		<div class="btn-group">
 			<button type="button" class="btn btn-basic" onclick="goForward()">이전으로</button>
-			<input type="hidden" name="year" value="${date.year}">
 			<input type="hidden" name="idx" value="${update.idx}">
-			<a href="#this" class="btn btn-black" id="update">수정</a>
-			<button type='reset' class="btn btn-lightblue">리셋</button>
+			<button type='reset' class="btn btn-black">리셋</button>
+			<a href="#this" class="btn btn-lightblue" id="update">완료</a>
 		</div>
 	</form>
 		
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#list").on("click", function(e){
+				$("#update").on("click", function(e){
 					e.preventDefault();
-				})
-			})
+					if(confirm('사업을 수정하시겠습니까?')){
+						fn_updateBoard();
+					} else{
+						return false;
+					}
+				});
+			});
+			
+			function fn_updateBoard() {
+				var comSubmit = new ComSubmit("frm");
+				if(!$('#businessname').val()){
+					alert('사업명/사업개요를 입력해주세요.');
+				} else if(!$('#client').val()){
+					alert('발주처를 입력해주세요.');
+				} else if(!$('#strstartterm').val()){
+					alert('시작 계약기간을 입력해주세요.');
+				} else if(!$('#strendterm').val()){
+					alert('완료 계약기간을 입력해주세요.');
+				} else if(!$('#plustotalbusinessamount').val()){
+					alert('전체사업금액을 입력해주세요.');
+				} else if(!$('#ratio').val()){
+					alert('지분율을 입력해주세요.');
+				} else{
+					comSubmit.setUrl("<c:url value='/sm2/updateSm2Board.do' />");
+					comSubmit.submit();
+				}
+			}
 		
 			function minustotalbusinessamountAutoCal() {
 				var result = $('.plustotalbusinessamount').val() * 10000 / 11000;
@@ -118,7 +144,11 @@
 			}
 		
 			function goForward() {
-				history.go(-1);
+				if(confirm('이전으로 돌아가시겠습니까?\n이전으로 돌아가면 작성한 모든 정보가 사라집니다.')){
+					history.go(-1);
+				} else {
+					return false;
+				}
 			}
 		</script>
 		

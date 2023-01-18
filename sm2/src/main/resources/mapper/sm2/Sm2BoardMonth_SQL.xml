@@ -187,12 +187,24 @@
 	</select>
 	
 	<!-- 삭제하는 사업 웡별 사업 삭제 -->
-	<update id="deleteRelatedMonthBoard" parameterType="hashmap">
+	<update id="deleteRelatedBoardMonth" parameterType="hashmap">
 		<![CDATA[
 			UPDATE
 				SM.MONTHMANAGEMENT
 			SET
 				DELYN = TRUE
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</update>
+	
+	<!-- 수정하는 사업 월별 수금상태 false로 변경 -->
+	<update id="updateRelatedBoardMonth" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MONTHMANAGEMENT
+			SET
+				MONTHBUSINESSCONDITION = FALSE
 			WHERE
 				IDX = CAST(#{idx} AS INTEGER)
 		]]>

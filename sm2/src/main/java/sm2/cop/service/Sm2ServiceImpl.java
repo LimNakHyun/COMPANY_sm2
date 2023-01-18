@@ -95,8 +95,39 @@ public class Sm2ServiceImpl implements Sm2Service {
 	 */
 	@Override
 	public void deleteBoard(Map<String, Object> map) throws Exception {
-		sm2DAO.deleteRelatedMonthBoard(map);
+		sm2DAO.deleteRelatedBoardMonth(map);
 		sm2DAO.deleteBoard(map);
+	}
+
+	/**
+	 * 사업 매출정보 수정
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public void updateBoard(Map<String, Object> map) throws Exception {
+		
+		String strstartterm = (String)map.get("strstartterm");
+		String strendterm = (String)map.get("strendterm");
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		Date startterm = formatter.parse(strstartterm);
+		Date endterm = formatter.parse(strendterm);
+		
+		map.put("startterm", startterm);
+		map.put("endterm", endterm);
+		
+		double minusTotalBusinessAmount = Double.parseDouble((String)map.get("plustotalbusinessamount")) / 1.1;
+		double salesAmount = minusTotalBusinessAmount * Double.parseDouble((String)map.get("ratio")) / 100;
+		
+		map.put("minustotalbusinessamount", minusTotalBusinessAmount);
+		map.put("salesamount", salesAmount);
+		
+		map.put("collectioncompletedamount", 0);
+		map.put("totalcollectionremainingamount", salesAmount);
+		
+		sm2DAO.updateRelatedBoardMonth(map);
+		sm2DAO.updateBoard(map);
 	}
 	
 	/**

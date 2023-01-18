@@ -66,7 +66,7 @@
 		</div>
 	</form>
 		
-	<form id="commonForm" name="commonForm"></form>
+<%@ include file="/WEB-INF/include/body.jsp" %>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -93,7 +93,7 @@
 		
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/sm2/openSm2Home.do' />");
+			comSubmit.setUrl("<c:url value='/sm2/openSm2Main.do' />");
 			comSubmit.submit();
 		}
 		
