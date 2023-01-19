@@ -88,9 +88,8 @@
 				e.preventDefault();
 				fn_updateBoard();
 			});
-			
 		});
-		
+	
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/sm2/openSm2Main.do' />");

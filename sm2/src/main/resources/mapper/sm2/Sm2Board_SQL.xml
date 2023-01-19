@@ -73,7 +73,8 @@
 			UPDATE
 				SM.MANAGEMENT
 			SET
-				DELYN = TRUE
+				DELYN = TRUE,
+				DELDATE = now()
 			WHERE
 				IDX = CAST(#{idx} AS INTEGER)
 		]]>

@@ -144,6 +144,8 @@
 				alert('전체사업금액을 입력해주세요.');
 			} else if(!$('#ratio').val()){
 				alert('지분율을 입력해주세요.');
+			} else if($('#ratio').val() > 100){
+				alert('지분율은 100%가 최대값입니다.');
 			} else{
 				comSubmit.setUrl("<c:url value='/sm2/insertSm2Board.do' />");
 				comSubmit.submit();

@@ -47,4 +47,3 @@ function goForward() {
 		return false;
 	}
 }
-

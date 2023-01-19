@@ -56,59 +56,10 @@ public interface Sm2Service {
 	void updateBoard(Map<String, Object> map) throws Exception;
 
 	/**
-	 * 사업 월별 수금액 목록 페이지 조회
-	 * @param map
-	 * @throws Exception
-	 */
-	List<Map<String, Object>> selectBoardMonthList(Map<String, Object> map) throws Exception;
-
-	/**
-	 * 사업 월별 수금액 등록
-	 * @param map
-	 * @throws Exception
-	 */
-	void insertBoardMonth(Map<String, Object> map) throws Exception;
-
-	/**
-	 * 사업 월별 수금액 수금여부 전환
-	 * @param map
-	 * @throws Exception
-	 */
-	void updateBoardMonthCondition(Map<String, Object> map) throws Exception;
-
-	/**
 	 * 사업금액 전체 합계 조회
 	 * @param map
 	 * @throws Exception
 	 */
 	Map<String, Object> selectBoardAmount(Map<String, Object> map) throws Exception;
-
-	/**
-	 * 월별 사업금액 합계 조회
-	 * @param map
-	 * @throws Exception
-	 */
-	Map<String, Object> selectBoardMonthAmount(Map<String, Object> map) throws Exception;
-
-	/**
-	 * 사업 매출 현황 조회
-	 * @param map
-	 * @throws Exception
-	 */
-	List<Map<String, Object>> selectBoardOverall(Map<String, Object> map) throws Exception;
-
-	/**
-	 * 사업 월별 수금액 정보 상세보기 조회
-	 * @param map
-	 * @throws Exception
-	 */
-	Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) throws Exception;
-
-	/**
-	 * 사업 월별 수금액 정보 삭제
-	 * @param map
-	 * @throws Exception
-	 */
-	void deleteBoardMonth(Map<String, Object> map) throws Exception;
 
 }
