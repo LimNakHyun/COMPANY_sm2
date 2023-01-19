@@ -32,8 +32,8 @@
 				</td>
 				<th scope="row">계약기간</th>
 				<td>
-					<input type="date" id="strstartterm" name="strstartterm" value="${update.startterm}">&nbsp;~&nbsp;
-					<input type="date" id="strendterm" name="strendterm" value="${update.endterm}">
+					<input type="date" id="strstartterm" name="strstartterm" value="${update.startterm}" max="9999-12-31">&nbsp;~&nbsp;
+					<input type="date" id="strendterm" name="strendterm" value="${update.endterm}" max="9999-12-31">
 				</td>
 			</tr>
 			<tr>
@@ -141,14 +141,6 @@
 			function ratioAutoCal() {
 				var result = $('.minustotalbusinessamount').val() * $('.ratio').val() / 100;
 				$('input[name="salesamount"]').val(result);
-			}
-		
-			function goForward() {
-				if(confirm('이전으로 돌아가시겠습니까?\n이전으로 돌아가면 작성한 모든 정보가 사라집니다.')){
-					history.go(-1);
-				} else {
-					return false;
-				}
 			}
 		</script>
 		

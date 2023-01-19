@@ -87,7 +87,7 @@
 				BUSINESSNAME = #{businessname},
 				CLIENT = #{client},
 				STARTTERM = #{startterm},
-				ENDTERM = #{startterm},
+				ENDTERM = #{endterm},
 				PLUSTOTALBUSINESSAMOUNT = CAST(#{plustotalbusinessamount} AS BIGINT),
 				MINUSTOTALBUSINESSAMOUNT = CAST(#{minustotalbusinessamount} AS BIGINT),
 				RATIO = CAST(#{ratio} AS DOUBLE PRECISION),

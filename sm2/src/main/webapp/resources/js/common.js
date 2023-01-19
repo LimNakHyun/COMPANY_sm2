@@ -39,3 +39,12 @@ function ComSubmit(opt_formId) {
 function yearChange(){
 	document.yearFrm.submit();
 }
+
+function goForward() {
+	if(confirm('이전으로 돌아가시겠습니까?\n이전으로 돌아가면 수정한 모든 정보가 롤백됩니다.')){
+		history.go(-1);
+	} else {
+		return false;
+	}
+}
+

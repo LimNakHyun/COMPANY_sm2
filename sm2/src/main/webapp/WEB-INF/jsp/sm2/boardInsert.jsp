@@ -104,7 +104,7 @@
 				if(!$('#CODE').val() && !$('#businessname').val() && !$('#client').val() && !$('#strstartterm').val() && !$('#strendterm').val() && !$('#plustotalbusinessamount').val() && !$('#ratio').val()){
 					fn_openBoardList();
 				} else{
-					if(confirm('목록으로 돌아가시겠습니까?\n현재 페이지의 정보는 모두 사라지게 됩니다.')){
+					if(confirm('목록으로 돌아가시겠습니까?\n현재 입력한 정보는 모두 사라지게 됩니다.')){
 						fn_openBoardList();
 					} else{
 						return false;
