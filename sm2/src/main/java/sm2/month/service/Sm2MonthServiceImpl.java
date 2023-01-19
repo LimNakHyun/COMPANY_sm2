@@ -168,8 +168,7 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 	 */
 	@Override
 	public Map<String, Object> selectBoardMonthDetail(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = sm2MonthDAO.selectBoardMonthDetail(map);
-		return resultMap;
+		return sm2MonthDAO.selectBoardMonthDetail(map);
 	}
 
 	/**

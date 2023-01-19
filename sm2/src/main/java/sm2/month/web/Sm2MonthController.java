@@ -15,7 +15,6 @@
 
 package sm2.month.web;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -24,7 +23,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -89,24 +87,20 @@ public class Sm2MonthController {
 	/**
 	 * 사업 월별 수금액 등록 페이지 이동
 	 * @param commandMap
-	 * @param month
-	 * @param year
+	 * @param session
 	 * @return "/sm2/boardMonthWrite"
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sm2/openSm2MonthInsert.do")
 	public ModelAndView openSm2MonthInsert(CommandMap commandMap,
-			@ModelAttribute("month") String month,
-			@ModelAttribute("year") String year) throws Exception {
+			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthInsert");
+		
+		commandMap.getMap().put("year", session.getAttribute("year"));
+		commandMap.getMap().put("month", session.getAttribute("month"));
 		
 		List<Map<String, Object>> selectboxList = sm2Service.selectBoardList(commandMap.getMap());
 		mv.addObject("selectboxList", selectboxList);
-		
-		Map<String, String> date = new HashMap<>();
-		date.put("month", month);
-		date.put("year", year);
-		mv.addObject("date", date);
 		
 		return mv;
 	}
@@ -114,8 +108,7 @@ public class Sm2MonthController {
 	/**
 	 * 사업 월별 수금액 등록
 	 * @param commandMap
-	 * @param month
-	 * @param year
+	 * @param session
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
@@ -138,26 +131,22 @@ public class Sm2MonthController {
 	/**
 	 * 사업 월별 수금액 수금여부 전환
 	 * @param commandMap
-	 * @param month
-	 * @param year
+	 * @param session
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sm2/updateSm2MonthBusinessCondition.do")
 	public ModelAndView updateSm2MonthBusinessCondition(CommandMap commandMap,
-			@ModelAttribute("month") String month,
-			@ModelAttribute("year") String year) throws Exception {
+			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
+		
+		commandMap.getMap().put("year", session.getAttribute("year"));
+		commandMap.getMap().put("month", session.getAttribute("month"));
 		
 		sm2MonthService.updateBoardMonthCondition(commandMap.getMap());
 		
 		List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
 		mv.addObject("list", list);
-		
-		Map<String, String> date = new HashMap<>();
-		date.put("month", month);
-		date.put("year", year);
-		mv.addObject("date", date);
 		
 		return mv;
 	}
@@ -165,24 +154,15 @@ public class Sm2MonthController {
 	/**
 	 * 사업 월별 수금액 정보 상세보기 조회
 	 * @param commandMap
-	 * @param month
-	 * @param year
 	 * @return "/sm2/boardMonthDetail"
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sm2/openSm2MonthDetail.do")
-	public ModelAndView openSm2MonthDetail(CommandMap commandMap,
-			@ModelAttribute("month") String month,
-			@ModelAttribute("year") String year) throws Exception {
+	public ModelAndView openSm2MonthDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthDetail");
 		
 		Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
 		mv.addObject("detail", detail);
-		
-		Map<String, String> date = new HashMap<>();
-		date.put("month", month);
-		date.put("year", year);
-		mv.addObject("date", date);
 		
 		return mv;
 	}
@@ -197,16 +177,13 @@ public class Sm2MonthController {
 	 */
 	@RequestMapping(value = "/sm2/deleteMonthBoard.do")
 	public ModelAndView deleteMonthBoard(CommandMap commandMap,
-			@ModelAttribute("month") String month,
-			@ModelAttribute("year") String year) throws Exception {
+			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
 		
-		sm2MonthService.deleteBoardMonth(commandMap.getMap());
+		commandMap.getMap().put("year", session.getAttribute("year"));
+		commandMap.getMap().put("month", session.getAttribute("month"));
 		
-		Map<String, Object> date = new HashMap<>();
-		date.put("month", month);
-		date.put("year", year);
-		mv.addObject("date", date);
+		sm2MonthService.deleteBoardMonth(commandMap.getMap());
 
 		List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
 		mv.addObject("list", list);

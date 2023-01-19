@@ -16,7 +16,7 @@
 					<span class="ds_num"><fmt:formatNumber value="${amount.minustotalbusinessamountsum}" pattern="#,###"/> 원</span>
 				</div>
 				<div class="dashboard_item">
-					<strong class="ds_tit">매출금액(-)<br>(계약금액 * 지분율)</strong>
+					<strong class="ds_tit">매출금액(-)<br>∑(계약금액 * 지분율)</strong>
 					<span class="ds_num"><fmt:formatNumber value="${amount.salesamountsum}" pattern="#,###"/> 원</span>
 				</div>
 				<div class="dashboard_item">

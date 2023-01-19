@@ -105,13 +105,11 @@ public class Sm2Controller {
 	/**
 	 * 사업 매출정보 상세보기 조회
 	 * @param commandMap
-	 * @param session
 	 * @return "/sm2/boardDetail"
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sm2/openSm2Detail.do")
-	public ModelAndView openSm2Detail(CommandMap commandMap,
-			HttpSession session) throws Exception {
+	public ModelAndView openSm2Detail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardDetail");
 		
 		Map<String, Object> detail = sm2Service.selectBoardDetail(commandMap.getMap());
@@ -194,25 +192,17 @@ public class Sm2Controller {
 	/**
 	 * 사업 매출정보 수정
 	 * @param commandMap
-	 * @param year
-	 * @param idx
 	 * @return
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sm2/updateSm2Board.do")
-	public ModelAndView updateSm2Board(CommandMap commandMap,
-			@ModelAttribute("year") String year,
-			@ModelAttribute("idx") String idx) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Detail.do");
+	public ModelAndView updateSm2Board(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/sm2/boardDetail");
 		
 		sm2Service.updateBoard(commandMap.getMap());
 		
 		Map<String, Object> detail = sm2Service.selectBoardDetail(commandMap.getMap());
 		mv.addObject("detail", detail);
-		
-		Map<String, String> date = new HashMap<>();
-		date.put("year", year);
-		mv.addObject("date", date);
 		
 		return mv;
 	}
