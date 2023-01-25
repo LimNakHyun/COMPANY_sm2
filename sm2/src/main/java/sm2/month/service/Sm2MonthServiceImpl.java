@@ -208,5 +208,15 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 		}
 		sm2DAO.deleteBoardMonth(map);
 	}
+
+	/**
+	 * 사업 월별 수금액 정보 수정
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public void updateBoardMonth(Map<String, Object> map) throws Exception {
+		sm2MonthDAO.updateBoardMonth(map);
+	}
 	
 }

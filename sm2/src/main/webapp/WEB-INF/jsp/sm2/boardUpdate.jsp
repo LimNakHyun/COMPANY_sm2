@@ -4,9 +4,9 @@
 <div id="contents">
 
 	<div class="cont_body">
-	<h2 class="cont_tit">${update.businessname} 수정하기</h2>
 
 	<form id="frm">
+		<h2 class="cont_tit">${update.businessname} 수정하기</h2>
 		<table class="tbl_basic tbl_view tbl_inp">
 			<caption>${update.businessname} 수정하기</caption>
 			<colgroup>
@@ -37,9 +37,16 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row">사업명/사업개요</th>
+				<th scope="row">사업 완료 상태</th>
 				<td>
-					<input type="text" id="businessname" name="businessname" value="${update.businessname}">
+					<c:choose>
+						<c:when test="${update.businesscondition eq false}">
+							<label class="red_txt">미완</label>
+						</c:when>
+						<c:otherwise>
+							<label class="blue_txt">완료</a>
+						</c:otherwise>
+					</c:choose>
 				</td>
 				<th scope="row">발주처</th>
 				<td>
@@ -50,7 +57,7 @@
 				<th scope="row">전체사업금액(+)</th>
 				<td>
 					<input
-						type="number"
+						type="text"
 						class="plustotalbusinessamount"
 						name="plustotalbusinessamount"
 						value="${update.plustotalbusinessamount}"
@@ -96,7 +103,7 @@
 		<div class="btn-group">
 			<button type="button" class="btn btn-basic" onclick="goForward()">이전으로</button>
 			<input type="hidden" name="idx" value="${update.idx}">
-			<button type='reset' class="btn btn-black">리셋</button>
+			<a href="#this" class="btn btn-black" id="reset">리셋</a>
 			<a href="#this" class="btn btn-lightblue" id="update">완료</a>
 		</div>
 	</form>
@@ -111,10 +118,21 @@
 						return false;
 					}
 				});
+				
+				$("#reset").on("click", function(e){
+					e.preventDefault();
+					if(confirm('리셋하시겠습니까?\n입력한 모든 정보가 사라집니다.')) {
+						fn_inputReset();
+					} else{
+						return false;
+					}
+				});
 			});
 			
 			function fn_updateBoard() {
 				var comSubmit = new ComSubmit("frm");
+				var chkNum = /[0-9]*/;
+
 				if(!$('#businessname').val()){
 					alert('사업명/사업개요를 입력해주세요.');
 				} else if(!$('#client').val()){
@@ -123,6 +141,10 @@
 					alert('시작 계약기간을 입력해주세요.');
 				} else if(!$('#strendterm').val()){
 					alert('완료 계약기간을 입력해주세요.');
+				} else if(!chkNum.test($('#plustotalbusinessamount').val())){
+					alert('전체사업금액은 숫자만 입력이 가능합니다.');
+				} else if($('#plustotalbusinessamount').val() == "0"){
+					alert('전체사업금액을 입력해주세요.');
 				} else if(!$('#plustotalbusinessamount').val()){
 					alert('전체사업금액을 입력해주세요.');
 				} else if(!$('#ratio').val()){
@@ -141,6 +163,10 @@
 			function ratioAutoCal() {
 				var result = $('.minustotalbusinessamount').val() * $('.ratio').val() / 100;
 				$('input[name="salesamount"]').val(result);
+			}
+			
+			function fn_inputReset(){
+				document.getElementById("frm").reset();
 			}
 		</script>
 		

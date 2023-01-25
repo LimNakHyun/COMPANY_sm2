@@ -90,7 +90,7 @@
 	<div class="btn-group">
 		<a href="#this" class="btn btn-basic" id="list">목록으로</a>
 		<a href="#this" class="btn btn-black" id="insert">추가</a>
-		<button type='reset' class="btn btn-lightblue">리셋</button>
+		<a href="#this" class="btn btn-lightblue" id="reset">리셋</a>
 	</div>
 	
 </form>
@@ -118,6 +118,19 @@
 					fn_insertBoard();
 				} else{
 					return false;
+				}
+			});
+			
+			$("#reset").on("click", function(e){
+				e.preventDefault();
+				if(!$('#CODE').val() && !$('#businessname').val() && !$('#client').val() && !$('#strstartterm').val() && !$('#strendterm').val() && !$('#plustotalbusinessamount').val() && !$('#ratio').val()){
+					return false;
+				} else{
+					if(confirm('리셋하시겠습니까?\n입력한 모든 정보가 사라집니다.')) {
+						fn_inputReset();
+					} else{
+						return false;
+					}
 				}
 			});
 		});
@@ -150,6 +163,10 @@
 				comSubmit.setUrl("<c:url value='/sm2/insertSm2Board.do' />");
 				comSubmit.submit();
 			}
+		}
+		
+		function fn_inputReset(){
+			document.getElementById("frm").reset();
 		}
 		
 		/* const input = document.querySelector('#plustotalbusinessamount');

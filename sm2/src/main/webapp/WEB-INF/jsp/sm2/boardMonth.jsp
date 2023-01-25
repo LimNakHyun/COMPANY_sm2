@@ -65,10 +65,10 @@
 							<input type="hidden" id="monthbusinesscondition" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">
 							<c:choose>
 								<c:when test="${dto.monthbusinesscondition eq false}">
-									<a class="red_txt" href="#this" name="condition" title="사업 완료하기">미완</a>
+									<a class="red_txt" href="#this" name="conditionGo" title="사업 완료하기">미완</a>
 								</c:when>
 								<c:otherwise>
-									<a class="blue_txt" href="#this" name="condition" title="사업 되돌리기">완료</a>
+									<a class="blue_txt" href="#this" name="conditionBack" title="사업 되돌리기">완료</a>
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -104,14 +104,23 @@
 					fn_openBoardDetail($(this));
 				});
 				
-				$("a[name='condition']").on("click", function(e){
+				$("a[name='conditionGo']").on("click", function(e){
 					e.preventDefault();
 					if(confirm('사업을 완료하시겠습니까?')){
 						fn_switchMonthBusinessCondition($(this));
 					} else{
 						return false;
 					}
-				})
+				});
+				
+				$("a[name='conditionBack']").on("click", function(e){
+					e.preventDefault();
+					if(confirm('사업을 미완 상태로 되돌리시겠습니까?')){
+						fn_switchMonthBusinessCondition($(this));
+					} else{
+						return false;
+					}
+				});
 			});
 			
 			function fn_openBoardInsert(){

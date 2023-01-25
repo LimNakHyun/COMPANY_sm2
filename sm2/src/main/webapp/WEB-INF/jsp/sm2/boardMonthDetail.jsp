@@ -23,8 +23,17 @@
 					<td>${detail.client}</td>
 				</tr>
 				<tr>
-					<th scope="row">사업명/사업개요</th>
-					<td>${detail.businessname}</td>
+					<th scope="row">사업 완료 상태</th>
+					<td>
+						<c:choose>
+							<c:when test="${detail.monthbusinesscondition eq false}">
+								<label class="red_txt">미완</label>
+							</c:when>
+							<c:otherwise>
+								<label class="blue_txt">완료</a>
+							</c:otherwise>
+						</c:choose>
+					</td>
 					<th scope="row">매출금액(-)<br>(계약금액 * 지분율)</th>
 					<td class="red_txt">
 						<fmt:formatNumber value="${detail.salesamount}" pattern="#,###"/> 원</td>
@@ -82,7 +91,13 @@
 				
 				$("#update").on("click", function(e){
 					e.preventDefault();
-					fn_updateBoard();
+					var condition = ${detail.monthbusinesscondition};
+					console.log(condition);
+					if(!condition){
+						fn_updateBoard();
+					} else{
+						alert('월별 사업 상태를 미완으로 바꿔주세요.');
+					}
 				});
 			});
 		
@@ -94,7 +109,13 @@
 			
 			function fn_deleteBoard(){
 				var comSubmit = new ComSubmit("frm");
-				comSubmit.setUrl("<c:url value='/sm2/deleteMonthBoard.do' />");
+				comSubmit.setUrl("<c:url value='/sm2/deleteBoardMonth.do' />");
+				comSubmit.submit();
+			}
+			
+			function fn_updateBoard() {
+				var comSubmit = new ComSubmit("frm");
+				comSubmit.setUrl("<c:url value='/sm2/openSm2MonthUpdate.do' />");
 				comSubmit.submit();
 			}
 		</script>

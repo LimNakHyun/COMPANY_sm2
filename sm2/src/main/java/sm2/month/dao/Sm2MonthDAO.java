@@ -133,4 +133,13 @@ public class Sm2MonthDAO extends AbstractDAO {
 		return (Map<String, Object>) selectOne("sm2Board.pickBusinessCondition", map);
 	}
 
+	/**
+	 * 사업 월별 수금액 정보 수정
+	 * @param map
+	 * @throws Exception
+	 */
+	public void updateBoardMonth(Map<String, Object> map) {
+		update("sm2BoardMonth.updateBoardMonth", map);
+	}
+
 }

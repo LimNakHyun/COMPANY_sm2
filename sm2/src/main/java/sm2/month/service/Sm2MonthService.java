@@ -69,4 +69,11 @@ public interface Sm2MonthService {
 	 */
 	void deleteBoardMonth(Map<String, Object> map) throws Exception;
 
+	/**
+	 * 사업 월별 수금액 정보 수정
+	 * @param map
+	 * @throws Exception
+	 */
+	void updateBoardMonth(Map<String, Object> map) throws Exception;
+
 }

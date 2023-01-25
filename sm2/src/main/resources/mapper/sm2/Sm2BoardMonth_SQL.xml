@@ -209,5 +209,17 @@
 				IDX = CAST(#{idx} AS INTEGER)
 		]]>
 	</update>
+	
+	<!-- 사업 월별 사업 수정 -->
+	<update id="updateBoardMonth">
+		<![CDATA[
+			UPDATE
+				SM.MONTHMANAGEMENT
+			SET
+				COLLECTIONCASH = CAST(#{collectioncash} AS INTEGER)
+			WHERE
+				MONTHIDX = CAST(#{monthidx} AS INTEGER)
+		]]>
+	</update>
 
 </mapper>

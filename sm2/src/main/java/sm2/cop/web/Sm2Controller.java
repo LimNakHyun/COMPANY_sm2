@@ -15,7 +15,6 @@
 
 package sm2.cop.web;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -72,8 +71,6 @@ public class Sm2Controller {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardList");
 		
-//		System.out.println("세션 출력: " + session.getAttribute("year"));
-//		System.out.println("commandMap의 year값 출력: " + commandMap.getMap().get("year"));
 		if(session.getAttribute("month") != "" || session.getAttribute("month") != null) {
 			session.removeAttribute("month");
 		}
@@ -81,16 +78,13 @@ public class Sm2Controller {
 		if((session.getAttribute("year") == "" || session.getAttribute("year") == null)
 				&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
 			session.setAttribute("year", commandMap.getMap().get("year"));
-//			System.out.println("1번 조건 통과");
 		} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
 				&& ((commandMap.getMap().get("year") == "") || (commandMap.getMap().get("year") == null))) {
 			commandMap.getMap().put("year", session.getAttribute("year"));
-//			System.out.println("2번 조건 통과");
 		} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
 				&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
 			session.removeAttribute("year");
 			session.setAttribute("year", commandMap.getMap().get("year"));
-//			System.out.println("3번 조건 통과");
 		}
 		
 		List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap.getMap());
@@ -172,17 +166,14 @@ public class Sm2Controller {
 	 * 사업 매출정보 수정 페이지 이동
 	 * @param commandMap
 	 * @param idx
-	 * @param session
-	 * @return
+	 * @return "/sm2/boardUpdate"
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sm2/openSm2UpdateBoard.do")
 	public ModelAndView openSm2UpdateBoard(CommandMap commandMap,
-			@ModelAttribute("idx") String idx,
-			HttpSession session) throws Exception {
+			@ModelAttribute("idx") String idx) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardUpdate");
 		
-		commandMap.getMap().put("year", session.getAttribute("year"));
 		Map<String, Object> update = sm2Service.selectBoardDetail(commandMap.getMap());
 		mv.addObject("update", update);
 		
@@ -192,7 +183,7 @@ public class Sm2Controller {
 	/**
 	 * 사업 매출정보 수정
 	 * @param commandMap
-	 * @return
+	 * @return "/sm2/boardDetail"
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sm2/updateSm2Board.do")
