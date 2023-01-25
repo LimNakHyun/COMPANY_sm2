@@ -211,8 +211,12 @@ public class Sm2Controller {
 		ModelAndView mv = new ModelAndView("/sm2/boardSalesOverall");
 		
 		commandMap.getMap().put("year", session.getAttribute("year"));
+		
 		List<Map<String, Object>> list = sm2MonthService.selectBoardOverall(commandMap.getMap());
 		mv.addObject("list", list);
+		
+		List<Map<String, Object>> expectList = sm2MonthService.selectBoardExpectOverall(commandMap.getMap());
+		mv.addObject("expectList", expectList);
 		
 		return mv;
 	}

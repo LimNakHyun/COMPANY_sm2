@@ -53,7 +53,8 @@
 							</form>
 						</li>
 						<c:forEach var="j" begin="1" end="12">
-							<li ${j eq month ? "class='selected'" : ''}>
+							<li ${fn:contains(pageContext.request.requestURI, 'boardMonth') && (j eq month) ? 'class="selected"' : ''}>
+							<%-- <li ${j eq month ? "class='selected'" : ''}> --%>
 							<form action="/sm2/openSm2Month.do" method="post">
 								<input type="hidden" name="year" value="${year}">
 								<input type="hidden" name="month" value="${j}">

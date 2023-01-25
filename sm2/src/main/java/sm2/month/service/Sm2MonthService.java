@@ -49,11 +49,18 @@ public interface Sm2MonthService {
 	void updateBoardMonthCondition(Map<String, Object> map) throws Exception;
 
 	/**
-	 * 사업 매출 현황 조회
+	 * 사업 실매출 현황 조회
 	 * @param map
 	 * @throws Exception
 	 */
 	List<Map<String, Object>> selectBoardOverall(Map<String, Object> map) throws Exception;
+
+	/**
+	 * 사업 예상매출 현황 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	List<Map<String, Object>> selectBoardExpectOverall(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 사업 월별 수금액 정보 상세보기 조회

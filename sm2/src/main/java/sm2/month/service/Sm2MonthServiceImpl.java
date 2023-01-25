@@ -118,7 +118,7 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 	}
 	
 	/**
-	 * 사업 매출 현황 조회
+	 * 사업 실매출 현황 조회
 	 * @param map
 	 * @throws Exception
 	 */
@@ -155,7 +155,50 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 		}
 		Map<String, Object> tempAllAmount = new HashMap<>();
 		tempAllAmount.put("allamount", allAmount);
-		tempAllAmount.put("all","현 매출액");
+		tempAllAmount.put("all","실 매출액");
+		list.add(tempAllAmount);
+		
+		return list;
+	}
+
+	/**
+	 * 사업 예상매출 현황 조회
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public List<Map<String, Object>> selectBoardExpectOverall(Map<String, Object> map) throws Exception {
+		String year = (String) map.get("year");
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		long quarterAmount = 0;
+		long allAmount = 0;
+		
+		for(int i = 0; i < 12; i++) {
+			Map<String, Object> tempMap = new HashMap<>();
+			tempMap.put("year", year);
+			tempMap.put("month", i + 1);
+			
+			Map<String, Object> temp = sm2MonthDAO.selectBoardMonthExpectedAmount(tempMap);
+			tempMap.put("monthstr", (i + 1) + "월");
+			quarterAmount += Long.parseLong(String.valueOf(temp.get("expectedcollectioncashsum")));
+			allAmount += Long.parseLong(String.valueOf(temp.get("expectedcollectioncashsum")));
+			
+			tempMap.put("amount", temp.get("expectedcollectioncashsum"));
+			
+			list.add(tempMap);
+			
+			if((i + 1) % 3 == 0) {
+				Map<String, Object> tempQuarterMap = new HashMap<>();
+				tempQuarterMap.put("quarteramount", quarterAmount);
+				tempQuarterMap.put("quarter", ((i + 1) / 3) + "/4 분기");
+				list.add(tempQuarterMap);
+				quarterAmount = 0;
+			}
+		}
+		Map<String, Object> tempAllAmount = new HashMap<>();
+		tempAllAmount.put("allamount", allAmount);
+		tempAllAmount.put("all","예상 매출액");
 		list.add(tempAllAmount);
 		
 		return list;
