@@ -69,8 +69,10 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 	@Override
 	public void insertBoardMonth(Map<String, Object> map) throws Exception {
 		int idx = (int)sm2MonthDAO.pickIdx(map).get("idx");
-		
 		map.put("idx", idx);
+		
+		double collectioncash = Double.parseDouble(((String)map.get("collectioncash")).replace(",", ""));
+		map.put("collectioncash", collectioncash);
 		
 		sm2MonthDAO.insertBoardMonth(map);
 		
@@ -259,6 +261,9 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 	 */
 	@Override
 	public void updateBoardMonth(Map<String, Object> map) throws Exception {
+		double collectioncash = Double.parseDouble(((String)map.get("collectioncash")).replace(",", ""));
+		map.put("collectioncash", collectioncash);
+		
 		sm2MonthDAO.updateBoardMonth(map);
 	}
 	

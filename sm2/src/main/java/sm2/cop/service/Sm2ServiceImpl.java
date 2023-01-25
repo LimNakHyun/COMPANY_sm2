@@ -74,9 +74,11 @@ public class Sm2ServiceImpl implements Sm2Service {
 		map.put("startterm", startterm);
 		map.put("endterm", endterm);
 		
-		double minusTotalBusinessAmount = Double.parseDouble((String)map.get("plustotalbusinessamount")) / 1.1;
+		double plustotalbusinessamount = Double.parseDouble(((String)map.get("plustotalbusinessamount")).replace(",", ""));
+		double minusTotalBusinessAmount = plustotalbusinessamount / 1.1;
 		double salesAmount = minusTotalBusinessAmount * Double.parseDouble((String)map.get("ratio")) / 100;
 		
+		map.put("plustotalbusinessamount", plustotalbusinessamount);
 		map.put("minustotalbusinessamount", minusTotalBusinessAmount);
 		map.put("salesamount", salesAmount);
 		
@@ -115,9 +117,11 @@ public class Sm2ServiceImpl implements Sm2Service {
 		map.put("startterm", startterm);
 		map.put("endterm", endterm);
 		
-		double minusTotalBusinessAmount = Double.parseDouble((String)map.get("plustotalbusinessamount")) / 1.1;
+		double plustotalbusinessamount = Double.parseDouble(((String)map.get("plustotalbusinessamount")).replace(",", ""));
+		double minusTotalBusinessAmount = plustotalbusinessamount / 1.1;
 		double salesAmount = minusTotalBusinessAmount * Double.parseDouble((String)map.get("ratio")) / 100;
 		
+		map.put("plustotalbusinessamount", plustotalbusinessamount);
 		map.put("minustotalbusinessamount", minusTotalBusinessAmount);
 		map.put("salesamount", salesAmount);
 		

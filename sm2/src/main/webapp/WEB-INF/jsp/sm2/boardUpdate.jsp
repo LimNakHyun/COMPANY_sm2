@@ -6,9 +6,9 @@
 	<div class="cont_body">
 
 	<form id="frm">
-		<h2 class="cont_tit">${update.businessname} 수정하기</h2>
+		<h2 class="cont_tit">${update.businessname} 수정</h2>
 		<table class="tbl_basic tbl_view tbl_inp">
-			<caption>${update.businessname} 수정하기</caption>
+			<caption>${update.businessname} 수정</caption>
 			<colgroup>
 				<col style="width:15%;">
 				<col style="width:35%;">
@@ -37,16 +37,9 @@
 				</td>
 			</tr>
 			<tr>
-				<th scope="row">사업 완료 상태</th>
+				<th scope="row">사업명/사업개요</th>
 				<td>
-					<c:choose>
-						<c:when test="${update.businesscondition eq false}">
-							<label class="red_txt">미완</label>
-						</c:when>
-						<c:otherwise>
-							<label class="blue_txt">완료</a>
-						</c:otherwise>
-					</c:choose>
+					<input type="text" id="businessname" name="businessname" value="${update.businessname}">
 				</td>
 				<th scope="row">발주처</th>
 				<td>
@@ -64,6 +57,7 @@
 						min="0"
 						onkeyup="minustotalbusinessamountAutoCal();ratioAutoCal();"
 						id="plustotalbusinessamount"
+						pattern="#,###"
 					>&nbsp;원
 				</td>
 				<th scope="row">전체사업금액(-)<br>(계약금액)</th>
@@ -127,6 +121,18 @@
 						return false;
 					}
 				});
+				
+				const input = document.querySelector('#plustotalbusinessamount');
+				input.addEventListener('keyup', function(e){
+					let value = e.target.value;
+					value = Number(value.replaceAll(',', ''));
+					if(isNaN(value)){
+						input.value = 0;
+					} else{
+						const formatValue = value.toLocaleString('ko-KR');
+						input.value = formatValue;
+					}
+				});
 			});
 			
 			function fn_updateBoard() {
@@ -156,7 +162,8 @@
 			}
 		
 			function minustotalbusinessamountAutoCal() {
-				var result = $('.plustotalbusinessamount').val() * 10000 / 11000;
+				var temp = $('.plustotalbusinessamount').val().replaceAll(',', '');
+				var result = temp * 10000 / 11000;
 				$('input[name="minustotalbusinessamount"]').val(result);
 			}
 			

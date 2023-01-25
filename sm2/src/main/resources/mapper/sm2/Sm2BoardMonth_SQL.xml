@@ -48,7 +48,7 @@
 			(
 				#{idx},
 				CAST(#{month} AS INTEGER),
-			    CAST(#{salesamount} AS INTEGER),
+			    CAST(#{collectioncash} AS INTEGER),
 			    CAST(#{year} AS INTEGER)
 			)
 		]]>

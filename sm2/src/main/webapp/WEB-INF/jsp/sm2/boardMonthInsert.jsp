@@ -16,10 +16,10 @@
 				</colgroup>
 				<tbody>
 					<tr>
-						<th scope="row"><label>사업 선택</label></th>
+						<th scope="row"><label>사업명/사업개요</label></th>
 						<td>
-							<select id="businessname" name="businessname">
-								<option value="" hidden>사업 선택</option>
+							<select class="chzn-select" id="businessname" name="businessname" data-placeholder="사업 선택">
+								<option value=""></option>
 								<c:forEach items="${selectboxList}" var="boxlist" varStatus="status">
 									<option value="${boxlist.businessname}">${boxlist.businessname}</option>
 								</c:forEach>
@@ -27,9 +27,9 @@
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label>매출금액(-)</label></th>
+						<th scope="row"><label>사업수금액</label></th>
 						<td>
-							<input type="number" id="salesamount" name="salesamount" min="0">
+							<input type="text" id="collectioncash" name="collectioncash" min="0">
 						</td>
 					</tr>
 				</tbody>
@@ -48,7 +48,7 @@
 		$(document).ready(function(){
 			$("#list").on("click", function(e){
 				e.preventDefault();
-				if(!$('#businessname').val() && !$('#salesamount').val()){
+				if(!$('#businessname').val() && !$('#collectioncash').val()){
 					fn_openBoardList();
 				} else{
 					if(confirm('월별 사업 목록으로 돌아가시겠습니까?\n현재 입력한 정보는 모두 사라지게 됩니다.')){
@@ -69,6 +69,10 @@
 			});
 		});
 		
+		$(".chzn-select").chosen({
+			allow_single_deselect: true
+		});
+		
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/sm2/openSm2Month.do' />");
@@ -79,13 +83,25 @@
 			var comSubmit = new ComSubmit("frm");
 			if(!$('#businessname').val()){
 				alert('사업명/사업개요를 선택해주세요.');
-			} else if(!$('#salesamount').val()){
+			} else if(!$('#collectioncash').val()){
 				alert('매출 금액을 입력해주세요.');
 			} else{
 				comSubmit.setUrl("<c:url value='/sm2/insertSm2BoardMonth.do' />");
 				comSubmit.submit();
 			}
 		}
+		
+		const input = document.querySelector('#collectioncash');
+		input.addEventListener('keyup', function(e){
+			let value = e.target.value;
+			value = Number(value.replaceAll(',', ''));
+			if(isNaN(value)){
+				input.value = 0;
+			} else{
+				const formatValue = value.toLocaleString('ko-KR');
+				input.value = formatValue;
+			}
+		});
 	</script>
 	</div>
 </div>

@@ -74,7 +74,7 @@
 			<tr>
 				<th><label>전체사업금액</label></th>
 				<td scope="row">
-					<input type="number" id="plustotalbusinessamount" name="plustotalbusinessamount" pattern="#,###">
+					<input type="text" id="plustotalbusinessamount" name="plustotalbusinessamount">
 				</td>
 			</tr>
 			<tr>
@@ -180,6 +180,18 @@
 		    input.value = formatValue;
 		  }
 		}) */
+		
+		const input = document.querySelector('#plustotalbusinessamount');
+		input.addEventListener('keyup', function(e){
+			let value = e.target.value;
+			value = Number(value.replaceAll(',', ''));
+			if(isNaN(value)){
+				input.value = 0;
+			} else{
+				const formatValue = value.toLocaleString('ko-KR');
+				input.value = formatValue;
+			}
+		});
 	</script>
 
 </body>

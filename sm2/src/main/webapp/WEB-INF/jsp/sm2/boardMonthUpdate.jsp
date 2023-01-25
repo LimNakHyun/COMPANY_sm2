@@ -6,9 +6,9 @@
 	<div class="cont_body">
 	
 	<form id="frm">
-		<h2 class="cont_tit">${update.businessname} 수정하기</h2>
+		<h2 class="cont_tit">${update.businessname} 수정</h2>
 		<table class="tbl_basic tbl_view tbl_inp">
-			<caption>${update.businessname} 수정하기</caption>
+			<caption>${update.businessname} 수정</caption>
 			<colgroup>
 				<col style="width:15%;">
 				<col style="width:35%;">
@@ -52,7 +52,7 @@
 						<fmt:formatNumber value="${update.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
 					<th scope="row">사업수금액</th>
 					<td class="red_txt">
-						<input class="red_txt collectioncash" type="number" id="collectioncash" name="collectioncash" value="${update.collectioncash}">&nbsp;원
+						<input class="red_txt collectioncash" type="text" id="collectioncash" name="collectioncash" value="${update.collectioncash}">&nbsp;원
 					</td>
 				</tr>
 			</tbody>
@@ -92,12 +92,9 @@
 			
 			function fn_updateBoard() {
 				var comSubmit = new ComSubmit("frm");
-				var chkNum = /[0-9]*/;
 				
 				if(!$('#collectioncash').val()){
 					alert('사업수금액을 입력해주세요.')
-				}else if(!chkNum.test($('#collectioncash').val())){
-					alert('사업수금액은 숫자만 입력이 가능합니다.');
 				} else if($('#collectioncash').val() == "0"){
 					alert('전체사업금액을 입력해주세요.');
 				} else{
@@ -109,6 +106,18 @@
 			function fn_inputReset(){
 				document.getElementById("frm").reset();
 			}
+			
+			const input = document.querySelector('#collectioncash');
+			input.addEventListener('keyup', function(e){
+				let value = e.target.value;
+				value = Number(value.replaceAll(',', ''));
+				if(isNaN(value)){
+					input.value = 0;
+				} else{
+					const formatValue = value.toLocaleString('ko-KR');
+					input.value = formatValue;
+				}
+			});
 		</script>
 	
 </div>

@@ -199,6 +199,13 @@ public class Sm2MonthController {
 		return mv;
 	}
 	
+	/**
+	 * 사업 월별 수금액 수정
+	 * @param commandMap
+	 * @param session
+	 * @return "/sm2/boardMonthDetail"
+	 * @throws Exception
+	 */
 	@RequestMapping(value = "/sm2/updateBoardMonth.do")
 	public ModelAndView updateBoardMonth(CommandMap commandMap,
 			HttpSession session) throws Exception {
