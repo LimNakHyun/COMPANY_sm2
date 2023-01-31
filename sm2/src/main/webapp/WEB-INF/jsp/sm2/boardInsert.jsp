@@ -137,7 +137,7 @@
 		
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/sm2/openSm2Main.do' />");
+			comSubmit.setUrl("<c:url value='/openSm2Main.do' />");
 			comSubmit.submit();
 		}
 		
@@ -160,7 +160,7 @@
 			} else if($('#ratio').val() > 100){
 				alert('지분율은 100%가 최대값입니다.');
 			} else{
-				comSubmit.setUrl("<c:url value='/sm2/insertSm2Board.do' />");
+				comSubmit.setUrl("<c:url value='/insertSm2Board.do' />");
 				comSubmit.submit();
 			}
 		}

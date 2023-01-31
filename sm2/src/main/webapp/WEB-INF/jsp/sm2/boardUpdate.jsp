@@ -156,7 +156,7 @@
 				} else if(!$('#ratio').val()){
 					alert('지분율을 입력해주세요.');
 				} else{
-					comSubmit.setUrl("<c:url value='/sm2/updateSm2Board.do' />");
+					comSubmit.setUrl("<c:url value='/updateSm2Board.do' />");
 					comSubmit.submit();
 				}
 			}

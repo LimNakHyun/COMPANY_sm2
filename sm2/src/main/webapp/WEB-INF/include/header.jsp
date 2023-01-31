@@ -28,13 +28,13 @@
 
 	<div id="wrapper">
 		<div id="header">
-			<h1 class="logo"><a href="/sm2/openSm2Index.do"><img class="egis_logo" src='${pageContext.request.contextPath}/resources/images/logo.svg'
+			<h1 class="logo"><a href="/openSm2Index.do"><img class="egis_logo" src='${pageContext.request.contextPath}/resources/images/logo.svg'
 				alt="이지스"></a></h1>
 			<div class="box">
 				<div class="menu_box">
 					<ul>
 						<li class="year_select">
-							<form action="/sm2/openSm2Main.do" name="yearFrm">
+							<form action="/openSm2Main.do" name="yearFrm">
 								<select name="year" class="select-basic" onchange="yearChange();">
 									<option value="" hidden>연도 선택</option>
 									<c:forEach var="i" begin="2021" end="${nowYear}" step="1">
@@ -44,12 +44,12 @@
 							</form>
 						</li>
 						<li ${fn:contains(pageContext.request.requestURI, 'boardList') || fn:contains(pageContext.request.requestURI, 'boardDetail') || fn:contains(pageContext.request.requestURI, 'boardInsert')|| fn:contains(pageContext.request.requestURI, 'boardUpdate') ? 'class="selected"' : ''}>
-							<form action="/sm2/openSm2Main.do" method="post">
+							<form action="/openSm2Main.do" method="post">
 								<button type="submit" class="btn btn-basic">매출 총괄현황</button>
 							</form>
 						</li>
 						<li ${fn:contains(pageContext.request.requestURI, 'boardSalesOverall') ? 'class="selected"' : ''}>
-							<form action="/sm2/openSm2SalesOverall.do">
+							<form action="/openSm2SalesOverall.do">
 								<input type="hidden" name="year" value="${year}">
 								<button type="submit" class="btn btn-basic">총괄</button>
 							</form>
@@ -57,7 +57,7 @@
 						<c:forEach var="j" begin="1" end="12">
 							<li ${fn:contains(pageContext.request.requestURI, 'boardMonth') && (j eq month) ? 'class="selected"' : ''}>
 							<%-- <li ${j eq month ? "class='selected'" : ''}> --%>
-							<form action="/sm2/openSm2Month.do" method="post">
+							<form action="/openSm2Month.do" method="post">
 								<input type="hidden" name="year" value="${year}">
 								<input type="hidden" name="month" value="${j}">
 								<button type="submit" class="btn btn-basic">${j}월</button>

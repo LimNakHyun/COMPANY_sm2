@@ -103,19 +103,19 @@
 		
 			function fn_openBoardList(){
 				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/sm2/openSm2Month.do' />");
+				comSubmit.setUrl("<c:url value='/openSm2Month.do' />");
 				comSubmit.submit();
 			}
 			
 			function fn_deleteBoard(){
 				var comSubmit = new ComSubmit("frm");
-				comSubmit.setUrl("<c:url value='/sm2/deleteBoardMonth.do' />");
+				comSubmit.setUrl("<c:url value='/deleteBoardMonth.do' />");
 				comSubmit.submit();
 			}
 			
 			function fn_updateBoard() {
 				var comSubmit = new ComSubmit("frm");
-				comSubmit.setUrl("<c:url value='/sm2/openSm2MonthUpdate.do' />");
+				comSubmit.setUrl("<c:url value='/openSm2MonthUpdate.do' />");
 				comSubmit.submit();
 			}
 		</script>

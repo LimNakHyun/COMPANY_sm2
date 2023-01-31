@@ -49,7 +49,7 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2Month.do")
+	@RequestMapping(value = "/openSm2Month.do")
 	public ModelAndView openSm2Month(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonth");
@@ -81,7 +81,7 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonthWrite"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2MonthInsert.do")
+	@RequestMapping(value = "/openSm2MonthInsert.do")
 	public ModelAndView openSm2MonthInsert(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthInsert");
@@ -102,10 +102,10 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/insertSm2BoardMonth.do")
+	@RequestMapping(value = "/insertSm2BoardMonth.do")
 	public ModelAndView insertSm2Month(CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
 		
 		commandMap.getMap().put("year", session.getAttribute("year"));
 		commandMap.getMap().put("month", session.getAttribute("month"));
@@ -125,10 +125,10 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/updateSm2MonthBusinessCondition.do")
+	@RequestMapping(value = "/updateSm2MonthBusinessCondition.do")
 	public ModelAndView updateSm2MonthBusinessCondition(CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
 		
 		commandMap.getMap().put("year", session.getAttribute("year"));
 		commandMap.getMap().put("month", session.getAttribute("month"));
@@ -147,7 +147,7 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonthDetail"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2MonthDetail.do")
+	@RequestMapping(value = "/openSm2MonthDetail.do")
 	public ModelAndView openSm2MonthDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthDetail");
 		
@@ -165,10 +165,10 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/deleteBoardMonth.do")
+	@RequestMapping(value = "/deleteBoardMonth.do")
 	public ModelAndView deleteBoardMonth(CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Month.do");
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
 		
 		commandMap.getMap().put("year", session.getAttribute("year"));
 		commandMap.getMap().put("month", session.getAttribute("month"));
@@ -188,7 +188,7 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonth"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2MonthUpdate.do")
+	@RequestMapping(value = "/openSm2MonthUpdate.do")
 	public ModelAndView openSm2MonthUpdate(CommandMap commandMap,
 			@ModelAttribute("monthidx") String monthidx) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthUpdate");
@@ -206,7 +206,7 @@ public class Sm2MonthController {
 	 * @return "/sm2/boardMonthDetail"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/updateBoardMonth.do")
+	@RequestMapping(value = "/updateBoardMonth.do")
 	public ModelAndView updateBoardMonth(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthDetail");

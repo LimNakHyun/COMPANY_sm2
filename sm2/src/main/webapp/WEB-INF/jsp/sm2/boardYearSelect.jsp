@@ -22,7 +22,7 @@
 					alt="이지스"></h1>
 			<div class="main_year_wrap">
 				<h2>이지스 매출 관리 시스템</h2>
-				<form name="frm" action="/sm2/openSm2Main.do" method="post">
+				<form name="frm" action="/openSm2Main.do" method="post">
 					<div class="main_year_select_box">
 						<select name="year">
 							<option value="none" hidden>연도</option>

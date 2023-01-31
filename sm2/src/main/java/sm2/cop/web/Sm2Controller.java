@@ -48,7 +48,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardYearSelect"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2Index.do")
+	@RequestMapping(value = "/openSm2Index.do")
 	public ModelAndView openSm2Index(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardYearSelect");
@@ -66,7 +66,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardList"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2Main.do")
+	@RequestMapping(value = "/openSm2Main.do")
 	public ModelAndView openSm2Main(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardList");
@@ -102,7 +102,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardDetail"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2Detail.do")
+	@RequestMapping(value = "/openSm2Detail.do")
 	public ModelAndView openSm2Detail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardDetail");
 		
@@ -119,7 +119,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardWrite"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2Insert.do")
+	@RequestMapping(value = "/openSm2Insert.do")
 	public ModelAndView openSm2Insert(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardInsert");
@@ -134,10 +134,10 @@ public class Sm2Controller {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/insertSm2Board.do")
+	@RequestMapping(value = "/insertSm2Board.do")
 	public ModelAndView insertSm2Board(CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Main.do");
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Main.do");
 		
 		commandMap.getMap().put("year", session.getAttribute("year"));
 		sm2Service.insertBoard(commandMap.getMap());
@@ -152,10 +152,10 @@ public class Sm2Controller {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/deleteSm2Board.do")
+	@RequestMapping(value = "/deleteSm2Board.do")
 	public ModelAndView deleteSm2Board(CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("redirect:/sm2/openSm2Main.do");
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Main.do");
 		
 		sm2Service.deleteBoard(commandMap.getMap());
 		
@@ -169,7 +169,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardUpdate"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2UpdateBoard.do")
+	@RequestMapping(value = "/openSm2UpdateBoard.do")
 	public ModelAndView openSm2UpdateBoard(CommandMap commandMap,
 			@ModelAttribute("idx") String idx) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardUpdate");
@@ -186,7 +186,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardDetail"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/updateSm2Board.do")
+	@RequestMapping(value = "/updateSm2Board.do")
 	public ModelAndView updateSm2Board(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardDetail");
 		
@@ -205,7 +205,7 @@ public class Sm2Controller {
 	 * @return "/sm2/boardSalesOverall"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/sm2/openSm2SalesOverall.do")
+	@RequestMapping(value = "/openSm2SalesOverall.do")
 	public ModelAndView openSm2SalesOverall(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardSalesOverall");

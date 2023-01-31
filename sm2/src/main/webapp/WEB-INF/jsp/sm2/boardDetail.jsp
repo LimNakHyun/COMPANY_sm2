@@ -92,19 +92,19 @@
 	
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/sm2/openSm2Main.do' />");
+			comSubmit.setUrl("<c:url value='/openSm2Main.do' />");
 			comSubmit.submit();
 		}
 		
 		function fn_deleteBoard(){
 			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/sm2/deleteSm2Board.do' />");
+			comSubmit.setUrl("<c:url value='/deleteSm2Board.do' />");
 			comSubmit.submit();
 		}
 		
 		function fn_updateBoard(){
 			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/sm2/openSm2UpdateBoard.do' />");
+			comSubmit.setUrl("<c:url value='/openSm2UpdateBoard.do' />");
 			comSubmit.submit();
 		}
 	</script>

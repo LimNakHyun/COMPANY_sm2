@@ -132,13 +132,13 @@
 	
 	function fn_openBoardInsert(){
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/sm2/openSm2Insert.do' />");
+		comSubmit.setUrl("<c:url value='/openSm2Insert.do' />");
 		comSubmit.submit();
 	}
 	
 	function fn_openBoardDetail(obj){
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/sm2/openSm2Detail.do' />");
+		comSubmit.setUrl("<c:url value='/openSm2Detail.do' />");
 		comSubmit.addParam("idx", obj.parent().find("#idx").val());
 		comSubmit.submit();
 	}

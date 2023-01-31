@@ -98,7 +98,7 @@
 				} else if($('#collectioncash').val() == "0"){
 					alert('전체사업금액을 입력해주세요.');
 				} else{
-					comSubmit.setUrl("<c:url value='/sm2/updateBoardMonth.do' />");
+					comSubmit.setUrl("<c:url value='/updateBoardMonth.do' />");
 					comSubmit.submit();
 				}
 			}

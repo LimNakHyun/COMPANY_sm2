@@ -125,20 +125,20 @@
 			
 			function fn_openBoardInsert(){
 				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/sm2/openSm2MonthInsert.do' />");
+				comSubmit.setUrl("<c:url value='/openSm2MonthInsert.do' />");
 				comSubmit.submit();
 			}
 			
 			function fn_openBoardDetail(obj){
 				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/sm2/openSm2MonthDetail.do' />");
+				comSubmit.setUrl("<c:url value='/openSm2MonthDetail.do' />");
 				comSubmit.addParam("monthidx", obj.parent().find("#monthidx").val());
 				comSubmit.submit();
 			}
 			
 			function fn_switchMonthBusinessCondition(obj){
 				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/sm2/updateSm2MonthBusinessCondition.do' />");
+				comSubmit.setUrl("<c:url value='/updateSm2MonthBusinessCondition.do' />");
 				comSubmit.addParam("idx", obj.parent().find("#idx").val());
 				comSubmit.addParam("monthidx", obj.parent().find("#monthidx").val());
 				comSubmit.addParam("collectioncash", obj.parent().find("#collectioncash").val());

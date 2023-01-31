@@ -75,7 +75,7 @@
 		
 		function fn_openBoardList(){
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/sm2/openSm2Month.do' />");
+			comSubmit.setUrl("<c:url value='/openSm2Month.do' />");
 			comSubmit.submit();
 		}
 		
@@ -86,7 +86,7 @@
 			} else if(!$('#collectioncash').val()){
 				alert('매출 금액을 입력해주세요.');
 			} else{
-				comSubmit.setUrl("<c:url value='/sm2/insertSm2BoardMonth.do' />");
+				comSubmit.setUrl("<c:url value='/insertSm2BoardMonth.do' />");
 				comSubmit.submit();
 			}
 		}
