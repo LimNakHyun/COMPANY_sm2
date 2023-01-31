@@ -54,22 +54,26 @@ public class Sm2MonthController {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonth");
 		
-		if((commandMap.getMap().get("month") != "" || commandMap.getMap().get("month") != null)
-				&& (session.getAttribute("month") == "" || session.getAttribute("month") == null)) {
-			session.setAttribute("month", commandMap.getMap().get("month"));
-		} else if((commandMap.getMap().get("month") == "" || commandMap.getMap().get("month") == null)
-				&& (session.getAttribute("month") != "" || session.getAttribute("month") != null)) {
-			commandMap.getMap().put("year", session.getAttribute("year"));
-			commandMap.getMap().put("month", session.getAttribute("month"));
-		} else if(commandMap.getMap().get("month") != session.getAttribute("month")) {
-			session.setAttribute("month", commandMap.getMap().get("month"));
+		try {
+			if((commandMap.getMap().get("month") != "" || commandMap.getMap().get("month") != null)
+					&& (session.getAttribute("month") == "" || session.getAttribute("month") == null)) {
+				session.setAttribute("month", commandMap.getMap().get("month"));
+			} else if((commandMap.getMap().get("month") == "" || commandMap.getMap().get("month") == null)
+					&& (session.getAttribute("month") != "" || session.getAttribute("month") != null)) {
+				commandMap.getMap().put("year", session.getAttribute("year"));
+				commandMap.getMap().put("month", session.getAttribute("month"));
+			} else if(commandMap.getMap().get("month") != session.getAttribute("month")) {
+				session.setAttribute("month", commandMap.getMap().get("month"));
+			}
+			
+			List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
+			mv.addObject("list", list);
+			
+			Map<String, Object> collectionCashSum = sm2MonthService.selectBoardMonthAmount(commandMap.getMap());
+			mv.addObject("collectioncashsum", collectionCashSum);
+		} catch(Exception e) {
+			log.info(e.getMessage());
 		}
-		
-		List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
-		mv.addObject("list", list);
-		
-		Map<String, Object> collectionCashSum = sm2MonthService.selectBoardMonthAmount(commandMap.getMap());
-		mv.addObject("collectioncashsum", collectionCashSum);
 		
 		return mv;
 	}
@@ -86,11 +90,15 @@ public class Sm2MonthController {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthInsert");
 		
-		commandMap.getMap().put("year", session.getAttribute("year"));
-		commandMap.getMap().put("month", session.getAttribute("month"));
-		
-		List<Map<String, Object>> selectboxList = sm2Service.selectBoardList(commandMap.getMap());
-		mv.addObject("selectboxList", selectboxList);
+		try {
+			commandMap.getMap().put("year", session.getAttribute("year"));
+			commandMap.getMap().put("month", session.getAttribute("month"));
+			
+			List<Map<String, Object>> selectboxList = sm2Service.selectBoardList(commandMap.getMap());
+			mv.addObject("selectboxList", selectboxList);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
 		
 		return mv;
 	}
@@ -107,13 +115,17 @@ public class Sm2MonthController {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
 		
-		commandMap.getMap().put("year", session.getAttribute("year"));
-		commandMap.getMap().put("month", session.getAttribute("month"));
-		
-		sm2MonthService.insertBoardMonth(commandMap.getMap());
-		
-		List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
-		mv.addObject("list", list);
+		try {
+			commandMap.getMap().put("year", session.getAttribute("year"));
+			commandMap.getMap().put("month", session.getAttribute("month"));
+			
+			sm2MonthService.insertBoardMonth(commandMap.getMap());
+			
+			List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
+			mv.addObject("list", list);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
 		
 		return mv;
 	}
@@ -130,13 +142,17 @@ public class Sm2MonthController {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
 		
-		commandMap.getMap().put("year", session.getAttribute("year"));
-		commandMap.getMap().put("month", session.getAttribute("month"));
-		
-		sm2MonthService.updateBoardMonthCondition(commandMap.getMap());
-		
-		List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
-		mv.addObject("list", list);
+		try {
+			commandMap.getMap().put("year", session.getAttribute("year"));
+			commandMap.getMap().put("month", session.getAttribute("month"));
+			
+			sm2MonthService.updateBoardMonthCondition(commandMap.getMap());
+			
+			List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
+			mv.addObject("list", list);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
 		
 		return mv;
 	}
@@ -151,8 +167,12 @@ public class Sm2MonthController {
 	public ModelAndView openSm2MonthDetail(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthDetail");
 		
-		Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
-		mv.addObject("detail", detail);
+		try {
+			Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
+			mv.addObject("detail", detail);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
 		
 		return mv;
 	}
@@ -170,13 +190,17 @@ public class Sm2MonthController {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
 		
-		commandMap.getMap().put("year", session.getAttribute("year"));
-		commandMap.getMap().put("month", session.getAttribute("month"));
-		
-		sm2MonthService.deleteBoardMonth(commandMap.getMap());
-
-		List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
-		mv.addObject("list", list);
+		try {
+			commandMap.getMap().put("year", session.getAttribute("year"));
+			commandMap.getMap().put("month", session.getAttribute("month"));
+			
+			sm2MonthService.deleteBoardMonth(commandMap.getMap());
+	
+			List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
+			mv.addObject("list", list);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
 		
 		return mv;
 	}
@@ -193,8 +217,12 @@ public class Sm2MonthController {
 			@ModelAttribute("monthidx") String monthidx) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthUpdate");
 		
-		Map<String ,Object> update = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
-		mv.addObject("update", update);
+		try {
+			Map<String ,Object> update = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
+			mv.addObject("update", update);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
 		
 		return mv;
 	}
@@ -211,10 +239,14 @@ public class Sm2MonthController {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("/sm2/boardMonthDetail");
 		
-		sm2MonthService.updateBoardMonth(commandMap.getMap());
-		
-		Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
-		mv.addObject("detail", detail);
+		try {
+			sm2MonthService.updateBoardMonth(commandMap.getMap());
+			
+			Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
+			mv.addObject("detail", detail);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
 		
 		return mv;
 	}
