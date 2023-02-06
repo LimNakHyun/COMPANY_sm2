@@ -276,7 +276,6 @@ public class Sm2Controller {
 			intChangeList[1] = Integer.parseInt(changeList[1]);
 		}
 		
-		System.out.println("콤마로 나눈 문자열: " + Arrays.toString(intChangeList));
 		commandMap.getMap().put("businessOrderChange1", intChangeList[0]);
 		commandMap.getMap().put("businessOrderChange2", intChangeList[1]);
 		

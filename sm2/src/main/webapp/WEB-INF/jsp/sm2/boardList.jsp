@@ -32,7 +32,7 @@
 		
 		<div class="cont_body">
 
-			<table class="tbl_basic tbl_list" id="sortable">
+			<table class="tbl_basic tbl_list">
 				<caption>이지스 ${year}년 사업실적(매출세금계산서 기준)</caption>
 				<colgroup>
 					<col style="width:3%;">
@@ -136,14 +136,6 @@
 		$("#change").on("click", function(e){
 			e.preventDefault();
 			fn_changeBusiness($(this));
-		});
-		
-		$("#sortable tbody").sortable({
-			update: function (event, ui) {
-				$(this).children().each(function(index){
-					$(this).find('td').first().html(index + 1);
-				});
-			}
 		});
 	});
 	
