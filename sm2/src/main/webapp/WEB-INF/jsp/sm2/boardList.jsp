@@ -90,7 +90,7 @@
 						<td class="red_txt"><fmt:formatNumber value="${dto.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
 						<td class="red_txt">
 							<c:choose>
-								<c:when test="${dto.businesscondition eq true}">
+								<c:when test="${dto.totalcollectionremainingamount < 2}">
 									<label class="blue_txt">완료</label>
 								</c:when>
 								<c:otherwise>
