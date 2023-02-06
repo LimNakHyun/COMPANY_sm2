@@ -141,5 +141,17 @@ public class Sm2ServiceImpl implements Sm2Service {
 	public Map<String, Object> selectBoardAmount(Map<String, Object> map) throws Exception {
 		return sm2DAO.selectBoardAmount(map);
 	}
+	
+	/**
+	 * 매출 총괄현황 사업 순서변경
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@Override
+	public void changeSm2Board(Map<String, Object> map) throws Exception {
+		sm2DAO.changeSm2Board01(map);
+		sm2DAO.changeSm2Board02(map);
+		sm2DAO.changeSm2Board03(map);
+	}
 
 }

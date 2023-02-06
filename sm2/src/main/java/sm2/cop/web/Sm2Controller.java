@@ -281,7 +281,7 @@ public class Sm2Controller {
 		commandMap.getMap().put("businessOrderChange2", intChangeList[1]);
 		
 		try {
-			sm2MonthService.changeSm2Board(commandMap.getMap());
+			sm2Service.changeSm2Board(commandMap.getMap());
 		} catch(Exception e) {
 			log.info(e.getMessage());
 		}
