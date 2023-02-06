@@ -118,4 +118,31 @@ public class Sm2DAO extends AbstractDAO {
 		update("sm2Board.updateBoardBusinessCondition", map);
 	}
 
+	/**
+	 * 매출 총괄현황 사업 순서변경01
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	public void changeSm2Board01(Map<String, Object> map) throws Exception {
+		update("sm2Board.changeSm2Board01", map);
+	}
+
+	/**
+	 * 매출 총괄현황 사업 순서변경02
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	public void changeSm2Board02(Map<String, Object> map) throws Exception {
+		update("sm2Board.changeSm2Board02", map);
+	}
+
+	/**
+	 * 매출 총괄현황 사업 순서변경03
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	public void changeSm2Board03(Map<String, Object> map) throws Exception {
+		update("sm2Board.changeSm2Board03", map);
+	}
+
 }

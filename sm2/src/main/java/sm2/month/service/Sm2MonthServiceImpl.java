@@ -267,4 +267,16 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 		sm2MonthDAO.updateBoardMonth(map);
 	}
 	
+	/**
+	 * 매출 총괄현황 사업 순서변경
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@Override
+	public void changeSm2Board(Map<String, Object> map) throws Exception {
+		sm2DAO.changeSm2Board01(map);
+		sm2DAO.changeSm2Board02(map);
+		sm2DAO.changeSm2Board03(map);
+	}
+	
 }

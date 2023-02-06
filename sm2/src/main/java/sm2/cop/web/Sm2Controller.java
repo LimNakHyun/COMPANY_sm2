@@ -15,6 +15,7 @@
 
 package sm2.cop.web;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -99,6 +100,8 @@ public class Sm2Controller {
 			mv.addObject("amount", amount);
 		} catch(Exception e) {
 			log.info(e.getMessage());
+			ModelAndView mv2 = new ModelAndView("redirect:/openSm2Main.do");
+			return mv2;
 		}
 		
 		return mv;
@@ -246,6 +249,39 @@ public class Sm2Controller {
 			
 			List<Map<String, Object>> expectList = sm2MonthService.selectBoardExpectOverall(commandMap.getMap());
 			mv.addObject("expectList", expectList);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
+		
+		return mv;
+	}
+	
+	/**
+	 * 매출 총괄현황 사업 순서변경
+	 * @param commandMap
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/changeSm2Board.do")
+	public ModelAndView changeSm2Board(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Main.do");
+		
+		String[] changeList = String.valueOf(commandMap.getMap().get("list")).split(",");
+		int[] intChangeList = new int[2];
+		if(Integer.parseInt(changeList[0]) > Integer.parseInt(changeList[1])) {
+			intChangeList[0] = Integer.parseInt(changeList[1]);
+			intChangeList[1] = Integer.parseInt(changeList[0]);
+		} else {
+			intChangeList[0] = Integer.parseInt(changeList[0]);
+			intChangeList[1] = Integer.parseInt(changeList[1]);
+		}
+		
+		System.out.println("콤마로 나눈 문자열: " + Arrays.toString(intChangeList));
+		commandMap.getMap().put("businessOrderChange1", intChangeList[0]);
+		commandMap.getMap().put("businessOrderChange2", intChangeList[1]);
+		
+		try {
+			sm2MonthService.changeSm2Board(commandMap.getMap());
 		} catch(Exception e) {
 			log.info(e.getMessage());
 		}

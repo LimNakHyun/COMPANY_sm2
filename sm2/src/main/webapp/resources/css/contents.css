@@ -62,6 +62,7 @@ html, body {height:100%;}
 .tbl_basic .blue_txt {color:#0000ff;}
 
 .tbl_list thead {position:sticky;top:0;}
+.tbl_list thead .btn-vmiddle {margin:auto;}
 .tbl_list thead th {background-color:#209fc7;color:#fff;}
 .tbl_list tbody tr:nth-child(even) td {background:#f5f6fb;}
 .tbl_list tbody tr:hover td {background:#eee;}

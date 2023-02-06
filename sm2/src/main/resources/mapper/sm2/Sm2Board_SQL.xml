@@ -14,7 +14,7 @@
 				DELYN = FALSE
 			AND
 				BUSINESSYEAR = CAST(#{year} AS INTEGER)
-			ORDER BY IDX
+			ORDER BY ORDERIDX
 		]]>
 	</select>
 	
@@ -36,6 +36,7 @@
 		<![CDATA[
 			INSERT INTO SM.MANAGEMENT
 			(
+				IDX,
 				BUSINESSNAME,
 			    CLIENT,
 			    STARTTERM,
@@ -47,10 +48,12 @@
 			    COLLECTIONCOMPLETEDAMOUNT,
 			    TOTALCOLLECTIONREMAININGAMOUNT,
 			    CODE,
-			    BUSINESSYEAR
+			    BUSINESSYEAR,
+			    ORDERIDX
 			)
 			VALUES
 			(
+				(select coalesce(max(IDX) + 1, 1) from SM.MANAGEMENT),
 				#{businessname},
 				#{client},
 			    #{startterm},
@@ -62,7 +65,8 @@
 			    CAST(#{collectioncompletedamount} AS BIGINT),
 			    CAST(#{totalcollectionremainingamount} AS BIGINT),
 			    #{CODE},
-			    CAST(#{year} AS INTEGER)
+			    CAST(#{year} AS INTEGER),
+			    (select coalesce(max(IDX) + 1, 1) from SM.MANAGEMENT)
 			)
 		]]>
 	</insert>
@@ -173,6 +177,43 @@
 				IDX = CAST(#{idx} AS INTEGER)
 			AND
 				DELYN = FALSE
+		]]>
+	</update>
+	
+	<!-- 사업 순서변경01 -->
+	<update id="changeSm2Board01" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MANAGEMENT
+			SET
+				ORDERIDX = CAST(#{businessOrderChange2} AS INTEGER)
+			WHERE
+				ORDERIDX = CAST(#{businessOrderChange1} AS INTEGER)
+		]]>
+	</update>
+	
+	<!-- 사업 순서변경02 -->
+	<update id="changeSm2Board02" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MANAGEMENT
+			SET
+				IDX = CAST(#{businessOrderChange1} AS INTEGER),
+				ORDERIDX = CAST(#{businessOrderChange1} AS INTEGER)
+			WHERE
+				IDX = CAST(#{businessOrderChange2} AS INTEGER)
+		]]>
+	</update>
+	
+	<!-- 사업 순서변경03 -->
+	<update id="changeSm2Board03" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MANAGEMENT
+			SET
+				IDX = CAST(#{businessOrderChange2} AS INTEGER)
+			WHERE
+				ORDERIDX = CAST(#{businessOrderChange2} AS INTEGER)
 		]]>
 	</update>
 
