@@ -3,12 +3,26 @@
 
 <div id="contents">
 
-	<h2 class="cont_tit">${year}년 ${month}월</h2>
+	<c:choose>
+		<c:when test="${month eq 13}">
+			<h2 class="cont_tit">${year + 1}년 이월사업</h2>
+		</c:when>
+		<c:otherwise>
+			<h2 class="cont_tit">${year}년 ${month}월</h2>
+		</c:otherwise>
+	</c:choose>
 	
 	<div class="cont_top">
 		<div class="dashboard_box">
 			<div class="dashboard_item">
-				<strong class="ds_tit">${month}월 계약매출 합계</strong>
+				<c:choose>
+					<c:when test="${month eq 13}">
+						<strong class="ds_tit">${year + 1}년 이월사업 계약매출 합계</strong>
+					</c:when>
+					<c:otherwise>
+						<strong class="ds_tit">${month}월 계약매출 합계</strong>
+					</c:otherwise>
+				</c:choose>
 				<span class="ds_num"><fmt:formatNumber value="${collectioncashsum.collectioncashsum}" pattern="#,###"/> 원</span>
 			</div>
 		</div>
@@ -77,12 +91,24 @@
 				</c:forEach>
 				</tbody>
 				<tfoot>
-					<tr>
-						<th class="middle sum" colspan='5'>${month}월 계약매출 예상 합계</th>
-						<td class="right sum">
-							<fmt:formatNumber value="${collectioncashsum.expectedcollectioncashsum}" pattern="#,###"/> 원</td>
-						<td class="sum"></td>
-					</tr>
+					<c:choose>
+						<c:when test="${month eq 13}">
+							<tr>
+								<th class="middle sum" colspan='5'>${year + 1}년 이월사업 계약매출 예상 합계</th>
+								<td class="right sum">
+									<fmt:formatNumber value="${collectioncashsum.expectedcollectioncashsum}" pattern="#,###"/> 원</td>
+								<td class="sum"></td>
+							</tr>
+						</c:when>
+						<c:otherwise>
+							<tr>
+								<th class="middle sum" colspan='5'>${month}월 계약매출 예상 합계</th>
+								<td class="right sum">
+									<fmt:formatNumber value="${collectioncashsum.expectedcollectioncashsum}" pattern="#,###"/> 원</td>
+								<td class="sum"></td>
+							</tr>
+						</c:otherwise>
+					</c:choose>
 				</tfoot>
 			</table>
 				<div class="btn-group">

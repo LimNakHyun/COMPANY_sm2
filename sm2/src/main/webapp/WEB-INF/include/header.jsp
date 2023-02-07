@@ -63,6 +63,13 @@
 								<button type="submit" class="btn btn-basic">${j}월</button>
 							</form></li>
 						</c:forEach>
+						<li ${fn:contains(pageContext.request.requestURI, 'boardMonth') && (13 eq month) ? 'class="selected"' : ''}>
+							<form action="/openSm2Month.do" method="post">
+								<input type="hidden" name="year" value="${year}">
+								<input type="hidden" name="month" value="13">
+								<button type="submit" class="btn btn-basic">이월</button>
+							</form>
+						</li>
 					</ul>
 				</div>
 			</div>
