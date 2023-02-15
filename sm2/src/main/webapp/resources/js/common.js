@@ -1,6 +1,18 @@
 /**
- * 
+ * @Class Name : common.js
+ * @Description : 공통 js
+ * @
+ * @   수정일     	수정자            	  수정내용
+ * @ ---------   ---------   -------------------------------
+ * @ 2023.02.14     임낙현                  최초생성
+ *
+ * @author 재난안전DT팀 임낙현
+ * @since 2023.02.14
+ * @version 1.0
+ * @see
  */
+
+// submit을 하러 들어온 객체가 null값인지 체크 
 function gfn_isNull(str) {
 	if (str == null) return true;
 	if (str == "NaN") return true;
@@ -12,6 +24,7 @@ function gfn_isNull(str) {
     return false; 
 }
 
+// 객체를 만들어 컨트롤러로 submit
 function ComSubmit(opt_formId) {
 	this.formId = gfn_isNull(opt_formId) == true ? "commonForm" : opt_formId;
 	this.url = "";
@@ -36,10 +49,12 @@ function ComSubmit(opt_formId) {
 	}
 }
 
+// header.jsp 에서 연도 바꾸기
 function yearChange(){
 	document.yearFrm.submit();
 }
 
+// *update.jsp 에서 이전으로 돌아가기
 function goForward() {
 	if(confirm('이전으로 돌아가시겠습니까?\n이전으로 돌아가면 수정한 모든 정보가 롤백됩니다.')){
 		history.go(-1);

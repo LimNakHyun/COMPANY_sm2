@@ -9,17 +9,23 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>EGIS 매출 관리 시스템</title>
-	<link href="${pageContext.request.contextPath}/resources/css/contents.css" rel="stylesheet" type="text/css">
-	<link href="${pageContext.request.contextPath}/resources/chosen/chosen.css" rel="stylesheet" type="text/css">
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
 	
+	<!-- jquery-ui -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha512-uto9mlQzrs59VwILcLiRYeLKPPbS/bT71da/OEBYEwcdNUk8jYIy+D176RYoop1Da+f9mvkYrmj5MCLZWEtQuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 	
+	<!-- css -->
+	<link href="${pageContext.request.contextPath}/resources/css/contents.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/resources/chosen/chosen.css" rel="stylesheet" type="text/css">
+	
+	<!-- js -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.number.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/common.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/businessInfo.js" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath}/resources/chosen/chosen.jquery.js" charset="utf-8"></script>
+	
 </head>
 <body>
 

@@ -14,6 +14,14 @@
 				DELYN = FALSE
 			AND
 				BUSINESSYEAR = CAST(#{year} AS INTEGER)
+		]]>
+		<if test="@sm2.cmm.util.EgovMybaitsUtil@isNotEmpty(searchword)">
+		<![CDATA[
+			AND
+				BUSINESSNAME ILIKE '%' || #{searchword} || '%'
+		]]>
+		</if>
+		<![CDATA[
 			ORDER BY ORDERIDX
 		]]>
 	</select>
