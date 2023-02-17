@@ -7,7 +7,7 @@
 		<div class="cont_top">
 			<div class="dashboard_box"></div>
 			<div class="search_box">
-				<select class="year_select_btn" id="searchtype" name="searchtype">
+				<select class="year_select_btn" id="searchtype" name="searchtype" onchange="JavaScript:getBusinessList();">
 					<option value="all" selected>전체</option>
 					<option value="CODE">CODE</option>
 					<option value="businessname">사업명/사업개요</option>
