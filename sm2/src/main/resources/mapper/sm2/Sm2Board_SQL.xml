@@ -15,12 +15,36 @@
 			AND
 				BUSINESSYEAR = CAST(#{year} AS INTEGER)
 		]]>
-		<if test="@sm2.cmm.util.EgovMybaitsUtil@isNotEmpty(searchword)">
-		<![CDATA[
-			AND
-				BUSINESSNAME ILIKE '%' || #{searchword} || '%'
-		]]>
-		</if>
+		<choose>
+			<when test="@sm2.cmm.util.EgovMybatisUtil@isNotEmpty(searchword) and @sm2.cmm.util.EgovMybatisUtil@isEqualsStr(searchtype, 'CODE')">
+				<![CDATA[
+					AND
+						CODE ILIKE '%' || #{searchword} || '%'
+				]]>
+			</when>
+			<when test="@sm2.cmm.util.EgovMybatisUtil@isNotEmpty(searchword) and @sm2.cmm.util.EgovMybatisUtil@isEqualsStr(searchtype, 'businessname')">
+				<![CDATA[
+					AND
+						BUSINESSNAME ILIKE '%' || #{searchword} || '%'
+				]]>
+			</when>
+			<when test="@sm2.cmm.util.EgovMybatisUtil@isNotEmpty(searchword) and @sm2.cmm.util.EgovMybatisUtil@isEqualsStr(searchtype, 'client')">
+				<![CDATA[
+					AND
+						CLIENT ILIKE '%' || #{searchword} || '%'
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					AND
+						(CODE ILIKE '%' || #{searchword} || '%'
+					OR
+						BUSINESSNAME ILIKE '%' || #{searchword} || '%'
+					OR
+						CLIENT ILIKE '%' || #{searchword} || '%')
+				]]>
+			</otherwise>
+		</choose>
 		<![CDATA[
 			ORDER BY ORDERIDX
 		]]>
@@ -158,6 +182,36 @@
 			AND
 				BUSINESSYEAR = CAST(#{year} AS INTEGER)
 		]]>
+		<choose>
+			<when test="@sm2.cmm.util.EgovMybatisUtil@isNotEmpty(searchword) and @sm2.cmm.util.EgovMybatisUtil@isEqualsStr(searchtype, 'CODE')">
+				<![CDATA[
+					AND
+						CODE ILIKE '%' || #{searchword} || '%'
+				]]>
+			</when>
+			<when test="@sm2.cmm.util.EgovMybatisUtil@isNotEmpty(searchword) and @sm2.cmm.util.EgovMybatisUtil@isEqualsStr(searchtype, 'businessname')">
+				<![CDATA[
+					AND
+						BUSINESSNAME ILIKE '%' || #{searchword} || '%'
+				]]>
+			</when>
+			<when test="@sm2.cmm.util.EgovMybatisUtil@isNotEmpty(searchword) and @sm2.cmm.util.EgovMybatisUtil@isEqualsStr(searchtype, 'client')">
+				<![CDATA[
+					AND
+						CLIENT ILIKE '%' || #{searchword} || '%'
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+					AND
+						(CODE ILIKE '%' || #{searchword} || '%'
+					OR
+						BUSINESSNAME ILIKE '%' || #{searchword} || '%'
+					OR
+						CLIENT ILIKE '%' || #{searchword} || '%')
+				]]>
+			</otherwise>
+		</choose>
 	</select>
 	
 	<!-- 사업 수금완료 여부 조회 -->

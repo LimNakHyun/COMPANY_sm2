@@ -25,9 +25,9 @@ import org.slf4j.LoggerFactory;
  * </pre>
  */
 
-public class EgovMybaitsUtil {
+public class EgovMybatisUtil {
 	
-	private static final Logger logger = LoggerFactory.getLogger(EgovMybaitsUtil.class); 
+	private static final Logger logger = LoggerFactory.getLogger(EgovMybatisUtil.class); 
 	
     /**
 	 * Empty 여부를 확인한다.

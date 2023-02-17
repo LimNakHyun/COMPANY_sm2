@@ -64,49 +64,6 @@ public class Sm2Controller {
 		return mv;
 	}
 	
-//	/**
-//	 * 사업 매출정보 조회
-//	 * @param commandMap
-//	 * @param session
-//	 * @return "/sm2/boardList"
-//	 * @throws Exception
-//	 */
-//	@ResponseBody
-//	@RequestMapping(value = "/openSm2Main.do")
-//	public ModelAndView openSm2Main(CommandMap commandMap,
-//			HttpSession session) throws Exception {
-//		ModelAndView mv = new ModelAndView("/sm2/boardList");
-//		try {
-//			if(session.getAttribute("month") != "" || session.getAttribute("month") != null) {
-//				session.removeAttribute("month");
-//			}
-//			
-//			if((session.getAttribute("year") == "" || session.getAttribute("year") == null)
-//					&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
-//				session.setAttribute("year", commandMap.getMap().get("year"));
-//			} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
-//					&& ((commandMap.getMap().get("year") == "") || (commandMap.getMap().get("year") == null))) {
-//				commandMap.getMap().put("year", session.getAttribute("year"));
-//			} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
-//					&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
-//				session.removeAttribute("year");
-//				session.setAttribute("year", commandMap.getMap().get("year"));
-//			}
-//			
-//			List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap.getMap());
-//			mv.addObject("list", list);
-//			
-//			Map<String, Object> amount = sm2Service.selectBoardAmount(commandMap.getMap());
-//			mv.addObject("amount", amount);
-//		} catch(Exception e) {
-//			log.info(e.getMessage());
-//			ModelAndView mv2 = new ModelAndView("redirect:/openSm2Main.do");
-//			return mv2;
-//		}
-//		
-//		return mv;
-//	}
-	
 	/**
 	 * 사업 매출정보 조회
 	 * @param commandMap
@@ -118,7 +75,7 @@ public class Sm2Controller {
 	@RequestMapping(value = "/openSm2Main.do")
 	public ModelAndView openSm2Main(CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("/sm2/boardListTest");
+		ModelAndView mv = new ModelAndView("/sm2/boardList");
 		try {
 			if(session.getAttribute("month") != "" || session.getAttribute("month") != null) {
 				session.removeAttribute("month");
@@ -136,11 +93,11 @@ public class Sm2Controller {
 				session.setAttribute("year", commandMap.getMap().get("year"));
 			}
 			
-			List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap.getMap());
-			mv.addObject("list", list);
-			
-			Map<String, Object> amount = sm2Service.selectBoardAmount(commandMap.getMap());
-			mv.addObject("amount", amount);
+//			List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap.getMap());
+//			mv.addObject("list", list);
+//			
+//			Map<String, Object> amount = sm2Service.selectBoardAmount(commandMap.getMap());
+//			mv.addObject("amount", amount);
 		} catch(Exception e) {
 			log.info(e.getMessage());
 			ModelAndView mv2 = new ModelAndView("redirect:/openSm2Main.do");

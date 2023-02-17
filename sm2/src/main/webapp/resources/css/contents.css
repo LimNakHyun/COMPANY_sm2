@@ -51,6 +51,10 @@ html, body {height:100%;}
 .dashboard_box .dashboard_item .ds_tit {margin-bottom:10px;text-align:center;line-height:1.2;font-size:14px;}
 .dashboard_box .dashboard_item .ds_num {color:#ff0000;font-size:16px;}
 
+.search_box {display:flex;gap:20px;}
+.search_box .year_select_btn {display: flex;justify-content: space-between;align-items: center;margin: 10px 0px -10px;padding: 0 10px 0 10px;width: 150px;height: 32px;border: 1px solid #000;background-color: #fff;border-radius: 15px 0px 0px 15px;-webkit-transition: all .2s;transition: all .2s;}
+.search_box .search_item {display: flex;justify-content: space-between;align-items: center;margin: 10px -20px -10px;padding: 0 35px 0 10px;width: 800px;height: 30px;border: 1px solid #000;background-color: #fff;border-radius: 0px 15px 15px 0px;-webkit-transition: all .2s;transition: all .2s;}
+
 .tbl_basic {width:100%;}
 .tbl_basic caption {position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);margin:-1px;overflow:hidden;}
 .tbl_basic td, .tbl_basic th {padding:10px;text-align:center;line-height:1.2;word-wrap:break-word;word-break:keep-all;}
