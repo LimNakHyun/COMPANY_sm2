@@ -34,7 +34,7 @@
 						CLIENT ILIKE '%' || #{searchword} || '%'
 				]]>
 			</when>
-			<otherwise>
+			<when test="@sm2.cmm.util.EgovMybatisUtil@isNotEmpty(searchword)">
 				<![CDATA[
 					AND
 						(CODE ILIKE '%' || #{searchword} || '%'
@@ -43,7 +43,7 @@
 					OR
 						CLIENT ILIKE '%' || #{searchword} || '%')
 				]]>
-			</otherwise>
+			</when>
 		</choose>
 		<![CDATA[
 			ORDER BY ORDERIDX

@@ -110,6 +110,15 @@ public class Sm2DAO extends AbstractDAO {
 	}
 
 	/**
+	 * 사업 월별 수금액 정보 삭제날짜 업데이트
+	 * @param map
+	 * @throws Exception
+	 */
+	public void deleteDateBoardMonth(Map<String, Object> map) throws Exception {
+		update("sm2BoardMonth.deleteDateBoardMonth", map);
+	}
+
+	/**
 	 * 사업 수금악 상태 변경
 	 * @param map
 	 * @throws Exception

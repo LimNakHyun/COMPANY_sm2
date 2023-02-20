@@ -42,14 +42,16 @@
 				IDX,
 			    BUSINESSMONTH,
 			    COLLECTIONCASH,
-			    BUSINESSYEARMONTH
+			    BUSINESSYEARMONTH,
+			    CREDATE
 			)
 			VALUES
 			(
 				#{idx},
 				CAST(#{month} AS INTEGER),
 			    CAST(#{collectioncash} AS INTEGER),
-			    CAST(#{year} AS INTEGER)
+			    CAST(#{year} AS INTEGER),
+			    now()
 			)
 		]]>
 	</select>
@@ -167,6 +169,18 @@
 				SM.MONTHMANAGEMENT
 			SET
 				DELYN = TRUE
+			WHERE
+				MONTHIDX = CAST(#{monthidx} AS INTEGER)
+		]]>
+	</update>
+	
+	<!-- 사업 월별 수금액 정보 삭제 -->
+	<update id="deleteDateBoardMonth" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MONTHMANAGEMENT
+			SET
+				DELDATE = now()
 			WHERE
 				MONTHIDX = CAST(#{monthidx} AS INTEGER)
 		]]>

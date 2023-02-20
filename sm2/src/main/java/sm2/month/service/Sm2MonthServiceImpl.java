@@ -252,6 +252,7 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 			sm2DAO.updateBoardBusinessCondition(map);
 		}
 		sm2DAO.deleteBoardMonth(map);
+		sm2DAO.deleteDateBoardMonth(map);
 	}
 
 	/**
