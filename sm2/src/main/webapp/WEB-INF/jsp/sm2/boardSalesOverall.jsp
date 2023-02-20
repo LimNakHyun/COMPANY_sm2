@@ -37,14 +37,16 @@
 	<div class="cont_body">
 		<table style="width:49%; float:left;" class="tbl_basic tbl_view">
 			<caption>${year}년 (주)이지스 사업 실매출 현황 보고</caption>
-			<tr>
-				<th colspan="3">실 매출 현황</th>
-			</tr>
-			<colgroup>
-				<col style="width:4%;">
-				<col style="width:5%;">
-				<col style="width:40%;">
-			</colgroup>
+			<thead>
+				<tr>
+					<th class="tbl_title" colspan="3">실 매출 현황</th>
+				</tr>
+				<colgroup>
+					<col style="width:4%;">
+					<col style="width:5%;">
+					<col style="width:40%;">
+				</colgroup>
+			</thead>
 			<tbody>
 			<c:forEach items="${list}" var="dto" varStatus="idx">
 				<tr>
@@ -80,14 +82,16 @@
 		
 		<table style="width:49%; float:right;" class="tbl_basic tbl_view">
 			<caption>${year}년 (주)이지스 사업 예상매출 현황 보고</caption>
-			<tr>
-				<th colspan="3">예상 매출 현황</th>
-			</tr>
-			<colgroup>
-				<col style="width:4%;">
-				<col style="width:5%;">
-				<col style="width:40%;">
-			</colgroup>
+			<thead>
+				<tr>
+					<th class="tbl_title" colspan="3">예상 매출 현황</th>
+				</tr>
+				<colgroup>
+					<col style="width:4%;">
+					<col style="width:5%;">
+					<col style="width:40%;">
+				</colgroup>
+			</thead>
 			<tbody>
 			<c:forEach items="${expectList}" var="dto" varStatus="idx">
 				<tr>

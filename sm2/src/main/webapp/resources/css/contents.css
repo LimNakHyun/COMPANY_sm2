@@ -52,9 +52,11 @@ html, body {height:100%;}
 .dashboard_box .dashboard_item .ds_num {color:#ff0000;font-size:16px;}
 
 .search_box {display:flex;gap:20px;justify-content:center;margin: 6px 0px -5px 0px;}
-.search_box .year_select_btn {display: flex;justify-content: space-between;align-items: center;margin: 10px 0px -10px;padding: 0 10px 0 10px;width: 150px;height: 30px;border: none;outline: none;color: #fff;background-color: #2371b0;border-radius: 15px 0px 0px 15px;-webkit-transition: all .2s;transition: all .2s;}
-.search_box .search_item {display: flex;justify-content: space-between;align-items: center;margin: 10px -20px -10px;padding: 0 35px 0 10px;width: 800px;height: 30px;border: none;outline: none;background-color: #FAEBD7;-webkit-transition: all .2s;transition: all .2s;}
-.search_box #search_reset {display: flex;justify-content: space-between;align-items: center;margin: -9.32px 0px 0px 0px;padding: 0px 0px 0px 14px;width: 70px;height: 30px;background-color: #fff;border-radius: 0px 15px 15px 0px;color: #fff;background-color: #ff6f6f;}
+.search_box .year_select_btn {display: flex;justify-content: space-between;align-items: center;margin: 10px 0px -10px;padding: 0 10px 0 10px;width: 120px;height: 30px;border: none;outline: none;color: #fff;background-color: #2371b0;border-radius: 15px 0px 0px 15px;-webkit-transition: all .2s;transition: all .2s;}
+.search_box .search_item {display: flex;justify-content: space-between;align-items: center;margin: 10px -20px -10px;padding: 0 35px 0 10px;width: 400px;height: 30px;border: none;outline: none;color: #fff;background-color: #404042;-webkit-transition: all .2s;transition: all .2s;}
+.search_box .search_item::placeholder {color: #fff;}
+.search_box .search_item:focus::placeholder {color: transparent;}
+.search_box #search_reset {display: flex;justify-content: space-between;align-items: center;margin: -9.32px 0px 0px 0px;padding: 0px 0px 0px 28px;width: 100px;height: 30px;background-color: #fff;border-radius: 0px 15px 15px 0px;color: #fff;background-color: #ff6f6f;}
 
 .tbl_basic {width:100%;}
 .tbl_basic caption {position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);margin:-1px;overflow:hidden;}
@@ -77,6 +79,7 @@ html, body {height:100%;}
 .tbl_view tbody th.s_th {background-color:#f8f6fe;color:#000;}
 .tbl_view tbody td {padding:10px 20px;background-color:#fff;text-align:left;}
 .tbl_view .quarter {background-color:#dfefff;color:#000;}
+.tbl_view thead .tbl_title {background-color:#404042;color:#fff;}
 
 .tbl_inp input {height:25px;padding:0 5px;border:1px solid #aaa;border-radius:5px;box-sizing:border-box;}
 .tbl_inp input::-webkit-outer-spin-button, .tbl_inp input::-webkit-inner-spin-button {-webkit-appearance: none;margin: 0;}
