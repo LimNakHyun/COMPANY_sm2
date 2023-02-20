@@ -14,6 +14,9 @@
 					<option value="client">발주처</option>
 				</select>
 				<input class="search_item" type="text" id="searchword" name="searchword" placeholder="검색" maxlength="100" autocomplete="off" onkeyup="JavaScript:getBusinessList();">
+				<div class="btn-group">
+					<button id="search_reset">초기화</button>
+				</div>
 			</div>
 		</div>
 		
@@ -23,18 +26,9 @@
 				<table class="tbl_basic tbl_list">
 					<caption>이지스 ${year}년 사업실적(매출세금계산서 기준)</caption>
 					<colgroup>
-						<col style="width:3%;">
-						<col style="width:5%;">
-						<col style="width:21%;">
-						<col style="width:9%;">
-						<col style="width:9%;">
-						<col style="width:9%;">
-						<col style="width:9%;">
-						<col style="width:4%;">
-						<col style="width:9%;">
-						<col style="width:9%;">
-						<col style="width:9%;">
-						<col style="width:4%;">
+						<col style="width:3%;"><col style="width:5%;"><col style="width:21%;">
+						<col style="width:9%;"><col style="width:9%;"><col style="width:9%;"><col style="width:9%;">
+						<col style="width:4%;"><col style="width:9%;"><col style="width:9%;"><col style="width:9%;"><col style="width:4%;">
 					</colgroup>
 					<thead>
 						<tr>
@@ -84,9 +78,9 @@
 				fn_changeBusiness($(this));
 			});
 			
-			$("#searchbusiness").on("click", function(e){
+			$("#search_reset").on("click", function(e){
 				e.preventDefault();
-				fn_searchbusiness($(this));
+				fn_searchBoxReset();
 			});
 		});
 		
@@ -131,11 +125,10 @@
 			}
 		}
 		
-		function fn_searchbusiness(obj){
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='searchbusinessSm2Board.do' />");
-			comSubmit.addParam("searchword", obj.parent().find("#searchword").val());
-			comSubmit.submit();
+		function fn_searchBoxReset(){
+			$("#searchword").val("");
+			$('#searchtype option').prop('selected', false);
+			getBusinessList();
 		}
 	</script>
 
