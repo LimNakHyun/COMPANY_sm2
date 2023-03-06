@@ -64,9 +64,9 @@
 		<input type="hidden" name="monthidx" value="${detail.monthidx}">
 		
 		<div class="btn-group">
-			<a href="#this" class="btn btn-basic" id="list">목록으로</a>
-			<a href="#this" class="btn btn-black" id="delete">삭제</a>
-			<a href="#this" class="btn btn-lightblue" id="update">수정</a>
+			<a href="#this" class="btn btn-basic" id="monthListDetail">목록으로</a>
+			<a href="#this" class="btn btn-black" id="monthDeleteDetail">삭제</a>
+			<a href="#this" class="btn btn-lightblue" id="monthUpdateDetail">수정</a>
 			
 		</div>
 	</form>
@@ -75,45 +75,21 @@
 
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#list").on("click", function(e){
-					e.preventDefault();
-					fn_openBoardList();
-				});
-				
-				$("#delete").on("click", function(e){
-					e.preventDefault();
-					if(confirm('삭제하시겠습니까?')){
-						fn_deleteBoard();
-					} else{
-						return false;
-					}
-				});
-				
-				$("#update").on("click", function(e){
+				// 월별 사업 상세보기 페이지에서 월별 사업 수정페이지로 이동
+				$("#monthUpdateDetail").on("click", function(e){
 					e.preventDefault();
 					var condition = ${detail.monthbusinesscondition};
 					console.log(condition);
 					if(!condition){
-						fn_updateBoard();
+						fn_updateBoardMonthDetail();
 					} else{
 						alert('월별 사업 상태를 미완으로 바꿔주세요.');
 					}
 				});
 			});
-		
-			function fn_openBoardList(){
-				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/openSm2Month.do' />");
-				comSubmit.submit();
-			}
 			
-			function fn_deleteBoard(){
-				var comSubmit = new ComSubmit("frm");
-				comSubmit.setUrl("<c:url value='/deleteBoardMonth.do' />");
-				comSubmit.submit();
-			}
-			
-			function fn_updateBoard() {
+			// 월별 사업 상세보기 페이지에서 월별 사업 수정페이지로 이동
+			function fn_updateBoardMonthDetail() {
 				var comSubmit = new ComSubmit("frm");
 				comSubmit.setUrl("<c:url value='/openSm2MonthUpdate.do' />");
 				comSubmit.submit();
@@ -121,3 +97,4 @@
 		</script>
 	</div>
 </div>
+<%@ include file="/WEB-INF/include/footer.jsp" %>

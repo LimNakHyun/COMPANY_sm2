@@ -14,6 +14,7 @@
 				M1.COMPLETEYN,
 				M1.COLLECTIONCASH,
 				M1.MONTHBUSINESSCONDITION,
+				M1.MONTHORDERIDX,
 				M2.TOTALCOLLECTIONREMAININGAMOUNT,
 				M2.BUSINESSNAME,
 				M2.CLIENT,
@@ -27,10 +28,10 @@
 			WHERE
 				M1.DELYN = FALSE
 			AND
-				BUSINESSMONTH = CAST(#{month} AS INTEGER)
+				M1.BUSINESSMONTH = CAST(#{month} AS INTEGER)
 			AND
-				BUSINESSYEARMONTH = CAST(#{year} AS INTEGER)
-			ORDER BY MONTHIDX
+				M1.BUSINESSYEARMONTH = CAST(#{year} AS INTEGER)
+			ORDER BY M1.MONTHORDERIDX
 		]]>
 	</select>
 	
@@ -43,7 +44,8 @@
 			    BUSINESSMONTH,
 			    COLLECTIONCASH,
 			    BUSINESSYEARMONTH,
-			    CREDATE
+			    CREDATE,
+			    MONTHORDERIDX
 			)
 			VALUES
 			(
@@ -51,7 +53,8 @@
 				CAST(#{month} AS INTEGER),
 			    CAST(#{collectioncash} AS INTEGER),
 			    CAST(#{year} AS INTEGER),
-			    now()
+			    now(),
+			    (select coalesce(max(MONTHORDERIDX) + 1, 1) from SM.MONTHMANAGEMENT)
 			)
 		]]>
 	</select>
@@ -231,6 +234,37 @@
 				SM.MONTHMANAGEMENT
 			SET
 				COLLECTIONCASH = CAST(#{collectioncash} AS INTEGER)
+			WHERE
+				MONTHIDX = CAST(#{monthidx} AS INTEGER)
+		]]>
+	</update>
+	
+	<!-- 특정 연월 월별 사업 목록 불러오기 --> 
+	<select id="selectSpecificMonthBusiness" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				MONTHIDX,
+				MONTHORDERIDX
+			FROM
+				SM.MONTHMANAGEMENT
+			WHERE 
+				DELYN = FALSE
+			AND
+				BUSINESSYEARMONTH = CAST(#{year} AS INTEGER)
+			AND
+				BUSINESSMONTH = CAST(#{month} AS INTEGER)
+			ORDER BY
+				MONTHORDERIDX
+		]]>
+	</select>
+	
+	<!-- 월별 사업 orderIndex 업데이트 -->
+	<update id="updateBoardOrderMonth" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MONTHMANAGEMENT
+			SET
+				MONTHORDERIDX = CAST(#{monthorderidx} AS INTEGER)
 			WHERE
 				MONTHIDX = CAST(#{monthidx} AS INTEGER)
 		]]>

@@ -111,7 +111,7 @@ public class Sm2MonthController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/insertSm2BoardMonth.do")
-	public ModelAndView insertSm2Month(CommandMap commandMap,
+	public ModelAndView insertSm2BoardMonth(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
 		
@@ -244,6 +244,30 @@ public class Sm2MonthController {
 			
 			Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
 			mv.addObject("detail", detail);
+		} catch(Exception e) {
+			log.info(e.getMessage());
+		}
+		
+		return mv;
+	}
+	
+	/**
+	 * 사업 월별 사업 위치 변경
+	 * @param commandMap
+	 * @param session
+	 * @return "/sm2/boardMonthDetail"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/switchBoardMonth.do")
+	public ModelAndView switchBoardMonth(CommandMap commandMap,
+			HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Month.do");
+		
+		commandMap.getMap().put("year", session.getAttribute("year"));
+		commandMap.getMap().put("month", session.getAttribute("month"));
+		
+		try {
+			sm2MonthService.switchBoardMonth(commandMap.getMap());
 		} catch(Exception e) {
 			log.info(e.getMessage());
 		}

@@ -83,4 +83,11 @@ public interface Sm2MonthService {
 	 */
 	void updateBoardMonth(Map<String, Object> map) throws Exception;
 
+	/**
+	 * 월별 사업 순서 변경
+	 * @param map
+	 * @throws Exception
+	 */
+	void switchBoardMonth(Map<String, Object> map) throws Exception;
+
 }

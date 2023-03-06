@@ -74,7 +74,7 @@
 			<tr>
 				<th><label>전체사업금액</label></th>
 				<td scope="row">
-					<input type="text" id="plustotalbusinessamount" name="plustotalbusinessamount">
+					<input type="text" id="dPlustotalbusinessamount" name="dPlustotalbusinessamount">
 				</td>
 			</tr>
 			<tr>
@@ -88,9 +88,9 @@
 	
 	
 	<div class="btn-group">
-		<a href="#this" class="btn btn-basic" id="list">목록으로</a>
-		<a href="#this" class="btn btn-black" id="insert">추가</a>
-		<a href="#this" class="btn btn-lightblue" id="reset">리셋</a>
+		<a href="#this" class="btn btn-basic" id="listInsert">목록으로</a>
+		<a href="#this" class="btn btn-black" id="insertInsert">추가</a>
+		<a href="#this" class="btn btn-lightblue" id="resetInsert">리셋</a>
 	</div>
 	
 </form>
@@ -98,77 +98,6 @@
 <%@ include file="/WEB-INF/include/body.jsp" %>
 	
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#list").on("click", function(e){
-				e.preventDefault();
-				if(!$('#CODE').val() && !$('#businessname').val() && !$('#client').val() && !$('#strstartterm').val() && !$('#strendterm').val() && !$('#plustotalbusinessamount').val() && !$('#ratio').val()){
-					fn_openBoardList();
-				} else{
-					if(confirm('목록으로 돌아가시겠습니까?\n현재 입력한 정보는 모두 사라지게 됩니다.')){
-						fn_openBoardList();
-					} else{
-						return false;
-					}
-				}
-			});
-			
-			$("#insert").on("click", function(e){
-				e.preventDefault();
-				if(confirm('사업을 추가하시겠습니까?')){
-					fn_insertBoard();
-				} else{
-					return false;
-				}
-			});
-			
-			$("#reset").on("click", function(e){
-				e.preventDefault();
-				if(!$('#CODE').val() && !$('#businessname').val() && !$('#client').val() && !$('#strstartterm').val() && !$('#strendterm').val() && !$('#plustotalbusinessamount').val() && !$('#ratio').val()){
-					return false;
-				} else{
-					if(confirm('리셋하시겠습니까?\n입력한 모든 정보가 사라집니다.')) {
-						fn_inputReset();
-					} else{
-						return false;
-					}
-				}
-			});
-		});
-		
-		function fn_openBoardList(){
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/openSm2Main.do' />");
-			comSubmit.submit();
-		}
-		
-		function fn_insertBoard(){
-			var comSubmit = new ComSubmit("frm");
-			if(!$('#CODE').val()) {
-				alert('코드를 선택해 주세요.');
-			} else if(!$('#businessname').val()){
-				alert('사업명/사업개요를 입력해주세요.');
-			} else if(!$('#client').val()){
-				alert('발주처를 입력해주세요.');
-			} else if(!$('#strstartterm').val()){
-				alert('시작 계약기간을 입력해주세요.');
-			} else if(!$('#strendterm').val()){
-				alert('완료 계약기간을 입력해주세요.');
-			} else if(!$('#plustotalbusinessamount').val()){
-				alert('전체사업금액을 입력해주세요.');
-			} else if(!$('#ratio').val()){
-				alert('지분율을 입력해주세요.');
-			} else if($('#ratio').val() > 100){
-				alert('지분율은 100%가 최대값입니다.');
-			} else{
-				comSubmit.setUrl("<c:url value='/insertSm2Board.do' />");
-				comSubmit.submit();
-			}
-		}
-		
-		function fn_inputReset(){
-			document.getElementById("frm").reset();
-		}
-		
 		/* const input = document.querySelector('#plustotalbusinessamount');
 		input.addEventListener('keyup', function(e) {
 		  let value = e.target.value;
@@ -180,18 +109,6 @@
 		    input.value = formatValue;
 		  }
 		}) */
-		
-		const input = document.querySelector('#plustotalbusinessamount');
-		input.addEventListener('keyup', function(e){
-			let value = e.target.value;
-			value = Number(value.replaceAll(',', ''));
-			if(isNaN(value)){
-				input.value = 0;
-			} else{
-				const formatValue = value.toLocaleString('ko-KR');
-				input.value = formatValue;
-			}
-		});
 	</script>
 
 </body>

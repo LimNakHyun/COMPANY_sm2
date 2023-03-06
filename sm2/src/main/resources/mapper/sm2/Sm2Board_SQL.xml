@@ -242,40 +242,32 @@
 		]]>
 	</update>
 	
-	<!-- 사업 순서변경01 -->
-	<update id="changeSm2Board01" parameterType="hashmap">
+	<!-- 특정 연월 사업 목록 불러오기 --> 
+	<select id="selectSpecificBusiness" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
-			UPDATE
+			SELECT
+				IDX,
+				ORDERIDX
+			FROM
 				SM.MANAGEMENT
-			SET
-				ORDERIDX = CAST(#{businessOrderChange2} AS INTEGER)
-			WHERE
-				ORDERIDX = CAST(#{businessOrderChange1} AS INTEGER)
+			WHERE 
+				DELYN = FALSE
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
+			ORDER BY
+				ORDERIDX
 		]]>
-	</update>
+	</select>
 	
-	<!-- 사업 순서변경02 -->
-	<update id="changeSm2Board02" parameterType="hashmap">
+	<!-- 사업 orderIndex 업데이트 -->
+	<update id="updateBoardOrder" parameterType="hashmap">
 		<![CDATA[
 			UPDATE
 				SM.MANAGEMENT
 			SET
-				IDX = CAST(#{businessOrderChange1} AS INTEGER),
-				ORDERIDX = CAST(#{businessOrderChange1} AS INTEGER)
+				ORDERIDX = CAST(#{orderidx} AS INTEGER)
 			WHERE
-				IDX = CAST(#{businessOrderChange2} AS INTEGER)
-		]]>
-	</update>
-	
-	<!-- 사업 순서변경03 -->
-	<update id="changeSm2Board03" parameterType="hashmap">
-		<![CDATA[
-			UPDATE
-				SM.MANAGEMENT
-			SET
-				IDX = CAST(#{businessOrderChange2} AS INTEGER)
-			WHERE
-				ORDERIDX = CAST(#{businessOrderChange2} AS INTEGER)
+				IDX = CAST(#{idx} AS INTEGER)
 		]]>
 	</update>
 

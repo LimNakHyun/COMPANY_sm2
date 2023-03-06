@@ -29,69 +29,26 @@
 					<tr>
 						<th scope="row"><label>사업수금액</label></th>
 						<td>
-							<input type="text" id="collectioncash" name="collectioncash" min="0">
+							<input type="text" id="dCollectioncash" name="dCollectioncash" min="0">
 						</td>
 					</tr>
 				</tbody>
 			</table>
 			
 			<div class="btn-group">
-				<a href="#this" class="btn btn-basic" id="list">목록으로</a>
-				<a href="#this" class="btn btn-black" id="insert">추가</a>
+				<a href="#this" class="btn btn-basic" id="monthListInsert">목록으로</a>
+				<a href="#this" class="btn btn-black" id="monthInsertInsert">추가</a>
 			</div>
 			
 		</form>
 		
 <%@ include file="/WEB-INF/include/body.jsp" %>
-	
+	</div>
+</div>
+
 	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#list").on("click", function(e){
-				e.preventDefault();
-				if(!$('#businessname').val() && !$('#collectioncash').val()){
-					fn_openBoardList();
-				} else{
-					if(confirm('월별 사업 목록으로 돌아가시겠습니까?\n현재 입력한 정보는 모두 사라지게 됩니다.')){
-						fn_openBoardList();
-					} else{
-						return false;
-					}
-				}
-			});
-			
-			$("#insert").on("click", function(e){
-				e.preventDefault();
-				if(confirm('월별 사업을 추가하시겠습니까?')){
-					fn_insertBoard();
-				} else{
-					return false;
-				}
-			});
-		});
-		
-		$(".chzn-select").chosen({
-			allow_single_deselect: true
-		});
-		
-		function fn_openBoardList(){
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/openSm2Month.do' />");
-			comSubmit.submit();
-		}
-		
-		function fn_insertBoard(){
-			var comSubmit = new ComSubmit("frm");
-			if(!$('#businessname').val()){
-				alert('사업명/사업개요를 선택해주세요.');
-			} else if(!$('#collectioncash').val()){
-				alert('매출 금액을 입력해주세요.');
-			} else{
-				comSubmit.setUrl("<c:url value='/insertSm2BoardMonth.do' />");
-				comSubmit.submit();
-			}
-		}
-		
-		const input = document.querySelector('#collectioncash');
+		// 월별 사업 등록 페이지 전체사업금액 숫자 콤마 추가
+		const input = document.querySelector('#dCollectioncash');
 		input.addEventListener('keyup', function(e){
 			let value = e.target.value;
 			value = Number(value.replaceAll(',', ''));
@@ -103,5 +60,4 @@
 			}
 		});
 	</script>
-	</div>
-</div>
+<%@ include file="/WEB-INF/include/footer.jsp" %>

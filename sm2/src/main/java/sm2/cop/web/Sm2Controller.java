@@ -300,30 +300,17 @@ public class Sm2Controller {
 	}
 	
 	/**
-	 * 매출 총괄현황 사업 순서변경
+	 * 매출 총괄현황 동적 사업 검색
 	 * @param commandMap
-	 * @return
+	 * @return /sm2/boardList
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/changeSm2Board.do")
-	public ModelAndView changeSm2Board(CommandMap commandMap) throws Exception {
+	@RequestMapping(value = "/searchbusinessSm2Board.do")
+	public ModelAndView searchbusinessSm2Board(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/openSm2Main.do");
 		
-		String[] changeList = String.valueOf(commandMap.getMap().get("list")).split(",");
-		int[] intChangeList = new int[2];
-		if(Integer.parseInt(changeList[0]) > Integer.parseInt(changeList[1])) {
-			intChangeList[0] = Integer.parseInt(changeList[1]);
-			intChangeList[1] = Integer.parseInt(changeList[0]);
-		} else {
-			intChangeList[0] = Integer.parseInt(changeList[0]);
-			intChangeList[1] = Integer.parseInt(changeList[1]);
-		}
-		
-		commandMap.getMap().put("businessOrderChange1", intChangeList[0]);
-		commandMap.getMap().put("businessOrderChange2", intChangeList[1]);
-		
 		try {
-			sm2Service.changeSm2Board(commandMap.getMap());
+			mv.addObject("searchword", commandMap.getMap().get("searchword"));
 		} catch(Exception e) {
 			log.info(e.getMessage());
 		}
@@ -331,15 +318,22 @@ public class Sm2Controller {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/searchbusinessSm2Board.do")
-	public ModelAndView searchbusinessSm2Board(CommandMap commandMap) throws Exception {
+	/**
+	 * 사업 월별 사업 위치 변경
+	 * @param commandMap
+	 * @param session
+	 * @return "/sm2/boardMonthDetail"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/switchBoard.do")
+	public ModelAndView switchBoard(CommandMap commandMap,
+			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/openSm2Main.do");
 		
-		System.out.println("검색어: " + commandMap.getMap().get("searchbusiness"));
+		commandMap.getMap().put("year", session.getAttribute("year"));
 		
 		try {
-//			sm2Service.searchBusiness(commandMap.getMap());
-			mv.addObject("searchword", commandMap.getMap().get("searchword"));
+			sm2Service.switchBoard(commandMap.getMap());
 		} catch(Exception e) {
 			log.info(e.getMessage());
 		}

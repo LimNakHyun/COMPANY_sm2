@@ -16,6 +16,7 @@
 package sm2.month.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,7 +72,7 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 		int idx = (int)sm2MonthDAO.pickIdx(map).get("idx");
 		map.put("idx", idx);
 		
-		double collectioncash = Double.parseDouble(((String)map.get("collectioncash")).replace(",", ""));
+		double collectioncash = Double.parseDouble(((String)map.get("dCollectioncash")).replace(",", ""));
 		map.put("collectioncash", collectioncash);
 		
 		sm2MonthDAO.insertBoardMonth(map);
@@ -262,10 +263,82 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 	 */
 	@Override
 	public void updateBoardMonth(Map<String, Object> map) throws Exception {
-		double collectioncash = Double.parseDouble(((String)map.get("collectioncash")).replace(",", ""));
+		double collectioncash = Double.parseDouble(((String)map.get("UDCollectioncash")).replace(",", ""));
 		map.put("collectioncash", collectioncash);
 		
 		sm2MonthDAO.updateBoardMonth(map);
+	}
+
+	/**
+	 * 월별 사업 순서 변경
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public void switchBoardMonth(Map<String, Object> map) throws Exception {
+		String[] orderTemp = ((String)map.get("list")).split(",");
+		System.out.println("배열: " + Arrays.toString(orderTemp));
+		int[] order = new int[orderTemp.length];
+		for(int i = 0; i < orderTemp.length; i++) {
+			order[i] = Integer.parseInt(orderTemp[i]);
+		}
+		
+		List<Map<String, Object>> selectSpecificMonthBusiness = sm2MonthDAO.selectSpecificMonthBusiness(map);
+		System.out.println("특정 사업목록: " + selectSpecificMonthBusiness);
+		
+		int[] SBLIndex = new int[selectSpecificMonthBusiness.size()];
+		for(int i = 0; i < SBLIndex.length; i++) {
+			SBLIndex[i] = (int) selectSpecificMonthBusiness.get(i).get("monthorderidx");
+		}
+		
+		int[] C = new int[SBLIndex.length - 1];
+		for(int i = 0; i < C.length; i++) {
+			C[i] = SBLIndex[i + 1] - SBLIndex[i];
+		}
+		
+		int l = 0;
+		for(int i = 0; i < SBLIndex.length; i++) {
+			if(SBLIndex[i] < order[i]) {
+				l = i + 1;
+				break;
+			}
+		}
+		
+		int i = 0;
+		int j = 0;
+		if(SBLIndex[l] > order[l]) {	// i < j
+			i = l - 2;
+			for(int k = 0; k < SBLIndex.length; k++) {
+				if(SBLIndex[k] == order[l - 1]) {
+					j = k;
+				}
+			}
+			
+			for(int k = i + 1; k < j; k++) {
+				selectSpecificMonthBusiness.get(k).put("monthorderidx", SBLIndex[k] + C[k]);
+			}
+			selectSpecificMonthBusiness.get(j).put("monthorderidx", SBLIndex[i + 1]);
+			
+		} else {	// j < i
+			j = l - 1;
+			for(int k = 0; k < SBLIndex.length; k++) {
+				if(order[k] == SBLIndex[l - 1]) {
+					i = k;
+				}
+			}
+			
+			for(int k = j + 1; k <= i; k++) {
+				selectSpecificMonthBusiness.get(k).put("monthorderidx", SBLIndex[k] - C[k - 1]);
+			}
+			selectSpecificMonthBusiness.get(j).put("monthorderidx", SBLIndex[i]);
+			
+		}
+		
+		System.out.println("업데이트된 특정 사업목록: " + selectSpecificMonthBusiness);
+		
+		for(int k = 0; k < selectSpecificMonthBusiness.size(); k++) {
+			sm2MonthDAO.updateBoardOrderMonth(selectSpecificMonthBusiness.get(k));
+		}
 	}
 	
 }

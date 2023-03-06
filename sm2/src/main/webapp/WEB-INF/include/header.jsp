@@ -23,7 +23,8 @@
 	<!-- js -->
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.number.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/common.js" charset="utf-8"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/businessInfo.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/business.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/monthBusiness.js" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath}/resources/chosen/chosen.jquery.js" charset="utf-8"></script>
 	
 </head>

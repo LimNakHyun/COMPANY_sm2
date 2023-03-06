@@ -97,30 +97,13 @@
 		<div class="btn-group">
 			<button type="button" class="btn btn-basic" onclick="goForward()">이전으로</button>
 			<input type="hidden" name="idx" value="${update.idx}">
-			<a href="#this" class="btn btn-black" id="reset">리셋</a>
-			<a href="#this" class="btn btn-lightblue" id="update">완료</a>
+			<a href="#this" class="btn btn-black" id="resetUpdate">리셋</a>
+			<a href="#this" class="btn btn-lightblue" id="updateUpdate">완료</a>
 		</div>
 	</form>
 		
 		<script type="text/javascript">
 			$(document).ready(function(){
-				$("#update").on("click", function(e){
-					e.preventDefault();
-					if(confirm('사업을 수정하시겠습니까?')){
-						fn_updateBoard();
-					} else{
-						return false;
-					}
-				});
-				
-				$("#reset").on("click", function(e){
-					e.preventDefault();
-					if(confirm('리셋하시겠습니까?\n입력한 모든 정보가 사라집니다.')) {
-						fn_inputReset();
-					} else{
-						return false;
-					}
-				});
 				
 				const input = document.querySelector('#plustotalbusinessamount');
 				input.addEventListener('keyup', function(e){
@@ -134,32 +117,6 @@
 					}
 				});
 			});
-			
-			function fn_updateBoard() {
-				var comSubmit = new ComSubmit("frm");
-				var chkNum = /[0-9]*/;
-
-				if(!$('#businessname').val()){
-					alert('사업명/사업개요를 입력해주세요.');
-				} else if(!$('#client').val()){
-					alert('발주처를 입력해주세요.');
-				} else if(!$('#strstartterm').val()){
-					alert('시작 계약기간을 입력해주세요.');
-				} else if(!$('#strendterm').val()){
-					alert('완료 계약기간을 입력해주세요.');
-				} else if(!chkNum.test($('#plustotalbusinessamount').val())){
-					alert('전체사업금액은 숫자만 입력이 가능합니다.');
-				} else if($('#plustotalbusinessamount').val() == "0"){
-					alert('전체사업금액을 입력해주세요.');
-				} else if(!$('#plustotalbusinessamount').val()){
-					alert('전체사업금액을 입력해주세요.');
-				} else if(!$('#ratio').val()){
-					alert('지분율을 입력해주세요.');
-				} else{
-					comSubmit.setUrl("<c:url value='/updateSm2Board.do' />");
-					comSubmit.submit();
-				}
-			}
 		
 			function minustotalbusinessamountAutoCal() {
 				var temp = $('.plustotalbusinessamount').val().replaceAll(',', '');
@@ -170,10 +127,6 @@
 			function ratioAutoCal() {
 				var result = $('.minustotalbusinessamount').val() * $('.ratio').val() / 100;
 				$('input[name="salesamount"]').val(result);
-			}
-			
-			function fn_inputReset(){
-				document.getElementById("frm").reset();
 			}
 		</script>
 		

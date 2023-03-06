@@ -59,55 +59,14 @@
 		<input type="hidden" name="idx" value="${detail.idx}">
 		
 		<div class="btn-group">
-			<a href="#this" class="btn btn-basic" id="list">목록으로</a>
-			<a href="#this" class="btn btn-black" id="delete">삭제</a>
-			<a href="#this" class="btn btn-lightblue" id="update">수정</a>
+			<a href="#this" class="btn btn-basic" id="listDetail">목록으로</a>
+			<a href="#this" class="btn btn-black" id="deleteDetail">삭제</a>
+			<a href="#this" class="btn btn-lightblue" id="updateDetail">수정</a>
 			
 		</div>
 	</form>
 		
 <%@ include file="/WEB-INF/include/body.jsp" %>
-	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			$("#list").on("click", function(e){
-				e.preventDefault();
-				fn_openBoardList();
-			});
-			
-			$("#delete").on("click", function(e){
-				e.preventDefault();
-				if(confirm('삭제하시겠습니까?')){
-					fn_deleteBoard();
-				} else{
-					return false;
-				}
-			});
-			
-			$("#update").on("click", function(e){
-				e.preventDefault();
-				fn_updateBoard();
-			});
-		});
-	
-		function fn_openBoardList(){
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/openSm2Main.do' />");
-			comSubmit.submit();
-		}
-		
-		function fn_deleteBoard(){
-			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/deleteSm2Board.do' />");
-			comSubmit.submit();
-		}
-		
-		function fn_updateBoard(){
-			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/openSm2UpdateBoard.do' />");
-			comSubmit.submit();
-		}
-	</script>
-
 	</div>
 </div>
+<%@ include file="/WEB-INF/include/footer.jsp" %>

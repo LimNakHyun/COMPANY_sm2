@@ -52,7 +52,7 @@
 						<fmt:formatNumber value="${update.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
 					<th scope="row">사업수금액</th>
 					<td class="red_txt">
-						<input class="red_txt collectioncash" type="text" id="collectioncash" name="collectioncash" value="${update.collectioncash}">&nbsp;원
+						<input class="red_txt collectioncash" type="text" id="UDCollectioncash" name="UDCollectioncash" value="${update.collectioncash}">&nbsp;원
 					</td>
 				</tr>
 			</tbody>
@@ -63,51 +63,14 @@
 		
 		<div class="btn-group">
 			<button type="button" class="btn btn-basic" onclick="goForward()">이전으로</button>
-			<a href="#this" class="btn btn-black" id="reset">리셋</a>
-			<a href="#this" class="btn btn-lightblue" id="update">수정</a>
+			<a href="#this" class="btn btn-black" id="monthResetUpdate">리셋</a>
+			<a href="#this" class="btn btn-lightblue" id="monthUpdateUpdate">수정</a>
 			
 		</div>
 	</form>
 	
 		<script type="text/javascript">
-			$(document).ready(function(){
-				$("#update").on("click", function(e){
-					e.preventDefault();
-					if(confirm('월별 사업을 수정하시겠습니까?')){
-						fn_updateBoard();
-					} else{
-						return false;
-					}
-				});
-				
-				$("#reset").on("click", function(e){
-					e.preventDefault();
-					if(confirm('리셋하시겠습니까?\n입력한 사업수금액 정보가 사라집니다.')) {
-						fn_inputReset();
-					} else{
-						return false;
-					}
-				});
-			});
-			
-			function fn_updateBoard() {
-				var comSubmit = new ComSubmit("frm");
-				
-				if(!$('#collectioncash').val()){
-					alert('사업수금액을 입력해주세요.')
-				} else if($('#collectioncash').val() == "0"){
-					alert('전체사업금액을 입력해주세요.');
-				} else{
-					comSubmit.setUrl("<c:url value='/updateBoardMonth.do' />");
-					comSubmit.submit();
-				}
-			}
-			
-			function fn_inputReset(){
-				document.getElementById("frm").reset();
-			}
-			
-			const input = document.querySelector('#collectioncash');
+			const input = document.querySelector('#UDCollectioncash');
 			input.addEventListener('keyup', function(e){
 				let value = e.target.value;
 				value = Number(value.replaceAll(',', ''));
