@@ -16,7 +16,6 @@
 package sm2.month.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -277,14 +276,14 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 	@Override
 	public void switchBoardMonth(Map<String, Object> map) throws Exception {
 		String[] orderTemp = ((String)map.get("list")).split(",");
-		System.out.println("배열: " + Arrays.toString(orderTemp));
+//		System.out.println("배열: " + Arrays.toString(orderTemp));
 		int[] order = new int[orderTemp.length];
 		for(int i = 0; i < orderTemp.length; i++) {
 			order[i] = Integer.parseInt(orderTemp[i]);
 		}
 		
 		List<Map<String, Object>> selectSpecificMonthBusiness = sm2MonthDAO.selectSpecificMonthBusiness(map);
-		System.out.println("특정 사업목록: " + selectSpecificMonthBusiness);
+//		System.out.println("특정 사업목록: " + selectSpecificMonthBusiness);
 		
 		int[] SBLIndex = new int[selectSpecificMonthBusiness.size()];
 		for(int i = 0; i < SBLIndex.length; i++) {
@@ -334,7 +333,7 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 			
 		}
 		
-		System.out.println("업데이트된 특정 사업목록: " + selectSpecificMonthBusiness);
+//		System.out.println("업데이트된 특정 사업목록: " + selectSpecificMonthBusiness);
 		
 		for(int k = 0; k < selectSpecificMonthBusiness.size(); k++) {
 			sm2MonthDAO.updateBoardOrderMonth(selectSpecificMonthBusiness.get(k));
