@@ -25,6 +25,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/common.js" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/business.js" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/monthBusiness.js" charset="utf-8"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/login.js" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath}/resources/chosen/chosen.jquery.js" charset="utf-8"></script>
 	
 </head>
@@ -75,6 +76,11 @@
 								<input type="hidden" name="year" value="${year}">
 								<input type="hidden" name="month" value="13">
 								<button type="submit" class="btn btn-basic">이월</button>
+							</form>
+						</li>
+						<li>
+							<form action="/openSm2Logout.do" method="post">
+								<button type="submit" class="btn btn-lightblue">로그아웃</button>
 							</form>
 						</li>
 					</ul>

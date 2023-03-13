@@ -51,8 +51,21 @@ public class Sm2Controller {
 	 */
 	@RequestMapping(value = "/openSm2Index.do")
 	public ModelAndView openSm2Index(CommandMap commandMap,
+//			@SessionAttribute(name = "login", required = false) String login,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("/sm2/boardYearSelect");
+		ModelAndView mv;
+		
+		String login = (String) session.getAttribute("login");
+		
+//		if((session.getAttribute("login") == null) && ((String)session.getAttribute("login")).equals("")) {
+//		System.out.println("세션값 출력: " + commandMap.getMap().get("login"));
+//		System.out.println("세션값 출력: " + login);
+//		if(commandMap.getMap().get("login") == null) {
+		if(login == null || login.equals("")) {
+			mv = new ModelAndView("/sm2/boardLogin");
+		} else {
+			mv = new ModelAndView("/sm2/boardYearSelect");
+		}
 		
 		try {
 			session.removeAttribute("year");
@@ -119,6 +132,7 @@ public class Sm2Controller {
 	public ModelAndView openSm2MainAjax(CommandMap commandMap,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("jsonView");
+		
 		try {
 			if(session.getAttribute("month") != "" || session.getAttribute("month") != null) {
 				session.removeAttribute("month");

@@ -32,7 +32,6 @@ public class Sm2ServiceImpl implements Sm2Service {
 	Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="sm2DAO")
-	
 	private Sm2DAO sm2DAO;
 
 	/**

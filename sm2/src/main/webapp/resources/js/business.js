@@ -110,19 +110,6 @@ $(document).ready(function(){
 			return false;
 		}
 	});
-
-	// 사업 등록 페이지 전체사업금액 숫자 콤마 추가
-	const input = document.querySelector('#dPlustotalbusinessamount');
-	input.addEventListener('keyup', function(e){
-		let value = e.target.value;
-		value = Number(value.replaceAll(',', ''));
-		if(isNaN(value)){
-			input.value = 0;
-		} else{
-			const formatValue = value.toLocaleString('ko-KR');
-			input.value = formatValue;
-		}
-	});
 });
 
 // 사업 등록 페이지로 이동
