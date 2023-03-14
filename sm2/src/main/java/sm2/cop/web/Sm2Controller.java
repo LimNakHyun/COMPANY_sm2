@@ -93,7 +93,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("/sm2/boardList");
 			
@@ -188,7 +188,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("/sm2/boardDetail");
 			
@@ -219,7 +219,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("/sm2/boardInsert");
 		}
@@ -242,7 +242,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("redirect:/openSm2Main.do");
 			
@@ -272,7 +272,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("redirect:/openSm2Main.do");
 			
@@ -301,7 +301,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("/sm2/boardUpdate");
 			
@@ -330,7 +330,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("/sm2/boardDetail");
 			
@@ -362,7 +362,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("/sm2/boardSalesOverall");
 			
@@ -396,7 +396,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("redirect:/openSm2Main.do");
 			
@@ -425,7 +425,7 @@ public class Sm2Controller {
 		String login = (String) session.getAttribute("login");
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("/sm2/boardLogin");
+			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
 			mv = new ModelAndView("redirect:/openSm2Main.do");
 			
