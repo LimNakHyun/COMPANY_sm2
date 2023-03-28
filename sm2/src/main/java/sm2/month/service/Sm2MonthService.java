@@ -90,4 +90,11 @@ public interface Sm2MonthService {
 	 */
 	void switchBoardMonth(Map<String, Object> map) throws Exception;
 
+	/**
+	 * 사업 월별 수금액 상세보기 조회시 관련된 월별 사업목록 조회 
+	 * @param map
+	 * @throws Exception
+	 */
+	List<Map<String, Object>> selectBoardDetailMonthDetail(Map<String, Object> map) throws Exception;
+
 }

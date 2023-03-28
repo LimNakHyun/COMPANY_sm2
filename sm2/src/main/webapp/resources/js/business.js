@@ -110,6 +110,38 @@ $(document).ready(function(){
 			return false;
 		}
 	});
+	
+	// 사업 상세보기에서 월별 사업 상세보기로 이동
+	$("a[name='detailTitle']").on("click", function(e){
+		e.preventDefault();
+		fn_openBoardMonthDetail($(this));
+	});
+	
+	// 사업 상세보기에서 월별 사업 상태 완료로변경
+	$("a[name='detailMonthConditionGo']").on("click", function(e){
+		e.preventDefault();
+		if(confirm('사업을 완료하시겠습니까?')){
+			fn_switchDetailMonthBusinessCondition($(this));
+		} else{
+			return false;
+		}
+	});
+	
+	// 사업 상세보기에서 월별 사업 상태 미완으로변경
+	$("a[name='detailMonthConditionBack']").on("click", function(e){
+		e.preventDefault();
+		if(confirm('사업을 미완 상태로 되돌리시겠습니까?')){
+			fn_switchDetailMonthBusinessCondition($(this));
+		} else{
+			return false;
+		}
+	});
+});
+
+// 동적으로 추가된 태그에 사업 상세보기 이벤트 추가
+$(document).on('click', 'a[name="title"]', function(e) {
+    e.preventDefault();
+    fn_openBoardDetail($(this));
 });
 
 // 사업 등록 페이지로 이동
@@ -320,4 +352,15 @@ function fn_updateBoardUpdate() {
 // 사업 수정 페이지 리셋
 function fn_inputResetUpdate(){
 	document.getElementById("frm").reset();
+}
+
+// 사업 상세보기 페이지에서 월별 사업 상태 변경
+function fn_switchDetailMonthBusinessCondition(obj){
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("/updateSm2DetailMonthBusinessCondition.do");
+	comSubmit.addParam("idx", obj.parent().find("#idx").val());
+	comSubmit.addParam("monthidx", obj.parent().find("#monthidx").val());
+	comSubmit.addParam("collectioncash", obj.parent().find("#collectioncash").val());
+	comSubmit.addParam("monthbusinesscondition", obj.parent().find("#monthbusinesscondition").val());
+	comSubmit.submit();
 }

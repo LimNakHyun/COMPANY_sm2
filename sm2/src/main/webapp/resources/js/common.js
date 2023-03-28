@@ -62,3 +62,8 @@ function goForward() {
 		return false;
 	}
 }
+
+// boardMonthDetail.jsp 에서 이전으로 돌아가기
+function goBack() {
+	history.go(-1);
+}

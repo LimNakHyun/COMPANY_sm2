@@ -51,5 +51,20 @@
 		getBusinessList()
 	</script>
 	
+<!-- 	<script>
+		$(document).ready(function(){
+			$("a[name='title']").on("click", function(e){
+				e.preventDefault();
+				fn_openBoardDetail($(this));
+			});
+		});
+		function fn_openBoardDetail(obj){
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("/openSm2Detail.do");
+			comSubmit.addParam("idx", obj.parent().find("#idx").val());
+			comSubmit.submit();
+		}
+	</script> -->
+
 <%@ include file="/WEB-INF/include/body.jsp" %>
 <%@ include file="/WEB-INF/include/footer.jsp" %>

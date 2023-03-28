@@ -187,6 +187,12 @@ public class Sm2Controller {
 		
 		String login = (String) session.getAttribute("login");
 		
+		if(!(commandMap.getMap().get("idx") instanceof String)) {
+			String[] idxArr = (String[]) commandMap.get("idx");
+		    String idx = idxArr[0];
+		    commandMap.getMap().put("idx", idx);
+		}
+		
 		if(login == null || login.equals("")) {
 			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
@@ -194,7 +200,9 @@ public class Sm2Controller {
 			
 			try {
 				Map<String, Object> detail = sm2Service.selectBoardDetail(commandMap.getMap());
+				List<Map<String, Object>> monthDetails = sm2MonthService.selectBoardDetailMonthDetail(commandMap.getMap());
 				mv.addObject("detail", detail);
+				mv.addObject("monthDetails", monthDetails);
 			} catch(Exception e) {
 				log.info(e.getMessage());
 			}
@@ -433,6 +441,43 @@ public class Sm2Controller {
 			
 			try {
 				sm2Service.switchBoard(commandMap.getMap());
+			} catch(Exception e) {
+				log.info(e.getMessage());
+			}
+		}
+		
+		return mv;
+	}
+	
+	/**
+	 * 사업 월별 사업 위치 변경
+	 * @param commandMap
+	 * @param session
+	 * @return "/sm2/boardMonthDetail"
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/updateSm2DetailMonthBusinessCondition.do")
+	public ModelAndView updateSm2DetailMonthBusinessCondition(CommandMap commandMap,
+			HttpSession session) throws Exception {
+		ModelAndView mv;
+		
+		String login = (String) session.getAttribute("login");
+		
+		if(login == null || login.equals("")) {
+			mv = new ModelAndView("redirect:/openSm2Index.do");
+		} else {
+			mv = new ModelAndView("redirect:/openSm2Detail.do");
+			System.out.println(commandMap.getMap());
+			
+			try {
+				commandMap.getMap().put("year", session.getAttribute("year"));
+				commandMap.getMap().put("month", session.getAttribute("month"));
+				
+				sm2MonthService.updateBoardMonthCondition(commandMap.getMap());
+				
+				List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
+				mv.addObject("list", list);
+				mv.addObject("idx", commandMap.getMap().get("idx"));
 			} catch(Exception e) {
 				log.info(e.getMessage());
 			}

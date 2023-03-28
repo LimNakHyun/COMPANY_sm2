@@ -269,5 +269,31 @@
 				MONTHIDX = CAST(#{monthidx} AS INTEGER)
 		]]>
 	</update>
+	
+	<select id="selectBoardDetailMonthDetail" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				M2.CODE,
+				M2.BUSINESSNAME,
+				M2.CLIENT,
+				M2.SALESAMOUNT,
+				M2.TOTALCOLLECTIONREMAININGAMOUNT,
+				M1.MONTHIDX,
+				M1.COLLECTIONCASH,
+				M1.BUSINESSMONTH,
+				M1.MONTHBUSINESSCONDITION
+			FROM
+				SM.MONTHMANAGEMENT M1
+			INNER JOIN SM.MANAGEMENT M2
+			ON M1.IDX = M2.IDX
+			WHERE
+				M1.IDX = CAST(#{idx} AS INTEGER)
+			AND
+				M1.DELYN = FALSE
+			ORDER BY
+				M1.BUSINESSMONTH,
+				M1.MONTHORDERIDX
+		]]>
+	</select>
 
 </mapper>

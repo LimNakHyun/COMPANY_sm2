@@ -339,5 +339,15 @@ public class Sm2MonthServiceImpl implements Sm2MonthService {
 			sm2MonthDAO.updateBoardOrderMonth(selectSpecificMonthBusiness.get(k));
 		}
 	}
+
+	/**
+	 * 사업 월별 수금액 상세보기 조회시 관련된 월별 사업목록 조회 
+	 * @param map
+	 * @throws Exception
+	 */
+	@Override
+	public List<Map<String, Object>> selectBoardDetailMonthDetail(Map<String, Object> map) throws Exception {
+		return sm2MonthDAO.selectBoardDetailMonthDetail(map);
+	}
 	
 }
