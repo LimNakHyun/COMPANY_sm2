@@ -118,25 +118,54 @@ $(document).ready(function(){
 	});
 	
 	// 사업 상세보기에서 월별 사업 상태 완료로변경
-	$("a[name='detailMonthConditionGo']").on("click", function(e){
-		e.preventDefault();
-		if(confirm('사업을 완료하시겠습니까?')){
-			fn_switchDetailMonthBusinessCondition($(this));
-		} else{
-			return false;
-		}
-	});
+//	$("a[name='detailMonthConditionGo']").on("click", function(e){
+//		e.preventDefault();
+//		if(confirm('사업을 완료하시겠습니까?')){
+//			fn_switchDetailMonthBusinessCondition($(this));
+//		} else{
+//			return false;
+//		}
+//	});
 	
 	// 사업 상세보기에서 월별 사업 상태 미완으로변경
-	$("a[name='detailMonthConditionBack']").on("click", function(e){
-		e.preventDefault();
-		if(confirm('사업을 미완 상태로 되돌리시겠습니까?')){
-			fn_switchDetailMonthBusinessCondition($(this));
-		} else{
-			return false;
-		}
-	});
+//	$("a[name='detailMonthConditionBack']").on("click", function(e){
+//		e.preventDefault();
+//		if(confirm('사업을 미완 상태로 되돌리시겠습니까?')){
+//			fn_switchDetailMonthBusinessCondition($(this));
+//		} else{
+//			return false;
+//		}
+//	});
+	
+	
+//	var ndlsInput = document.getElementById("commonForm").getElementsByTagName("input");
+//	ndlsInput.parentNode.removeChild(ndlsInput);
+//	var ndlsInputList = document.getElementById("commonForm").querySelectorAll("input");
+//	if(ndlsInputList.length > 0) {
+//		ndlsInputList.forEach(function(item, index) {
+//			console.log(item, index);
+//		});
+//	}
+	
+	
 });
+
+//window.onload = function() {
+////	var ndlsInputList = document.getElementById("commonForm").querySelectorAll("input");
+////	if(ndlsInputList.length > 0) {
+////		ndlsInputList.forEach(function(item) {
+//////			item.remove();
+////			alert(item);
+////		});
+////	}
+//	
+//	var form = document.getElementById("commonForm");
+//	var inputs = form.querySelectorAll("input");
+//	inputs.forEach(function(input) {
+//	  form.removeChild(input);
+//	});
+//}
+
 
 // 동적으로 추가된 태그에 사업 상세보기 이벤트 추가
 $(document).on('click', 'a[name="title"]', function(e) {
@@ -355,12 +384,37 @@ function fn_inputResetUpdate(){
 }
 
 // 사업 상세보기 페이지에서 월별 사업 상태 변경
-function fn_switchDetailMonthBusinessCondition(obj){
-	var comSubmit = new ComSubmit();
-	comSubmit.setUrl("/updateSm2DetailMonthBusinessCondition.do");
-	comSubmit.addParam("idx", obj.parent().find("#idx").val());
-	comSubmit.addParam("monthidx", obj.parent().find("#monthidx").val());
-	comSubmit.addParam("collectioncash", obj.parent().find("#collectioncash").val());
-	comSubmit.addParam("monthbusinesscondition", obj.parent().find("#monthbusinesscondition").val());
-	comSubmit.submit();
+//function fn_switchDetailMonthBusinessCondition(obj){
+//	const comSubmit = new ComSubmit("frm");
+//	comSubmit.setUrl("/updateSm2DetailMonthBusinessCondition.do");
+//	comSubmit.addParam("idx", obj.parent().find("#idx").val());
+//	comSubmit.addParam("monthidx", obj.parent().find("#monthidx").val());
+//	comSubmit.addParam("collectioncash", obj.parent().find("#collectioncash").val());
+//	comSubmit.addParam("monthbusinesscondition", obj.parent().find("#monthbusinesscondition").val());
+//	comSubmit.submit();
+//}
+
+//비디오 목록 출력
+function getBoardDetailRelatedBusiness(idx){
+	
+	$.ajax({
+		type: "POST",
+		url: "/getBoardDetailRelatedBusiness.do",
+		async: false,
+		data: {
+			"idx": idx
+		},
+		dataType: "html",
+		success: function(data, status){
+			console.log(data);
+			if(status == "success"){
+				$("div.boardDetailRelatedBusiness").html(data);
+			} else{
+				console.log("Failed to get DetailRelatedBusiness list.");
+			}
+		},
+		error: function(request,status,error){
+			console.log("Failed to get DetailRelatedBusiness list.");
+		}
+	});
 }

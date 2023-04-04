@@ -146,4 +146,34 @@ public class Sm2DAO extends AbstractDAO {
 		update("sm2Board.updateBoardOrder", map);
 	}
 
+	/**
+	 * 사업 상세보기 관련 사업 조회
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> getBoardDetailRelatedBusiness(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>) selectList("sm2Board.getBoardDetailRelatedBusiness", map);
+	}
+
+	/**
+	 * 사업 상세보기 관련 예상 사업 수금액 조회
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getBoardDetailRelatedBusinessExpectcollectioncash(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("sm2Board.getBoardDetailRelatedBusinessExpectcollectioncash", map);
+	}
+
+	/**
+	 * 사업 상세보기 관련 실 사업 수금액 조회
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> getBoardDetailRelatedBusinessRealcollectioncash(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("sm2Board.getBoardDetailRelatedBusinessRealcollectioncash", map);
+	}
+
 }

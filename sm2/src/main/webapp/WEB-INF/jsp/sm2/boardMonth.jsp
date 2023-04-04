@@ -64,7 +64,7 @@
 								<fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
 							<td class="middle">
 								<input type="hidden" id="idx" name="idx" value="${dto.idx}">
-								<%-- <input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}"> --%>
+								<input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}">
 								<input type="hidden" id="monthorderidx" name="monthorderidx" value="${dto.monthorderidx}">
 								<input type="hidden" id="collectioncash" name="collectioncash" value="${dto.collectioncash}">
 								<input type="hidden" id="monthbusinesscondition" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">

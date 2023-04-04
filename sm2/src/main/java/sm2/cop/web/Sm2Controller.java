@@ -23,6 +23,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -105,10 +106,12 @@ public class Sm2Controller {
 				if((session.getAttribute("year") == "" || session.getAttribute("year") == null)
 						&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
 					session.setAttribute("year", commandMap.getMap().get("year"));
-				} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
+				}
+				else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
 						&& ((commandMap.getMap().get("year") == "") || (commandMap.getMap().get("year") == null))) {
 					commandMap.getMap().put("year", session.getAttribute("year"));
-				} else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
+				}
+				else if(((session.getAttribute("year") != "") || (session.getAttribute("year") != null))
 						&& ((commandMap.getMap().get("year") != "") || (commandMap.getMap().get("year") != null))) {
 					session.removeAttribute("year");
 					session.setAttribute("year", commandMap.getMap().get("year"));
@@ -200,9 +203,9 @@ public class Sm2Controller {
 			
 			try {
 				Map<String, Object> detail = sm2Service.selectBoardDetail(commandMap.getMap());
-				List<Map<String, Object>> monthDetails = sm2MonthService.selectBoardDetailMonthDetail(commandMap.getMap());
+//				List<Map<String, Object>> monthDetails = sm2MonthService.selectBoardDetailMonthDetail(commandMap.getMap());
 				mv.addObject("detail", detail);
-				mv.addObject("monthDetails", monthDetails);
+//				mv.addObject("monthDetails", monthDetails);
 			} catch(Exception e) {
 				log.info(e.getMessage());
 			}
@@ -346,7 +349,9 @@ public class Sm2Controller {
 				sm2Service.updateBoard(commandMap.getMap());
 				
 				Map<String, Object> detail = sm2Service.selectBoardDetail(commandMap.getMap());
+				List<Map<String, Object>> monthDetails = sm2MonthService.selectBoardDetailMonthDetail(commandMap.getMap());
 				mv.addObject("detail", detail);
+				mv.addObject("monthDetails", monthDetails);
 			} catch(Exception e) {
 				log.info(e.getMessage());
 			}
@@ -450,40 +455,89 @@ public class Sm2Controller {
 	}
 	
 	/**
-	 * 사업 월별 사업 위치 변경
+	 * 사업 상세보기에서 사업 월별 수금액 수금여부 전환
 	 * @param commandMap
 	 * @param session
 	 * @return "/sm2/boardMonthDetail"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/updateSm2DetailMonthBusinessCondition.do")
-	public ModelAndView updateSm2DetailMonthBusinessCondition(CommandMap commandMap,
+//	@RequestMapping(value = "/updateSm2DetailMonthBusinessCondition.do")
+//	public ModelAndView updateSm2DetailMonthBusinessCondition(CommandMap commandMap,
+//			HttpSession session) throws Exception {
+//		ModelAndView mv;
+//		
+//		String login = (String) session.getAttribute("login");
+		
+//		String[] chkValues = {"monthidx", "idx", "collectioncash", "monthbusinesscondition"};
+//		
+//		for(String chkValue : chkValues) {
+//			if(!(commandMap.getMap().get(chkValue) instanceof String)) {
+//				String[] tempArr = (String[]) commandMap.get(chkValue);
+//			    String tempVal = tempArr[0];
+//			    commandMap.getMap().put(chkValue, tempVal);
+//			}
+//		}
+		
+//		if(login == null || login.equals("")) {
+//			mv = new ModelAndView("redirect:/openSm2Index.do");
+//		} else {
+//			mv = new ModelAndView("redirect:/openSm2Detail.do");
+//			System.out.println(commandMap.getMap());
+//			
+//			try {
+//				commandMap.getMap().put("year", session.getAttribute("year"));
+//				commandMap.getMap().put("month", session.getAttribute("month"));
+//				
+//				sm2MonthService.updateBoardMonthCondition(commandMap.getMap());
+//				
+//				List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
+//				mv.addObject("list", list);
+//				mv.addObject("idx", commandMap.getMap().get("idx"));
+//			} catch(Exception e) {
+//				log.info(e.getMessage());
+//			}
+//		}
+//		
+//		return mv;
+//	}
+	
+	/**
+	 * 사업 상세보기 관련 사업 조회
+	 * @param commandMap
+	 * @param session
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "/getBoardDetailRelatedBusiness.do")
+	public String getBoardDetailRelatedBusiness(ModelMap model,
+			CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv;
 		
 		String login = (String) session.getAttribute("login");
+		String returnPage;
 		
 		if(login == null || login.equals("")) {
-			mv = new ModelAndView("redirect:/openSm2Index.do");
+			returnPage = "/sm2/boardYearSelect";
 		} else {
-			mv = new ModelAndView("redirect:/openSm2Detail.do");
-			System.out.println(commandMap.getMap());
+			returnPage = "/import/boardDetailRelatedBusiness";
 			
 			try {
-				commandMap.getMap().put("year", session.getAttribute("year"));
-				commandMap.getMap().put("month", session.getAttribute("month"));
+				List<Map<String, Object>> monthDetails = sm2Service.getBoardDetailRelatedBusiness(commandMap.getMap());
+				Map<String, Object> expectcollectioncash = sm2Service.getBoardDetailRelatedBusinessExpectcollectioncash(commandMap.getMap());
+				Map<String, Object> realcollectioncash = sm2Service.getBoardDetailRelatedBusinessRealcollectioncash(commandMap.getMap());
 				
-				sm2MonthService.updateBoardMonthCondition(commandMap.getMap());
-				
-				List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
-				mv.addObject("list", list);
-				mv.addObject("idx", commandMap.getMap().get("idx"));
+				model.addAttribute("monthDetails", monthDetails);
+				model.addAttribute("expectcollectioncash", expectcollectioncash);
+				model.addAttribute("realcollectioncash", realcollectioncash);
+				model.addAttribute("result", "success");
 			} catch(Exception e) {
 				log.info(e.getMessage());
+				
+				model.addAttribute("result", "fail");
 			}
 		}
 		
-		return mv;
+		return returnPage;
 	}
 
 }

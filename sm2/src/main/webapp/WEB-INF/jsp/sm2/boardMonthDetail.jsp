@@ -64,11 +64,17 @@
 		<input type="hidden" name="monthidx" value="${detail.monthidx}">
 		
 		<div class="btn-group">
-			<!-- <a href="#this" class="btn btn-basic" id="monthListDetail">이전</a> -->
-			<button type="button" class="btn btn-basic" onclick="goBack()">이전</button>
-			<a href="#this" class="btn btn-black" id="monthDeleteDetail">삭제</a>
-			<a href="#this" class="btn btn-lightblue" id="monthUpdateDetail">수정</a>
+			<c:if test="${month != null}">
+				<!-- <button type="button" class="btn btn-basic" onclick="goBack()">목록으로</button> -->
+				<a href="#this" class="btn btn-basic" id="monthListDetail">목록으로</a>
+				<a href="#this" class="btn btn-black" id="monthDeleteDetail">삭제</a>
+				<a href="#this" class="btn btn-lightblue" id="monthUpdateDetail">수정</a>
+			</c:if>
 			
+			<c:if test="${month eq null}">
+				<!-- <a href="#this" class="btn btn-CornflowerBlue" name="title">사업으로</a> -->
+				<button type="button" class="btn btn-CornflowerBlue" onclick="goBack()">사업으로</button>
+			</c:if>
 		</div>
 	</form>
 		

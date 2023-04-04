@@ -65,13 +65,21 @@ public class Sm2MonthController {
 				if((commandMap.getMap().get("month") != "" || commandMap.getMap().get("month") != null)
 						&& (session.getAttribute("month") == "" || session.getAttribute("month") == null)) {
 					session.setAttribute("month", commandMap.getMap().get("month"));
-				} else if((commandMap.getMap().get("month") == "" || commandMap.getMap().get("month") == null)
+				}
+				else if((commandMap.getMap().get("month") == "" || commandMap.getMap().get("month") == null)
 						&& (session.getAttribute("month") != "" || session.getAttribute("month") != null)) {
 					commandMap.getMap().put("year", session.getAttribute("year"));
 					commandMap.getMap().put("month", session.getAttribute("month"));
-				} else if(commandMap.getMap().get("month") != session.getAttribute("month")) {
+				}
+				else if(commandMap.getMap().get("month") != session.getAttribute("month")) {
 					session.setAttribute("month", commandMap.getMap().get("month"));
 				}
+//				else if((commandMap.getMap().get("month") == "" || commandMap.getMap().get("month") == null)
+//						&& (session.getAttribute("month") == "" || session.getAttribute("month") == null)) {
+//					String month = sm2MonthService.selectBoardMonthMonth(commandMap.getMap());
+//					commandMap.getMap().put("year", session.getAttribute("year"));
+//					commandMap.getMap().put("month", session.getAttribute("month"));
+//				}
 				
 				List<Map<String, Object>> list = sm2MonthService.selectBoardMonthList(commandMap.getMap());
 				mv.addObject("list", list);
@@ -201,6 +209,16 @@ public class Sm2MonthController {
 		ModelAndView mv;
 		
 		String login = (String) session.getAttribute("login");
+		
+//		String[] chkValues = {"monthidx"};
+//		
+//		for(String chkValue : chkValues) {
+//			if(!(commandMap.getMap().get(chkValue) instanceof String)) {
+//				String[] tempArr = (String[]) commandMap.get(chkValue);
+//			    String tempVal = tempArr[0];
+//			    commandMap.getMap().put(chkValue, tempVal);
+//			}
+//		}
 		
 		if(login == null || login.equals("")) {
 			mv = new ModelAndView("redirect:/openSm2Index.do");

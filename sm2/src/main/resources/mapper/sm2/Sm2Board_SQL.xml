@@ -270,5 +270,62 @@
 				IDX = CAST(#{idx} AS INTEGER)
 		]]>
 	</update>
+	
+	<!-- 사업 상세보기 관련 사업 조회 -->
+	<select id="getBoardDetailRelatedBusiness" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				M2.CODE,
+				M2.BUSINESSNAME,
+				M2.CLIENT,
+				M2.SALESAMOUNT,
+				M2.TOTALCOLLECTIONREMAININGAMOUNT,
+				M1.MONTHIDX,
+				M1.COLLECTIONCASH,
+				M1.BUSINESSMONTH,
+				M1.MONTHBUSINESSCONDITION
+			FROM
+				SM.MONTHMANAGEMENT M1
+			INNER JOIN SM.MANAGEMENT M2
+			ON M1.IDX = M2.IDX
+			WHERE
+				M1.IDX = CAST(#{idx} AS INTEGER)
+			AND
+				M1.DELYN = FALSE
+			ORDER BY
+				M1.BUSINESSMONTH,
+				M1.MONTHORDERIDX
+		]]>
+	</select>
+	
+	<!-- 사업 상세보기 관련 예상 사업 수금액 조회 -->
+	<select id="getBoardDetailRelatedBusinessExpectcollectioncash" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				SUM(COLLECTIONCASH) AS EXPECTCOLLECTIONCASH
+			FROM
+				SM.MONTHMANAGEMENT
+			WHERE 
+				IDX = CAST(#{idx} AS INTEGER)
+			AND
+				DELYN = FALSE
+		]]>
+	</select>
+	
+	<!-- 사업 상세보기 관련 실 사업 수금액 조회 -->
+	<select id="getBoardDetailRelatedBusinessRealcollectioncash" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				SUM(COLLECTIONCASH) AS REALCOLLECTIONCASH
+			FROM
+				SM.MONTHMANAGEMENT
+			WHERE 
+				IDX = CAST(#{idx} AS INTEGER)
+			AND
+				DELYN = FALSE
+			AND
+				MONTHBUSINESSCONDITION = TRUE
+		]]>
+	</select>
 
 </mapper>

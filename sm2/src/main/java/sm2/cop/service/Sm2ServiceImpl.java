@@ -212,4 +212,34 @@ public class Sm2ServiceImpl implements Sm2Service {
 		
 	}
 
+	/**
+	 * 사업 상세보기 관련 사업 조회
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@Override
+	public List<Map<String, Object>> getBoardDetailRelatedBusiness(Map<String, Object> map) throws Exception {
+		return sm2DAO.getBoardDetailRelatedBusiness(map);
+	}
+
+	/**
+	 * 사업 상세보기 관련 예상 사업 수금액 조회
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@Override
+	public Map<String, Object> getBoardDetailRelatedBusinessExpectcollectioncash(Map<String, Object> map) throws Exception {
+		return sm2DAO.getBoardDetailRelatedBusinessExpectcollectioncash(map);
+	}
+
+	/**
+	 * 사업 상세보기 관련 실 사업 수금액 조회
+	 * @param commandMap
+	 * @throws Exception
+	 */
+	@Override
+	public Map<String, Object> getBoardDetailRelatedBusinessRealcollectioncash(Map<String, Object> map) throws Exception {
+		return sm2DAO.getBoardDetailRelatedBusinessRealcollectioncash(map);
+	}
+
 }

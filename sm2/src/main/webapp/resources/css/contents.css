@@ -98,6 +98,9 @@ html, body {height:100%;}
 .btn-lightblue {background-color:#006cd9;color:#fff;}
 .btn-lightblue:hover {background-color:#0059b3;}
 
+.btn-CornflowerBlue {background-color:#6495ED;color:#fff;}
+.btn-CornflowerBlue:hover {background-color:#3a77e9;}
+
 .btn-group {display:flex;margin-top:20px;justify-content:center;}
 .btn-group.btn-right {justify-content:flex-end;}
 .btn-group.btn-left {justify-content:flex-start;}

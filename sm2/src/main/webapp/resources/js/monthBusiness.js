@@ -120,7 +120,7 @@ function fn_openBoardMonthInsert(){
 
 //월별 사업 상세보기
 function fn_openBoardMonthDetail(obj){
-	var comSubmit = new ComSubmit();
+	const comSubmit = new ComSubmit();
 	comSubmit.setUrl("/openSm2MonthDetail.do");
 	comSubmit.addParam("monthidx", obj.parent().find("#monthidx").val());
 	comSubmit.submit();

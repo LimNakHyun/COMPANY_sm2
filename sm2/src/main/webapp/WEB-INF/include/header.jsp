@@ -27,7 +27,16 @@
 	<script src="${pageContext.request.contextPath}/resources/js/monthBusiness.js" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/login.js" charset="utf-8"></script>
 	<script src="${pageContext.request.contextPath}/resources/chosen/chosen.jquery.js" charset="utf-8"></script>
-	
+	<script type="text/javascript">
+	$( document ).ready(function() {
+		var form = document.getElementById("commonForm");
+		var inputs = form.querySelectorAll("input");
+		inputs.forEach(function(input) {
+		  form.removeChild(input);
+		  alert("삭제되었습니다");
+		});
+	});
+	</script>
 </head>
 <body>
 
