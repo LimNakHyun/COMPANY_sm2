@@ -146,6 +146,13 @@ public class Sm2Controller {
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("jsonView");
 		
+//		System.out.println("검색어: " + commandMap.getMap().get("searchword"));
+//		System.out.println("검색어 타입: " + commandMap.getMap().get("searchword").getClass().getName());
+//		
+//		if(commandMap.getMap().get("searchword").equals("")) {
+//			System.out.println("검색어는 빈 문자열임");
+//		}
+		
 		try {
 			if(session.getAttribute("month") != "" || session.getAttribute("month") != null) {
 				session.removeAttribute("month");
@@ -168,6 +175,10 @@ public class Sm2Controller {
 			
 			Map<String, Object> amount = sm2Service.selectBoardAmount(commandMap.getMap());
 			mv.addObject("amount", amount);
+			
+			if(commandMap.getMap().get("searchword").equals("")) {
+				mv.addObject("searchword", "false");
+			}
 		} catch(Exception e) {
 			log.info(e.getMessage());
 			ModelAndView mv2 = new ModelAndView("redirect:/openSm2Main.do");

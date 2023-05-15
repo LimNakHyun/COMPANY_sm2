@@ -86,7 +86,7 @@
 				$("#monthUpdateDetail").on("click", function(e){
 					e.preventDefault();
 					var condition = ${detail.monthbusinesscondition};
-					console.log(condition);
+					/* console.log(condition); */
 					if(!condition){
 						fn_updateBoardMonthDetail();
 					} else{

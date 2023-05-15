@@ -147,6 +147,10 @@ $(document).ready(function(){
 //		});
 //	}
 	
+	// 사업 정렬 가능 토글 버튼
+	$("#board_business_order_change").click(function() {
+		fn_tbodySortable();
+	})
 	
 });
 
@@ -196,7 +200,7 @@ function fn_openBoardDetail(obj){
 }
 
 // 사업 순서 변경
-$(function(){
+function fn_tbodySortable(){
 	$("#sortable").sortable();
 	$("#sortable").disableSelection();
 	
@@ -215,7 +219,7 @@ $(function(){
 			comSubmit.submit();
 		}
 	});
-});
+}
 
 // 사업 목록 출력 및 사업 검색
 function getBusinessList(){

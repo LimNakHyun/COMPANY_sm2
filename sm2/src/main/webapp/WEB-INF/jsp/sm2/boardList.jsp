@@ -18,7 +18,12 @@
 					<button id="search_reset">초기화</button>
 				</div>
 			</div>
+			<div class="btn-group btn-right">
+				<button type="submit" class="btn btn-basic" id="board_business_order_change">사업 순서 변경</button>
+			</div>
 		</div>
+		
+		
 		
 		<div class="cont_body">
 		

@@ -36,7 +36,16 @@
 					<tr>
 						<td class="middle">${monthDetail.code}</td>
 						<td class="middle">
-							<a href="#this" class="noborder" name="detailTitle">[${monthDetail.businessmonth}월] ${monthDetail.businessname}</a>
+							<a href="#this" class="noborder" name="detailTitle">
+								<c:choose>
+									<c:when test="${monthDetail.businessmonth eq 13}">
+										[이월] ${monthDetail.businessname}
+									</c:when>
+									<c:otherwise>
+										[${monthDetail.businessmonth}월] ${monthDetail.businessname}
+									</c:otherwise>
+								</c:choose>
+							</a>
 							<input type="hidden" id="monthidx" name="monthidx" value="${monthDetail.monthidx}">
 						</td>
 						<td class="middle">${monthDetail.client}</td>
