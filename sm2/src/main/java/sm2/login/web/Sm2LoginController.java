@@ -22,12 +22,14 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import sm2.cmm.cmm.CommandMap;
 import sm2.login.service.Sm2LoginService;
+import sm2.login.vo.LoginVO;
 
 @Controller
 public class Sm2LoginController {
@@ -39,21 +41,25 @@ public class Sm2LoginController {
 	
 	/**
 	 * 로그인 직후 표시 페이지
-	 * @param commandMap
+	 * @param loginVO
 	 * @param session
 	 * @return "/sm2/boardList"
 	 * @throws Exception
+	 * @comment 여기 들어온 ID와 PW는 검증이 끝난 값들임
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/openSm2MainLogin.do")
-	public ModelAndView openSm2MainLogin(CommandMap commandMap,
+	public ModelAndView openSm2MainLogin(
+			@ModelAttribute LoginVO loginVO,
 			HttpSession session) throws Exception {
-		ModelAndView mv = new ModelAndView("/sm2/boardList");
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Main.do");
 		try {
 			session.setAttribute("year", "2023");
-//			System.out.println("세션값 출력: " + session.getAttribute("login"));
 			session.setAttribute("login", "on");
-//			System.out.println("세션값 출력: " + session.getAttribute("login"));
+			Map<String, Object> role = sm2LoginService.selectBoardUserRole(loginVO);
+			session.setAttribute("role", role.get("authority"));
+			session.setAttribute("BizOrdChg", "N");			// 사업 순서 변경을 불가능하게
+			session.setAttribute("monthBizOrdChg", "N");	// 월별 사업 순서 변경을 불가능하게
 		} catch(Exception e) {
 			log.info(e.getMessage());
 			ModelAndView mv2 = new ModelAndView("redirect:/openSm2Index.do");
@@ -61,32 +67,45 @@ public class Sm2LoginController {
 		}
 		
 		return mv;
+		
 	}
 	
 	/**
 	 * 로그인 계정 체크 ajax
-	 * @param commandMap
+	 * @param loginVO
 	 * @param session
-	 * @return "/sm2/boardList"
+	 * @return 
 	 * @throws Exception
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/openSm2LoginAjax.do")
-	public ModelAndView openSm2LoginAjax(CommandMap commandMap,
+	public ModelAndView openSm2LoginAjax(
+			@ModelAttribute LoginVO loginVO,
 			HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView("jsonView");
-		
+		String msg = "";
 		try {
-			
-			Map<String, Object> userInfo = sm2LoginService.selectBoardUserInfo(commandMap.getMap());
-			mv.addObject("userInfo", userInfo);
-			
+			Map<String, Object> userID = sm2LoginService.selectBoardUserID(loginVO);
+			if(userID != null) {	// 유저 ID가 테이블에 존재할때
+				String ID = (String)userID.get("userid");
+				Map<String, Object> userPW = sm2LoginService.selectBoardUserPW(loginVO);
+				if(userPW != null) {	// 유저 ID에 맞는 유저 PW가 테이블에 존재할때
+					String PW = (String)userPW.get("userpw");
+					msg = "success";
+					mv.addObject("ID", ID);
+					mv.addObject("PW", PW);
+				} else {	// 유저 ID에 맞는 유저 PW가 테이블에 없을때
+					msg = "pwError";
+				}
+			} else {	// 유저 ID가 테이블에 없을때
+				msg = "idError";
+			}
+			mv.addObject("msg", msg);
 		} catch(Exception e) {
 			log.info(e.getMessage());
 			ModelAndView mv2 = new ModelAndView("redirect:/openSm2Index.do");
 			return mv2;
 		}
-		
 		return mv;
 	}
 	

@@ -2,8 +2,18 @@
 <%@ include file="/WEB-INF/include/header.jsp" %>
 
 	<div id="contents">
-		<h2 class="cont_tit">이지스 ${year}년 사업실적(매출세금계산서 기준)</h2>
-	
+		<div class="cont_tit" style="display: flex; justify-content: space-between;">
+			<h2>이지스 ${year}년 사업실적(매출세금계산서 기준)</h2>
+			<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+				<c:if test="${fn:contains(sessionScope.BizOrdChg, 'Y')}">
+					<button type="submit" class="btn btn-red" id="board_business_order_change">사업 순서 변경 잠금</button>
+				</c:if>
+				<c:if test="${fn:contains(sessionScope.BizOrdChg, 'N')}">
+					<button type="submit" class="btn btn-basic" id="board_business_order_change">사업 순서 변경</button>
+				</c:if>
+			</c:if>
+		</div>
+
 		<div class="cont_top">
 			<div class="dashboard_box"></div>
 			<div class="search_box">
@@ -18,15 +28,9 @@
 					<button id="search_reset">초기화</button>
 				</div>
 			</div>
-			<div class="btn-group btn-right">
-				<button type="submit" class="btn btn-basic" id="board_business_order_change">사업 순서 변경</button>
-			</div>
 		</div>
 		
-		
-		
 		<div class="cont_body">
-		
 			<form id="frm">
 				<table class="tbl_basic tbl_list">
 					<caption>이지스 ${year}년 사업실적(매출세금계산서 기준)</caption>
@@ -42,12 +46,21 @@
 							<th>매출금액(-)<br>(계약금액 * 지분율)</th><th>수금완료금액(-)</th><th>수금잔여금액(-)</th><th>비고</th>
 						</tr>
 					</thead>
-					<tbody class="businessList" id="sortable"></tbody>
+					<c:choose>
+						<c:when test="${fn:contains(sessionScope.BizOrdChg, 'Y')}">
+							<tbody class="businessList" id="sortable"></tbody>
+						</c:when>
+						<c:when test="${fn:contains(sessionScope.BizOrdChg, 'N')}">
+							<tbody class="businessList"></tbody>
+						</c:when>
+					</c:choose>
 					<tfoot id="businessSum"></tfoot>
 				</table>
-				<div class="btn-group">
-					<button type="submit" class="btn btn-basic" id="insert">사업 추가</button>
-				</div>
+				<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+					<div class="btn-group">
+						<button type="submit" class="btn btn-basic" id="insert">사업 추가</button>
+					</div>
+				</c:if>
 			</form>
 		</div>
 	</div>

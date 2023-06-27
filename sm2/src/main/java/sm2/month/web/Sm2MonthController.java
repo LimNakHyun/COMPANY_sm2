@@ -74,6 +74,7 @@ public class Sm2MonthController {
 				else if(commandMap.getMap().get("month") != session.getAttribute("month")) {
 					session.setAttribute("month", commandMap.getMap().get("month"));
 				}
+				session.setAttribute("parentPage", "monthBusiness");
 //				else if((commandMap.getMap().get("month") == "" || commandMap.getMap().get("month") == null)
 //						&& (session.getAttribute("month") == "" || session.getAttribute("month") == null)) {
 //					String month = sm2MonthService.selectBoardMonthMonth(commandMap.getMap());
@@ -107,23 +108,26 @@ public class Sm2MonthController {
 		ModelAndView mv;
 		
 		String login = (String) session.getAttribute("login");
+		String role = (String)session.getAttribute("role");
 		
 		if(login == null || login.equals("")) {
 			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
-			mv = new ModelAndView("/sm2/boardMonthInsert");
-			
-			try {
-				commandMap.getMap().put("year", session.getAttribute("year"));
-				commandMap.getMap().put("month", session.getAttribute("month"));
-				
-				List<Map<String, Object>> selectboxList = sm2Service.selectBoardList(commandMap.getMap());
-				mv.addObject("selectboxList", selectboxList);
-			} catch(Exception e) {
-				log.info(e.getMessage());
+			if(role.equals("guest")) {
+				mv = new ModelAndView("redirect:/openSm2Month.do");
+			} else {
+				mv = new ModelAndView("/sm2/boardMonthInsert");
+				try {
+					commandMap.getMap().put("year", session.getAttribute("year"));
+					commandMap.getMap().put("month", session.getAttribute("month"));
+					
+					List<Map<String, Object>> selectboxList = sm2Service.selectBoardList(commandMap.getMap());
+					mv.addObject("selectboxList", selectboxList);
+				} catch(Exception e) {
+					log.info(e.getMessage());
+				}
 			}
 		}
-		
 		return mv;
 	}
 	
@@ -228,6 +232,7 @@ public class Sm2MonthController {
 			try {
 				Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
 				mv.addObject("detail", detail);
+				session.setAttribute("monthIdx", detail.get("monthidx"));
 			} catch(Exception e) {
 				log.info(e.getMessage());
 			}
@@ -285,17 +290,21 @@ public class Sm2MonthController {
 		ModelAndView mv;
 		
 		String login = (String) session.getAttribute("login");
+		String role = (String)session.getAttribute("role");
 		
 		if(login == null || login.equals("")) {
 			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
-			mv = new ModelAndView("/sm2/boardMonthUpdate");
-			
-			try {
-				Map<String ,Object> update = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
-				mv.addObject("update", update);
-			} catch(Exception e) {
-				log.info(e.getMessage());
+			if(role.equals("guest")) {
+				mv = new ModelAndView("redirect:/openSm2Month.do");
+			} else {
+				mv = new ModelAndView("/sm2/boardMonthUpdate");
+				try {
+					Map<String ,Object> update = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
+					mv.addObject("update", update);
+				} catch(Exception e) {
+					log.info(e.getMessage());
+				}
 			}
 		}
 		

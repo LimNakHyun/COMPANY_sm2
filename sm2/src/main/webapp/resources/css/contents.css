@@ -13,7 +13,7 @@ html, body {height:100%;}
 .main_year_select .logo a {display:block;width:150px;}
 .main_year_select .logo img {max-width:100%;}
 
-.main_year_select {display:flex;height:100%;flex-direction:column;justify-content:center;align-items:center;}
+.main_year_select {display:flex;height:90%;flex-direction:column;justify-content:center;align-items:center;}
 
 .main_year_select .logo {width:300px;margin-bottom:20px;}
 
@@ -41,7 +41,8 @@ html, body {height:100%;}
 .menu_box > ul li.selected button {background-color:#404042;}
 
 #contents {display:flex;padding:20px;flex-direction:column;}
-#contents .cont_tit {margin-bottom:30px;font-size:26px;}
+#contents .cont_tit {margin-bottom:30px;}
+#contents .cont_tit h2 {font-size:26px;}
 #contents .cont_body .cont_tit {margin-bottom:15px;}
 
 #contents .cont_top {margin-bottom:20px;}
@@ -60,7 +61,7 @@ html, body {height:100%;}
 
 .tbl_basic {width:100%;}
 .tbl_basic caption {position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);margin:-1px;overflow:hidden;}
-.tbl_basic td, .tbl_basic th {padding:10px;text-align:center;line-height:1.2;word-wrap:break-word;word-break:keep-all;}
+.tbl_basic td, .tbl_basic th {padding:10px;text-align:center;line-height:1.2;word-wrap:break-word;word-break:keep-all;border-right: 1px solid black;}
 .tbl_basic thead + tbody {border-top:0;}
 .tbl_basic tbody {border-top:2px solid #209fc7;}
 .tbl_basic tfoot th, .tbl_basic tfoot td {background-color:#2371b0;color:#fff;}
@@ -100,6 +101,12 @@ html, body {height:100%;}
 
 .btn-CornflowerBlue {background-color:#6495ED;color:#fff;}
 .btn-CornflowerBlue:hover {background-color:#3a77e9;}
+
+.btn-SlateBlue {background-color:#6A5ACD;color:#fff;}
+.btn-SlateBlue:hover {background-color:#9285da;}
+
+.btn-red {background-color:#ff3e3e;color:#fff;}
+.btn-red:hover {background-color:#ff6868;}
 
 .btn-group {display:flex;margin-top:20px;justify-content:center;}
 .btn-group.btn-right {justify-content:flex-end;}

@@ -23,6 +23,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import sm2.login.dao.Sm2LoginDAO;
+import sm2.login.vo.LoginVO;
 
 @Service("sm2LoginService")
 public class Sm2LoginServiceImpl implements Sm2LoginService {
@@ -32,13 +33,33 @@ public class Sm2LoginServiceImpl implements Sm2LoginService {
 	private Sm2LoginDAO sm2LoginDAO;
 
 	/**
-	 * 사용자 정보 호출
-	 * @param map
+	 * 로그인시 ID 조회
+	 * @param loginVO
 	 * @throws Exception
 	 */
 	@Override
-	public Map<String, Object> selectBoardUserInfo(Map<String, Object> map) throws Exception {
-		return sm2LoginDAO.selectBoardUserInfo(map);
+	public Map<String, Object> selectBoardUserID(LoginVO loginVO) throws Exception {
+		return sm2LoginDAO.selectBoardUserID(loginVO);
+	}
+
+	/**
+	 * 로그인시 PW 조회
+	 * @param loginVO
+	 * @throws Exception
+	 */
+	@Override
+	public Map<String, Object> selectBoardUserPW(LoginVO loginVO) throws Exception {
+		return sm2LoginDAO.selectBoardUserPW(loginVO);
+	}
+
+	/**
+	 * 사용자 권한 조회
+	 * @param loginVO
+	 * @throws Exception
+	 */
+	@Override
+	public Map<String, Object> selectBoardUserRole(LoginVO loginVO) throws Exception {
+		return sm2LoginDAO.selectBoardUserRole(loginVO);
 	}
 	
 }

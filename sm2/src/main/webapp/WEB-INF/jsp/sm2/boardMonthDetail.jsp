@@ -67,8 +67,11 @@
 			<c:if test="${month != null}">
 				<!-- <button type="button" class="btn btn-basic" onclick="goBack()">목록으로</button> -->
 				<a href="#this" class="btn btn-basic" id="monthListDetail">목록으로</a>
-				<a href="#this" class="btn btn-black" id="monthDeleteDetail">삭제</a>
-				<a href="#this" class="btn btn-lightblue" id="monthUpdateDetail">수정</a>
+				<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+					<a href="#this" class="btn btn-black" id="monthDeleteDetail">삭제</a>
+					<a href="#this" class="btn btn-lightblue" id="monthUpdateDetail">월별 사업 수정</a>
+					<a href="#this" class="btn btn-SlateBlue" id="updateDetail">사업 수정</a>
+				</c:if>
 			</c:if>
 			
 			<c:if test="${month eq null}">

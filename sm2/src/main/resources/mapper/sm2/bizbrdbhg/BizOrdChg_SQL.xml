@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="bizOrdChg">
+	<!-- 특정 연월 사업 목록 불러오기 --> 
+	<select id="selectSpecificBusiness" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				IDX,
+				ORDERIDX
+			FROM
+				SM.MANAGEMENT
+			WHERE 
+				DELYN = FALSE
+			AND
+				BUSINESSYEAR = CAST(#{year} AS INTEGER)
+			ORDER BY
+				ORDERIDX
+		]]>
+	</select>
+	
+	<!-- 사업 orderIndex 업데이트 -->
+	<update id="updateBoardOrder" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				SM.MANAGEMENT
+			SET
+				ORDERIDX = CAST(#{orderidx} AS INTEGER)
+			WHERE
+				IDX = CAST(#{idx} AS INTEGER)
+		]]>
+	</update>
+</mapper>

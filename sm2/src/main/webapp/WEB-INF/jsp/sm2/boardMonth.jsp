@@ -2,15 +2,24 @@
 <%@ include file="/WEB-INF/include/header.jsp" %>
 
 	<div id="contents">
-	
-		<c:choose>
-			<c:when test="${month eq 13}">
-				<h2 class="cont_tit">${year + 1}년 이월사업</h2>
-			</c:when>
-			<c:otherwise>
-				<h2 class="cont_tit">${year}년 ${month}월</h2>
-			</c:otherwise>
-		</c:choose>
+		<div class="cont_tit" style="display: flex; justify-content: space-between;">
+			<c:choose>
+				<c:when test="${month eq 13}">
+					<h2>${year + 1}년 이월사업</h2>
+				</c:when>
+				<c:otherwise>
+					<h2>${year}년 ${month}월</h2>
+				</c:otherwise>
+			</c:choose>
+			<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+				<c:if test="${fn:contains(sessionScope.monthBizOrdChg, 'Y')}">
+					<button type="submit" class="btn btn-red" id=board_month_business_order_change>월별 사업 순서 변경 잠금</button>
+				</c:if>
+				<c:if test="${fn:contains(sessionScope.monthBizOrdChg, 'N')}">
+					<button type="submit" class="btn btn-basic" id=board_month_business_order_change>월별 사업 순서 변경</button>
+				</c:if>
+			</c:if>
+		</div>
 		
 		<div class="cont_top">
 			<div class="dashboard_box">
@@ -43,44 +52,94 @@
 							<th scope="col">수금잔여금액(-)</th><th scope="col">사업수금액</th><th scope="col">수금완료하기</th>
 						</tr>
 					</thead>
-					<tbody id="monthsortable">
-					<c:if test="${empty list}">
-						<td colspan="11">등록된 사업이 없습니다.</td>
-					</c:if>
-					<c:forEach items="${list}" var="dto" varStatus="status">
-						
-						<tr name="monthdragitem">
-							<td class="middle">${dto.code}</td>
-							<td class="middle">
-								<a href="#this" class="noborder" name="monthTitle">${dto.businessname}</a>
-								<input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}">
-							</td>
-							<td class="middle">${dto.client}</td>
-							<td class="right">
-								<fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
-							<td class="right">
-								<fmt:formatNumber value="${dto.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
-							<td class="right red_txt">
-								<fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
-							<td class="middle">
-								<input type="hidden" id="idx" name="idx" value="${dto.idx}">
-								<input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}">
-								<input type="hidden" id="monthorderidx" name="monthorderidx" value="${dto.monthorderidx}">
-								<input type="hidden" id="collectioncash" name="collectioncash" value="${dto.collectioncash}">
-								<input type="hidden" id="monthbusinesscondition" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">
-								<c:choose>
-									<c:when test="${dto.monthbusinesscondition eq false}">
-										<a class="red_txt" href="#this" name="monthConditionGo" title="사업 완료하기">미완</a>
-									</c:when>
-									<c:otherwise>
-										<a class="blue_txt" href="#this" name="monthConditionBack" title="사업 되돌리기">완료</a>
-									</c:otherwise>
-								</c:choose>
-							</td>
-						</tr>
-						
-					</c:forEach>
-					</tbody>
+					<c:choose>
+						<c:when test="${fn:contains(sessionScope.monthBizOrdChg, 'Y')}">
+							<tbody id="monthsortable">
+							<c:if test="${empty list}">
+								<td colspan="11">등록된 사업이 없습니다.</td>
+							</c:if>
+							<c:forEach items="${list}" var="dto" varStatus="status">
+								<tr name="monthdragitem">
+									<td class="middle">${dto.code}</td>
+									<td class="middle">
+										<a href="#this" class="noborder" name="monthTitle">${dto.businessname}</a>
+										<input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}">
+									</td>
+									<td class="middle">${dto.client}</td>
+									<td class="right">
+										<fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
+									<td class="right">
+										<fmt:formatNumber value="${dto.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
+									<td class="right red_txt">
+										<fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
+									<td class="middle">
+										<input type="hidden" id="idx" name="idx" value="${dto.idx}">
+										<input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}">
+										<input type="hidden" id="monthorderidx" name="monthorderidx" value="${dto.monthorderidx}">
+										<input type="hidden" id="collectioncash" name="collectioncash" value="${dto.collectioncash}">
+										<input type="hidden" id="monthbusinesscondition" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">
+										<c:choose>
+											<c:when test="${dto.monthbusinesscondition eq false}">
+												<a class="red_txt" href="#this" name="monthConditionGo" title="사업 완료하기">미완</a>
+											</c:when>
+											<c:otherwise>
+												<a class="blue_txt" href="#this" name="monthConditionBack" title="사업 되돌리기">완료</a>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</c:when>
+						<c:when test="${fn:contains(sessionScope.monthBizOrdChg, 'N')}">
+							<tbody>
+							<c:if test="${empty list}">
+								<td colspan="11">등록된 사업이 없습니다.</td>
+							</c:if>
+							<c:forEach items="${list}" var="dto" varStatus="status">
+								<tr name="monthdragitem">
+									<td class="middle">${dto.code}</td>
+									<td class="middle">
+										<a href="#this" class="noborder" name="monthTitle">${dto.businessname}</a>
+										<input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}">
+									</td>
+									<td class="middle">${dto.client}</td>
+									<td class="right">
+										<fmt:formatNumber value="${dto.salesamount}" pattern="#,###"/> 원</td>
+									<td class="right">
+										<fmt:formatNumber value="${dto.totalcollectionremainingamount}" pattern="#,###"/> 원</td>
+									<td class="right red_txt">
+										<fmt:formatNumber value="${dto.collectioncash}" pattern="#,###"/> 원</td>
+									<td class="middle">
+										<input type="hidden" id="idx" name="idx" value="${dto.idx}">
+										<input type="hidden" id="monthidx" name="monthidx" value="${dto.monthidx}">
+										<input type="hidden" id="monthorderidx" name="monthorderidx" value="${dto.monthorderidx}">
+										<input type="hidden" id="collectioncash" name="collectioncash" value="${dto.collectioncash}">
+										<input type="hidden" id="monthbusinesscondition" name="monthbusinesscondition" value="${dto.monthbusinesscondition}">
+										<c:choose>
+											<c:when test="${dto.monthbusinesscondition eq false}">
+												<c:if test="${fn:contains(sessionScope.role, 'guest')}">
+													<a class="red_txt" href="#this">미완</a>
+												</c:if>
+												<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+													<a class="red_txt" href="#this" name="monthConditionGo" title="사업 완료하기">미완</a>
+												</c:if>
+											</c:when>
+											<c:otherwise>
+												<c:if test="${fn:contains(sessionScope.role, 'guest')}">
+													<a class="blue_txt" href="#this">완료</a>
+												</c:if>
+												<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+													<a class="blue_txt" href="#this" name="monthConditionBack" title="사업 되돌리기">완료</a>
+												</c:if>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+							</tbody>
+						</c:when>
+					</c:choose>
 					<tfoot>
 						<c:choose>
 							<c:when test="${month eq 13}">
@@ -102,9 +161,11 @@
 						</c:choose>
 					</tfoot>
 				</table>
-				<div class="btn-group">
-					<button type="submit" class="btn btn-basic" id="monthInsert">월별 사업 추가</button>
-				</div>
+				<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+					<div class="btn-group">
+						<button type="submit" class="btn btn-basic" id="monthInsert">월별 사업 추가</button>
+					</div>
+				</c:if>
 			</form>
 		</div>
 	</div>

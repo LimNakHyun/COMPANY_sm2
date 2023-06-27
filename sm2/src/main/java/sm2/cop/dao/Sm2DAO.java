@@ -132,19 +132,19 @@ public class Sm2DAO extends AbstractDAO {
 	 * @param map
 	 * @throws Exception
 	 */
-	@SuppressWarnings("unchecked")
-	public List<Map<String, Object>> selectSpecificBusiness(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>) selectList("sm2Board.selectSpecificBusiness", map);
-	}
+//	@SuppressWarnings("unchecked")
+//	public List<Map<String, Object>> selectSpecificBusiness(Map<String, Object> map) throws Exception {
+//		return (List<Map<String, Object>>) selectList("sm2Board.selectSpecificBusiness", map);
+//	}
 
 	/**
 	 * 사업 orderIndex 업데이트
 	 * @param map
 	 * @throws Exception
 	 */
-	public void updateBoardOrder(Map<String, Object> map) throws Exception {
-		update("sm2Board.updateBoardOrder", map);
-	}
+//	public void updateBoardOrder(Map<String, Object> map) throws Exception {
+//		update("sm2Board.updateBoardOrder", map);
+//	}
 
 	/**
 	 * 사업 상세보기 관련 사업 조회

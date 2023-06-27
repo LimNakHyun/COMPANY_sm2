@@ -109,6 +109,11 @@ $(document).ready(function(){
 	$(".chzn-select").chosen({
 		allow_single_deselect: true
 	});
+	
+	// 사업 정렬 가능 토글 버튼
+	$("#board_month_business_order_change").click(function() {
+		fn_monthTbodySortable();
+	})
 });
 
 //월별 사업 등록
@@ -150,7 +155,7 @@ $(function(){
 				dMonthChangeList.push($(this).val());
 			});
 			
-			console.log(dMonthChangeList);
+//			console.log(dMonthChangeList);
 			
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("/switchBoardMonth.do");
@@ -211,4 +216,10 @@ function fn_updateBoardMonthUpdate() {
 // 월별 사업 수정 페이지 리셋
 function fn_inputMonthResetUpdate(){
 	document.getElementById("frm").reset();
+}
+
+function fn_monthTbodySortable(){
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("/monthBizOrdChgTgl.do");
+	comSubmit.submit();
 }

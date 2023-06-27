@@ -201,6 +201,13 @@ function fn_openBoardDetail(obj){
 
 // 사업 순서 변경
 function fn_tbodySortable(){
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("/BizOrdChgTgl.do");
+	comSubmit.submit();
+}
+
+// 페이지 로딩시 sortable ID를 달고있는 객체를 sortable하게 변경
+$(function(){
 	$("#sortable").sortable();
 	$("#sortable").disableSelection();
 	
@@ -211,7 +218,7 @@ function fn_tbodySortable(){
 				dChangeList.push($(this).val());
 			});
 			
-			console.log(dChangeList);
+//			console.log(dChangeList);
 			
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("/switchBoard.do");
@@ -219,7 +226,7 @@ function fn_tbodySortable(){
 			comSubmit.submit();
 		}
 	});
-}
+});
 
 // 사업 목록 출력 및 사업 검색
 function getBusinessList(){
@@ -410,7 +417,7 @@ function getBoardDetailRelatedBusiness(idx){
 		},
 		dataType: "html",
 		success: function(data, status){
-			console.log(data);
+//			console.log(data);
 			if(status == "success"){
 				$("div.boardDetailRelatedBusiness").html(data);
 			} else{

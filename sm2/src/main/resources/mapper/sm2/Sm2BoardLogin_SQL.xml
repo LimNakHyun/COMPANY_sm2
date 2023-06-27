@@ -4,11 +4,41 @@
 
 <mapper namespace="sm2BoardLogin">
 	
-	<select id="selectBoardUserInfo" parameterType="hashmap" resultType="hashmap">
+	<!-- 로그인시 ID 조회 -->
+	<select id="selectBoardUserID" parameterType="loginVO" resultType="hashmap">
 		<![CDATA[
 			SELECT
-				USERID,
+				USERID
+			FROM
+				SM.USERMANAGEMENT
+			WHERE
+				DELYN = FALSE
+			AND
+				USERID = #{userId}
+		]]>
+	</select>
+	
+	<!-- 로그인시 ID 조회 -->
+	<select id="selectBoardUserPW" parameterType="loginVO" resultType="hashmap">
+		<![CDATA[
+			SELECT
 				USERPW
+			FROM
+				SM.USERMANAGEMENT
+			WHERE
+				DELYN = FALSE
+			AND
+				USERID = #{userId}
+			AND
+				USERPW = #{userPw}
+		]]>
+	</select>
+	
+	<!-- 사용자 권한 호출 -->
+	<select id="selectBoardUserRole" parameterType="loginVO" resultType="hashmap">
+		<![CDATA[
+			SELECT
+				AUTHORITY
 			FROM
 				SM.USERMANAGEMENT
 			WHERE

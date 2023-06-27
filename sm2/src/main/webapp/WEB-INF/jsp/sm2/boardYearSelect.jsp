@@ -17,6 +17,21 @@
 	<c:set var="nowYear"><fmt:formatDate value="${today}" pattern="yyyy" /></c:set>
 
 	<div id="wrapper" class="main_wrap">
+		<div id="header">
+			<h1 class="logo"><a href="/openSm2Index.do"><img class="egis_logo" src='${pageContext.request.contextPath}/resources/images/logo.svg'
+				alt="이지스"></a></h1>
+			<div class="box">
+				<div class="menu_box">
+					<ul>
+						<li>
+							<form action="/openSm2Logout.do" method="post">
+								<button type="submit" class="btn btn-lightblue">로그아웃</button>
+							</form>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
 		<div class="main_year_select">
 			<h1 class="logo"><img class="egis_logo" src='${pageContext.request.contextPath}/resources/images/logo.svg'
 					alt="이지스"></h1>

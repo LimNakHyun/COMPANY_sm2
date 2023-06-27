@@ -64,8 +64,10 @@
 		
 	<div class="btn-group">
 		<a href="#this" class="btn btn-basic" id="listDetail">목록으로</a>
-		<a href="#this" class="btn btn-black" id="deleteDetail">삭제</a>
-		<a href="#this" class="btn btn-lightblue" id="updateDetail">수정</a>
+		<c:if test="${fn:contains(sessionScope.role, 'admin')}">
+			<a href="#this" class="btn btn-black" id="deleteDetail">삭제</a>
+			<a href="#this" class="btn btn-lightblue" id="updateDetail">수정</a>
+		</c:if>
 	</div>
 	
 	<script>

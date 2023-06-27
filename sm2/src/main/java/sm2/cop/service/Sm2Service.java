@@ -67,7 +67,7 @@ public interface Sm2Service {
 	 * @param commandMap
 	 * @throws Exception
 	 */
-	void switchBoard(Map<String, Object> map) throws Exception;
+//	void switchBoard(Map<String, Object> map) throws Exception;
 
 	/**
 	 * 사업 상세보기 관련 사업 조회

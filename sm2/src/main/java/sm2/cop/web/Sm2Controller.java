@@ -116,7 +116,7 @@ public class Sm2Controller {
 					session.removeAttribute("year");
 					session.setAttribute("year", commandMap.getMap().get("year"));
 				}
-				
+				session.setAttribute("parentPage", "mainBusiness");
 //				List<Map<String, Object>> list = sm2Service.selectBoardList(commandMap.getMap());
 //				mv.addObject("list", list);
 //				
@@ -238,14 +238,18 @@ public class Sm2Controller {
 			HttpSession session) throws Exception {
 		ModelAndView mv;
 		
-		String login = (String) session.getAttribute("login");
+		String login = (String)session.getAttribute("login");
+		String role = (String)session.getAttribute("role");
 		
 		if(login == null || login.equals("")) {
 			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
-			mv = new ModelAndView("/sm2/boardInsert");
+			if(role.equals("guest")) {
+				mv = new ModelAndView("redirect:/openSm2Main.do");
+			} else {
+				mv = new ModelAndView("/sm2/boardInsert");
+			}
 		}
-		
 		return mv;
 	}
 	
@@ -321,18 +325,23 @@ public class Sm2Controller {
 		ModelAndView mv;
 		
 		String login = (String) session.getAttribute("login");
+		String role = (String)session.getAttribute("role");
 		
 		if(login == null || login.equals("")) {
 			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
-			mv = new ModelAndView("/sm2/boardUpdate");
-			
-			try {
-				Map<String, Object> update = sm2Service.selectBoardDetail(commandMap.getMap());
-				mv.addObject("update", update);
-			} catch(Exception e) {
-				log.info(e.getMessage());
+			if(role.equals("guest")) {
+				mv = new ModelAndView("redirect:/openSm2Main.do");
+			} else {
+				mv = new ModelAndView("/sm2/boardUpdate");
+				try {
+					Map<String, Object> update = sm2Service.selectBoardDetail(commandMap.getMap());
+					mv.addObject("update", update);
+				} catch(Exception e) {
+					log.info(e.getMessage());
+				}
 			}
+			
 		}
 		
 		return mv;
@@ -347,27 +356,37 @@ public class Sm2Controller {
 	@RequestMapping(value = "/updateSm2Board.do")
 	public ModelAndView updateSm2Board(CommandMap commandMap,
 			HttpSession session) throws Exception {
-		ModelAndView mv;
+		ModelAndView mv = new ModelAndView("redirect:/openSm2Index.do");
 		
-		String login = (String) session.getAttribute("login");
+		String login = (String)session.getAttribute("login");
+		String parentPage = (String)session.getAttribute("parentPage");
+		String monthIdx = String.valueOf(session.getAttribute("monthIdx"));
 		
 		if(login == null || login.equals("")) {
 			mv = new ModelAndView("redirect:/openSm2Index.do");
 		} else {
-			mv = new ModelAndView("/sm2/boardDetail");
-			
 			try {
 				sm2Service.updateBoard(commandMap.getMap());
+				if(parentPage.equals("monthBusiness")) {	// 월별 사업에서 사업금액을 수정
+					mv = new ModelAndView("/sm2/boardMonthDetail");
+					if(!monthIdx.equals("") || monthIdx != null) {
+						commandMap.getMap().put("monthidx", monthIdx);
+					}
+					Map<String, Object> detail = sm2MonthService.selectBoardMonthDetail(commandMap.getMap());
+					mv.addObject("detail", detail);
+				} else if(parentPage.equals("mainBusiness")) {	// 매출 총괄현황에서 사업금액을 수정
+					mv = new ModelAndView("/sm2/boardDetail");
+					Map<String, Object> detail = sm2Service.selectBoardDetail(commandMap.getMap());
+					List<Map<String, Object>> monthDetails = sm2MonthService.selectBoardDetailMonthDetail(commandMap.getMap());
+					mv.addObject("detail", detail);
+					mv.addObject("monthDetails", monthDetails);
+				}
+			
 				
-				Map<String, Object> detail = sm2Service.selectBoardDetail(commandMap.getMap());
-				List<Map<String, Object>> monthDetails = sm2MonthService.selectBoardDetailMonthDetail(commandMap.getMap());
-				mv.addObject("detail", detail);
-				mv.addObject("monthDetails", monthDetails);
 			} catch(Exception e) {
 				log.info(e.getMessage());
 			}
 		}
-		
 		return mv;
 	}
 	
@@ -441,29 +460,29 @@ public class Sm2Controller {
 	 * @return "/sm2/boardMonthDetail"
 	 * @throws Exception
 	 */
-	@RequestMapping(value = "/switchBoard.do")
-	public ModelAndView switchBoard(CommandMap commandMap,
-			HttpSession session) throws Exception {
-		ModelAndView mv;
-		
-		String login = (String) session.getAttribute("login");
-		
-		if(login == null || login.equals("")) {
-			mv = new ModelAndView("redirect:/openSm2Index.do");
-		} else {
-			mv = new ModelAndView("redirect:/openSm2Main.do");
-			
-			commandMap.getMap().put("year", session.getAttribute("year"));
-			
-			try {
-				sm2Service.switchBoard(commandMap.getMap());
-			} catch(Exception e) {
-				log.info(e.getMessage());
-			}
-		}
-		
-		return mv;
-	}
+//	@RequestMapping(value = "/switchBoard.do")
+//	public ModelAndView switchBoard(CommandMap commandMap,
+//			HttpSession session) throws Exception {
+//		ModelAndView mv;
+//		
+//		String login = (String) session.getAttribute("login");
+//		
+//		if(login == null || login.equals("")) {
+//			mv = new ModelAndView("redirect:/openSm2Index.do");
+//		} else {
+//			mv = new ModelAndView("redirect:/openSm2Main.do");
+//			
+//			commandMap.getMap().put("year", session.getAttribute("year"));
+//			
+//			try {
+//				sm2Service.switchBoard(commandMap.getMap());
+//			} catch(Exception e) {
+//				log.info(e.getMessage());
+//			}
+//		}
+//		
+//		return mv;
+//	}
 	
 	/**
 	 * 사업 상세보기에서 사업 월별 수금액 수금여부 전환
